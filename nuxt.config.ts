@@ -49,21 +49,13 @@ export default defineNuxtConfig({
   },
   vuefire: {
     config: {
-      // apiKey: "AIzaSyCWfpuj6RrETqsTlzjBTQy_4Yvk0MMCGow",
-      // authDomain: "tcso-b3ea7.firebaseapp.com",
-      // databaseURL: "https://tcso-b3ea7.firebaseio.com",
-      // projectId: "tcso-b3ea7",
-      // storageBucket: "tcso-b3ea7.appspot.com",
-      // messagingSenderId: "959363696145",
-      // appId: "1:959363696145:web:50f6cd9535ff7f4853d3b0",
-      // measurementId: "G-B128LH1X1F"
-      apiKey: "AIzaSyDyGtsOSLSyUdszfp_xXQSi76bQFuHFQuQ",
-      authDomain: "staging-tcso.firebaseapp.com",
-      databaseURL: "https://staging-tcso.firebaseio.com",
-      projectId: "staging-tcso",
-      storageBucket: "staging-tcso.firebasestorage.app",
-      messagingSenderId: "638341825999",
-      appId: "1:638341825999:web:6e9caf22bea2ac7e49beba"
+      apiKey: process.env.FIREBASE_API_KEY,
+      authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+      databaseURL: process.env.DATABASEURL,
+      projectId: process.env.PROJECTID,
+      storageBucket: process.env.STORAGEBUCKET,
+      messagingSenderId: process.env.MESSAGINGSENDERID,
+      appId: process.env.APPID,
     },
     firestore: true, // Activer explicitement Firestore
   },

@@ -13,7 +13,7 @@
           <v-col cols="12" md="12">
             <!--    --------------------    TITRE   --------------     -->
 
-            <v-card class="mb-3 pl-2 py-2 d-flex" v-if="annonceStore.annonce">
+            <v-card class="mb-3 ml-3 mt-5 pl-2 py-2 d-flex">
               <h1 class="headline">
                 {{ annonce1.titre }} ({{
                   annonce1.departement
@@ -31,25 +31,8 @@
               <h2 class="headline font-weight-light">Description du bien</h2>
               <v-divider class="mb-3 mt-1"></v-divider>
               <div class="subtitle-1 py-3">
-                {{ annonce1.conditions }}
+                {{ annonce1.description }}
                 <div class="d-flex align-center pb-2">
-                  <v-tooltip top color="primary">
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn
-                        v-if="annonce1.plu"
-                        class="subtitle-2"
-                        :href="annonce1.plu"
-                        target="blank"
-                        small
-                        v-bind="attrs"
-                        v-on="on"
-                      >
-                        Consulter le P.L.U
-                        <v-icon class="ml-2">mdi-link</v-icon>
-                      </v-btn>
-                    </template>
-                    <span>Plan Local d'Urbanisme</span>
-                  </v-tooltip>
                 </div>
               </div>
             </v-card>

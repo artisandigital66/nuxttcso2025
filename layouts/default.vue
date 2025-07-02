@@ -112,6 +112,7 @@ onMounted(() => {
   if (route.name === 'annonces') {
     annonceStore.fetchAnnonces();
     annonceStore.filterAnnoncesByDepartement('tous'); // Afficher toutes les annonces par défaut
+    clicktous()
   }
 });
 

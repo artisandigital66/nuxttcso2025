@@ -25,6 +25,7 @@ export const useAnnonceStore = defineStore('annonceStore', {
           annonces,
           (newAnnonces) => {
             this.annonces = newAnnonces.map((annonce) => ({ id: annonce.id, ...annonce }));
+            this.filteredAnnonces = [...this.annonces]; // Initialiser avec toutes les annonces
             console.log('Annonces récupérées:', this.annonces);
           },
           { immediate: true }
