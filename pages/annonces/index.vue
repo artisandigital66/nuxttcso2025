@@ -35,7 +35,7 @@
       </div>
       <div v-else>
         <v-alert type="warning">
-          Aucune annonce trouvée dans ce département
+          Aucune annonce trouvée
         </v-alert>
       </div>
     </div>
