@@ -1,4 +1,5 @@
-<template>
+
+  <template>
   <ClientOnly>
     <div class="container">
       <h1 class="headline">{{ annonce?.titre || 'Chargement...' }}</h1>
@@ -19,38 +20,55 @@
               <v-card-subtitle>Département: {{ annonce.departement }}</v-card-subtitle>
               <h2 class="ml-3 mt-3">Description</h2>
               <v-card-text>{{ annonce.description }}</v-card-text>
-              <h2 class="ml-3">Conditions financières et juridiques</h2>
+              <h2 class="ml-3 mt-3">Conditions juridiques et financieres</h2>
               <v-card-text>{{ annonce.conditions }}</v-card-text>
-              <h2 class="ml-3">Environnement</h2>
+              <h2 class="ml-3 mt-3">Environnement</h2>
               <v-card-text>{{ annonce.environnement }}</v-card-text>
             </v-card>
           </v-col>
           <v-col cols="12" md="4">
-            <v-carousel v-if="annonce.images?.length" hide-delimiters>
+            <v-carousel v-if="uniqueMedias.length" hide-delimiters>
               <v-carousel-item
-                v-for="(media, index) in annonce.images"
-                :key="index"
-                
+                v-for="(media, index) in uniqueMedias"
+                :key="media.url + index"
               >
                 <v-img
                   :src="media.url"
                   alt="Image de l'annonce"
                   cover
-                  @click="openImage(media.url)"
+                  @click="openImageModal(media.url)"
                   @error="handleImageError(media.url)"
                   @load="handleImageLoad(media.url)"
                 />
               </v-carousel-item>
             </v-carousel>
             <v-alert v-else type="warning">
-              Aucune image disponible
+              Aucune image disponible pour cette annonce
             </v-alert>
           </v-col>
         </v-row>
+
+        <!-- Visionneuse modale -->
+        <v-dialog v-model="showModal" max-width="800">
+          <v-card>
+            <v-img
+              :src="selectedImage"
+              alt="Image agrandie"
+              max-height="80vh"
+              contain
+            />
+            <v-card-actions>
+              <v-spacer />
+              <v-btn color="primary" text @click="showModal = false">
+                Fermer
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </div>
       <div v-else>
         <v-alert type="warning">
-          Aucune annonce trouvée
+          Aucune annonce trouvée pour l'ID {{ route.params.id }}
         </v-alert>
       </div>
     </div>
@@ -60,17 +78,33 @@
 <script setup>
 import { useAnnonceStore } from '~/stores/annonces';
 import { useRoute } from 'vue-router';
-import { computed, ref, onMounted, onUnmounted } from 'vue';
+import { computed, ref, onMounted, onUnmounted, watch } from 'vue';
 
 const annonceStore = useAnnonceStore();
 const route = useRoute();
 const loading = ref(true);
 const error = ref(null);
+const showModal = ref(false);
+const selectedImage = ref('');
 
 const annonce = computed(() => {
   const found = annonceStore.annonces.find((a) => a.id === route.params.id);
+  console.log('ID demandé:', route.params.id);
+  console.log('Annonces disponibles:', annonceStore.annonces);
   console.log('Annonce trouvée:', found);
+  console.log('Images de l\'annonce:', found?.images);
   return found;
+});
+
+const uniqueMedias = computed(() => {
+  if (!annonce.value?.images) return [];
+  // Supprimer les doublons basés sur l'URL
+  const seen = new Set();
+  return annonce.value.images.filter((media) => {
+    if (seen.has(media.url)) return false;
+    seen.add(media.url);
+    return true;
+  });
 });
 
 let unsubscribe = () => {};
@@ -78,10 +112,13 @@ let unsubscribe = () => {};
 onMounted(async () => {
   try {
     if (!annonceStore.annonces.length) {
+      console.log('Chargement des annonces...');
       unsubscribe = await annonceStore.fetchAnnonces();
+      // Attendre que les annonces soient chargées
+      await new Promise(resolve => setTimeout(resolve, 1000));
     }
     if (!annonce.value) {
-      error.value = new Error('Aucune annonce trouvée pour cet ID');
+      error.value = new Error(`Aucune annonce trouvée pour l'ID ${route.params.id}`);
     }
   } catch (err) {
     error.value = err;
@@ -95,9 +132,18 @@ onUnmounted(() => {
   unsubscribe();
 });
 
-const openImage = (url) => {
-  console.log('Ouvrir l\'image:', url);
-  window.open(url, '_blank');
+watch(
+  () => annonceStore.annonces,
+  (newAnnonces) => {
+    console.log('Annonces mises à jour:', newAnnonces);
+    console.log('Images uniques:', uniqueMedias.value);
+  }
+);
+
+const openImageModal = (url) => {
+  console.log('Ouverture de la modale avec l\'image:', url);
+  selectedImage.value = url;
+  showModal.value = true;
 };
 
 const handleImageError = (url) => {
