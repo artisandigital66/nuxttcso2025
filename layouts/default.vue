@@ -7,7 +7,7 @@
         </template>
         <v-app-bar-title>TCSO</v-app-bar-title>
 
-        <v-chip-group class="mr-3" v-if="$route.name == 'annonces'">
+        <v-chip-group class="mr-3 flex" v-if="$route.name == 'annonces'">
           <v-chip
             base-color="blue"
             color="green"
@@ -25,6 +25,33 @@
             :class="{ 'v-chip--selected': selectedDepartement === '81' }"
           >
             81
+          </v-chip>
+          <v-chip
+            base-color="blue"
+            color="green"
+            filter
+            @click="click82"
+            :class="{ 'v-chip--selected': selectedDepartement === '82' }"
+          >
+            82
+          </v-chip>
+          <v-chip
+            base-color="blue"
+            color="green"
+            filter
+            @click="click83"
+            :class="{ 'v-chip--selected': selectedDepartement === '83' }"
+          >
+            83
+          </v-chip>
+          <v-chip
+            base-color="blue"
+            color="green"
+            filter
+            @click="click84"
+            :class="{ 'v-chip--selected': selectedDepartement === '84' }"
+          >
+            84
           </v-chip>
           <v-chip
             base-color="blue"

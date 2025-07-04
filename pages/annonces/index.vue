@@ -21,7 +21,7 @@
             md="4"
           >
             <v-card>
-              <v-card-title>{{ annonce.titre }}</v-card-title>
+              <v-card-title><h2>{{ annonce.titre }}</h2></v-card-title>
               <v-card-subtitle>Département: {{ annonce.departement }}</v-card-subtitle>
               <v-card-text>{{ annonce.description }}</v-card-text>
               <v-card-actions>
@@ -34,9 +34,10 @@
         </v-row>
       </div>
       <div v-else>
-        <v-alert type="warning">
+        <!-- <v-alert type="warning">
           Aucune annonce trouvée
-        </v-alert>
+        </v-alert> -->
+        <v-skeleton-loader type="card"></v-skeleton-loader>
       </div>
     </div>
   </ClientOnly>

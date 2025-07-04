@@ -23,7 +23,7 @@
       </v-col>
     </v-row>
 
-    <div class="container contact-form justify-center">
+    <!-- <div class="container contact-form justify-center">
       <v-row class="justify-center form mb-10">
         <v-col cols="12" md="6">
           <v-text-field label="Nom*" v-model="nom" outlined></v-text-field>
@@ -38,7 +38,7 @@
           >Envoyer<v-icon class="ml-2">mdi-email-send</v-icon></v-btn
         >
       </v-row>
-    </div>
+    </div> -->
   </div>
 </template>
 

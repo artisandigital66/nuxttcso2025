@@ -1,12 +1,7 @@
 <template>
   <div class="home anchor">
     <!-- MOBILES -->
-    <v-parallax
-      height="460"
-      class="d-xs-flex d-md-none"
-      src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/main%2FO-toulousemob3.jpg?alt=media&token=6f6d7a2d-afd7-4c6f-b698-16265f7bd330"
-    >
-      <v-row class="justify-center text-center my-5">
+      <v-row class="justify-center text-center my-5 d-xs-flex d-md-none">
         <v-col cols="10" class="justify-center transpa my-5 bg-black">
           <h1 class="my-3 subtitle-1">
             TRANSACTION & CONSEIL <br />
@@ -15,24 +10,20 @@
           <v-img
             alt="TCSO logo"
             width="40%"
-            class="mx-auto"
-            src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/main%2Ftest-tcso-bleu.png?alt=media&token=bd5cbfb6-437a-443b-92bf-f01c1177c731"
+            class="mx-auto mb-3"
+            src="/newlogotcso.png"
           ></v-img>
-          <h2 class="my-3 subtitle-2">Sous titre</h2>
+          <h2 class="my-3 subtitle-2">Immobilier Professionnel</h2>
           <v-btn to="/annonces" small aria-label="Nos annonces" color="primary"
             >Toutes nos annonces
             <v-icon class="ml-2">mdi-arrow-right</v-icon></v-btn
           >
         </v-col>
       </v-row>
-    </v-parallax>
+
     <!-- DESKTOP -->
-    <v-parallax
-      class="d-none d-md-flex d-lg-flex"
-      height="560"
-      src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/main%2FO-toulouse3.jpg?alt=media&token=5b03fb08-e6e3-4ee2-8b0a-53ed79d24c75"
-    >
-      <v-row class="justify-center text-center align-center my-5">
+    
+      <v-row class="justify-center text-center align-center my-5 d-none d-md-flex d-lg-flex">
         <v-col
           cols="6"
           md="4"
@@ -46,24 +37,15 @@
             alt="TCSO logo"
             width="20%"
             class="mx-auto"
-            src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/main%2Ftest-tcso-bleu.png?alt=media&token=bd5cbfb6-437a-443b-92bf-f01c1177c731"
+            src="/newlogotcso.png"
           ></v-img>
-          <h2 class="my-3 headline">Sous titre</h2>
+          <h2 class="my-3 headline">Immobilier Professionnel</h2>
           <v-btn to="/annonces" small aria-label="Nos annonces" color="primary"
             >Toutes nos annonces
             <v-icon class="ml-2">mdi-arrow-right</v-icon></v-btn
           >
         </v-col>
       </v-row>
-    </v-parallax>
-
-    <!-- <v-row>
-      <v-col cols="12">
-        <video-player :options="videoOptions" />
-      </v-col>
-    </v-row> -->
-
-    <!-- <annonces-favorites :accueil="this.accueil"></annonces-favorites> -->
 
     <v-row class="justify-center py-5">
       <v-col cols="12" sm="8">
@@ -81,7 +63,7 @@
                 alt="TCSO logo"
                 width="10%"
                 class="mx-auto mt-5 pa-5"
-                src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/main%2Ftest-tcso-bleu.png?alt=media&token=bd5cbfb6-437a-443b-92bf-f01c1177c731"
+                src="/newlogotcso.png"
               ></v-img>
               <h5 class="mx-auto title mt-10">
                 Vendez votre affaire, 1 objectif plusieurs possibilités

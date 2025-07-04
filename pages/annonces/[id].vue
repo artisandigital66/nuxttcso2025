@@ -1,134 +1,116 @@
 <template>
   <ClientOnly>
-    <!-- <h1>annonce-{{ id }}</h1> -->
-    <div class="anchor container">
-      <div v-if="loading.value">
-        <v-skeleton-loader class="mx-auto" type="card"></v-skeleton-loader>
+    <div class="container">
+      <h1 class="headline">{{ annonce?.titre || 'Chargement...' }}</h1>
+
+      <div v-if="loading">
+        <v-skeleton-loader type="card" />
       </div>
-
-      <div>
-        <v-row class="justify-center py-10">
-          <!--    --------------------    IMAGES   --------------     -->
-
-          <v-col cols="12" md="12">
-            <!--    --------------------    TITRE   --------------     -->
-
-            <v-card class="mb-3 ml-3 mt-5 pl-2 py-2 d-flex">
-              <h1 class="headline">
-                {{ annonce1.titre }} ({{
-                  annonce1.departement
-                }})
-              </h1>
-
-              <v-spacer></v-spacer>
+      <div v-else-if="error">
+        <v-alert type="error">
+          Erreur : {{ error.message }}
+        </v-alert>
+      </div>
+      <div v-else-if="annonce">
+        <v-row>
+          <v-col cols="12" md="8">
+            <v-card>
+              <v-card-title><h2>{{ annonce.titre }}</h2></v-card-title>
+              <v-card-subtitle>Département: {{ annonce.departement }}</v-card-subtitle>
+              <h2 class="ml-3 mt-3">Description</h2>
+              <v-card-text>{{ annonce.description }}</v-card-text>
+              <h2 class="ml-3">Conditions financières et juridiques</h2>
+              <v-card-text>{{ annonce.conditions }}</v-card-text>
+              <h2 class="ml-3">Environnement</h2>
+              <v-card-text>{{ annonce.environnement }}</v-card-text>
             </v-card>
           </v-col>
-
-          <!--    --------------------    DESCRIPTION DU BIEN   --------------     -->
-
-          <v-col cols="12" md="12">
-            <v-card class="mb-3 pl-2">
-              <h2 class="headline font-weight-light">Description du bien</h2>
-              <v-divider class="mb-3 mt-1"></v-divider>
-              <div class="subtitle-1 py-3">
-                {{ annonce1.description }}
-                <div class="d-flex align-center pb-2">
-                </div>
-              </div>
-            </v-card>
-
-            <!--    --------------------    CONDITIONS FINANCIERES & JURIDIQUES   --------------     -->
-
-            <v-card class="mb-3 pl-2">
-              <h2 class="headline font-weight-light">
-                Conditions financières & juridiques
-              </h2>
-              <v-divider class="mb-3 mt-1"></v-divider>
-              {{ annonce1.conditions }}
-            </v-card>
-
-            <div class="d-none d-print-block">
-              <v-img
-                alt="TCSO logo"
-                width="30%"
-                class="mx-auto"
-                src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/main%2Ftest-tcso-bleu.png?alt=media&token=bd5cbfb6-437a-443b-92bf-f01c1177c731"
-              ></v-img>
-            </div>
-
-            <!--  -------------   ENVIRONNEMENT   ---------------- -->
-
-            <div class="page-break"></div>
-            <v-card class="mb-3 pl-2">
-              <h2 class="headline font-weight-light">
-                Environnement et localisation
-              </h2>
-              <v-divider class="mb-3 mt-1"></v-divider>
-              {{ annonce1.environnement }}
-            </v-card>
+          <v-col cols="12" md="4">
+            <v-carousel v-if="annonce.images?.length" hide-delimiters>
+              <v-carousel-item
+                v-for="(media, index) in annonce.images"
+                :key="index"
+                
+              >
+                <v-img
+                  :src="media.url"
+                  alt="Image de l'annonce"
+                  cover
+                  @click="openImage(media.url)"
+                  @error="handleImageError(media.url)"
+                  @load="handleImageLoad(media.url)"
+                />
+              </v-carousel-item>
+            </v-carousel>
+            <v-alert v-else type="warning">
+              Aucune image disponible
+            </v-alert>
           </v-col>
         </v-row>
-        <div class="page-break"></div>
       </div>
-
-      <!-- -------------    IMAGES    ---------------- -->
-            <div class="page-break"></div>
-            <v-divider class="mb-3 mt-1"></v-divider>
-            <v-row>
-              <v-col cols="12" class="">
-                <v-card class="elevation-2 grey darken-4 py-5 justify-center">
-                  <v-carousel>
-                    <v-carousel-item
-                      v-for="(thumb, thumbIndex) in medias"
-                      :key="thumbIndex"
-                      :src="thumb.url"
-                    >
-                    </v-carousel-item>
-                  </v-carousel>
-                </v-card>
-              </v-col>
-            </v-row>
-
-      <!-- -------------- Boutons   ----------    -->
-
-      <v-row class="d-print-none">
-        <v-col class="d-flex justify-space-between">
-          <v-btn class="mr-3" text @click="print">Imprimer</v-btn>
-
-          <v-btn
-            v-if="annonce1.pdf"
-            class="mx-auto red white--text"
-            small
-            :href="annonce1.pdf.url"
-            ><v-icon small>mdi-file-pdf</v-icon>Téléchargez le dossier
-            commercial</v-btn
-          >
-
-          <v-btn class="mr-3" text to="/annonces#anchor">Retour</v-btn>
-        </v-col>
-      </v-row>
+      <div v-else>
+        <v-alert type="warning">
+          Aucune annonce trouvée
+        </v-alert>
+      </div>
     </div>
   </ClientOnly>
 </template>
- 
- <script setup>
-import { useAnnonceStore } from "../stores/annonces";
 
-const loading = ref(true);
-const { id } = useRoute().params;
+<script setup>
+import { useAnnonceStore } from '~/stores/annonces';
+import { useRoute } from 'vue-router';
+import { computed, ref, onMounted, onUnmounted } from 'vue';
 
 const annonceStore = useAnnonceStore();
+const route = useRoute();
+const loading = ref(true);
+const error = ref(null);
 
-const print = () => {
-  window.print();
+const annonce = computed(() => {
+  const found = annonceStore.annonces.find((a) => a.id === route.params.id);
+  console.log('Annonce trouvée:', found);
+  return found;
+});
+
+let unsubscribe = () => {};
+
+onMounted(async () => {
+  try {
+    if (!annonceStore.annonces.length) {
+      unsubscribe = await annonceStore.fetchAnnonces();
+    }
+    if (!annonce.value) {
+      error.value = new Error('Aucune annonce trouvée pour cet ID');
+    }
+  } catch (err) {
+    error.value = err;
+    console.error('Erreur lors du chargement de l\'annonce:', err);
+  } finally {
+    loading.value = false;
+  }
+});
+
+onUnmounted(() => {
+  unsubscribe();
+});
+
+const openImage = (url) => {
+  console.log('Ouvrir l\'image:', url);
+  window.open(url, '_blank');
 };
 
-// console.log("id from [id].vue: ", id);
+const handleImageError = (url) => {
+  console.error('Erreur de chargement de l\'image:', url);
+};
 
-console.log("annonce from [id].vue:", annonceStore.annonces.find((annonce) => id == annonce.id))
- const annonce1 = annonceStore.annonces.find((annonce) => id == annonce.id)
- const medias = annonce1.images
+const handleImageLoad = (url) => {
+  console.log('Image chargée avec succès:', url);
+};
 </script>
 
- <style scoped>
+<style scoped>
+.container {
+  padding: 20px;
+}
 </style>

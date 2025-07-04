@@ -25,27 +25,22 @@ export default defineNuxtConfig({
     '@pinia/nuxt'
   ],
   vite: {
-    server: {
-      watch: {
-        usePolling: process.env.NODE_ENV === 'development' ? true : false,
-      },
-    },
     optimizeDeps: {
       include: [
         'firebase/app',
         'firebase/firestore',
         'vuefire',
         'pinia',
+        'vuetify',
+        'vuetify/components',
+        'vuetify/directives',
       ],
     },
-    vue: {
-      template: {
-        transformAssetUrls,
+    server: {
+      watch: {
+        ignored: ['**/node_modules/**', '**/dist/**', '**/public/**', '**/vuetify/dist/**'],
       },
     },
-    vueJsx: {
-      mergeProps: true
-    }
   },
   vuefire: {
     config: {
