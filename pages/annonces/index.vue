@@ -33,6 +33,7 @@
           </v-col>
         </v-row>
       </div>
+      
       <div v-else>
         <!-- <v-alert type="warning">
           Aucune annonce trouvée
@@ -40,6 +41,10 @@
         <v-skeleton-loader type="card"></v-skeleton-loader>
       </div>
     </div>
+    <v-row>
+      <v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" @click="$router.back()">Retour</v-btn>
+    </v-row>
+    
   </ClientOnly>
 </template>
 

@@ -84,7 +84,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-btn to="" class="mx-auto mb-4" color="primary" @click="$router.back()"
+      <v-btn variant ="outlined" class="mx-auto mb-4" color="primary" @click="$router.back()"
         >Retour</v-btn
       >
     </v-row>

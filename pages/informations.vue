@@ -333,12 +333,15 @@
         </v-expansion-panel>
       </v-col>
     </v-expansion-panels>
-    <v-col cols="12" md="4">
+    <v-col cols="12" md="4" class="justify-center">
       <v-img
         src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/informations%2Fkey-2323278_640.jpg?alt=media&token=380d8ec9-9a92-4fb7-96b8-19ba28700f9e"
       ></v-img>
     </v-col>
   </v-row>
+  <v-row>
+      <v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" @click="$router.back()">Retour</v-btn>
+    </v-row>
 </template>
  
  <script setup>

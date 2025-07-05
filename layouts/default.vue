@@ -26,15 +26,7 @@
           >
             81
           </v-chip>
-          <v-chip
-            base-color="blue"
-            color="green"
-            filter
-            @click="click82"
-            :class="{ 'v-chip--selected': selectedDepartement === '82' }"
-          >
-            82
-          </v-chip>
+          
           <v-chip
             base-color="blue"
             color="green"
@@ -42,33 +34,7 @@
             @click="click83"
             :class="{ 'v-chip--selected': selectedDepartement === '83' }"
           >
-            83
-          </v-chip>
-          <v-chip
-            base-color="blue"
-            color="green"
-            filter
-            @click="click84"
-            :class="{ 'v-chip--selected': selectedDepartement === '84' }"
-          >
-            84
-          </v-chip>
-          <v-chip
-            base-color="blue"
-            color="green"
-            filter
-            @click="click09"
-            :class="{ 'v-chip--selected': selectedDepartement === '09' }"
-          >
-            09
-          </v-chip>
-          <v-chip
-            base-color="blue"
-            color="green"
-            filter
-            @click="clicktous"
-            :class="{ 'v-chip--selected': selectedDepartement === 'tous' }"
-          >
+         
             Tous
           </v-chip>
         </v-chip-group>
@@ -155,10 +121,6 @@ const click31 = () => {
 const click81 = () => {
   selectedDepartement.value = '81';
   annonceStore.filterAnnoncesByDepartement('81');
-};
-const click09 = () => {
-  selectedDepartement.value = '09';
-  annonceStore.filterAnnoncesByDepartement('09');
 };
 const clicktous = () => {
   selectedDepartement.value = 'tous';

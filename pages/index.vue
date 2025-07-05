@@ -9,12 +9,12 @@
           </h1>
           <v-img
             alt="TCSO logo"
-            width="40%"
-            class="mx-auto mb-3"
+            width="50%"
+            class="mx-auto mb-5"
             src="/newlogotcso.png"
           ></v-img>
           <h2 class="my-3 subtitle-2">Immobilier Professionnel</h2>
-          <v-btn to="/annonces" small aria-label="Nos annonces" color="primary"
+          <v-btn variant ="outlined" to="/annonces" small aria-label="Nos annonces" color="primary"
             >Toutes nos annonces
             <v-icon class="ml-2">mdi-arrow-right</v-icon></v-btn
           >
@@ -35,12 +35,12 @@
           </h1>
           <v-img
             alt="TCSO logo"
-            width="20%"
+            width="30%"
             class="mx-auto"
             src="/newlogotcso.png"
           ></v-img>
           <h2 class="my-3 headline">Immobilier Professionnel</h2>
-          <v-btn to="/annonces" small aria-label="Nos annonces" color="primary"
+          <v-btn variant ="outlined" to="/annonces" small aria-label="Nos annonces" color="primary"
             >Toutes nos annonces
             <v-icon class="ml-2">mdi-arrow-right</v-icon></v-btn
           >

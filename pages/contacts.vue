@@ -12,14 +12,15 @@
 
     <v-row class="justify-center my-10">
       <v-col cols="8" md="6" class="text-center">
-        <li class="ligne mb-2 title">
+        <div>
           <v-icon color="primary">mdi-phone</v-icon
           ><span class="ml-3">06.85.03.22.66</span>
-        </li>
-        <li class="ligne title">
+        </div>
+        <div>
           <v-icon color="primary">mdi-email</v-icon
           ><span class="ml-3">contact@tcso.fr</span>
-        </li>
+        </div>
+        <div><v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" @click="$router.back()">Retour</v-btn></div>
       </v-col>
     </v-row>
 
