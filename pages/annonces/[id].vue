@@ -13,7 +13,7 @@
         </v-alert>
       </div>
       <div v-else-if="annonce">
-        <v-row>
+        <v-row class="mx-auto justify-center">
           <v-col cols="12" md="8">
             <v-card>
               <v-card-title><h2>{{ annonce.titre }}</h2></v-card-title>
@@ -26,6 +26,8 @@
               <v-card-text>{{ annonce.environnement }}</v-card-text>
             </v-card>
           </v-col>
+        </v-row>
+        <v-row class="mx-auto justify-center">
           <v-col cols="12" md="4">
             <v-carousel v-if="uniqueMedias.length" hide-delimiters>
               <v-carousel-item
