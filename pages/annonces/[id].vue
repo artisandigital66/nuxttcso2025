@@ -47,8 +47,10 @@
             <v-alert v-else type="warning">
               Aucune image disponible pour cette annonce
             </v-alert>
-            <div class="justify-center"><v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" @click="$router.back()">Retour</v-btn></div>
           </v-col>
+        </v-row>
+        <v-row>
+          <v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" @click="$router.back()">Retour</v-btn>
         </v-row>
 
         <!-- Visionneuse modale -->

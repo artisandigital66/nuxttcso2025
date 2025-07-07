@@ -12,26 +12,34 @@
         </v-alert>
       </div>
       <div v-else-if="annonceStore.filteredAnnonces.length">
-        <v-row>
-          <v-col
-            v-for="annonce in annonceStore.filteredAnnonces"
-            :key="annonce.id"
-            cols="12"
-            sm="6"
-            md="4"
+        <v-col
+          v-for="annonce in annonceStore.filteredAnnonces"
+          :key="annonce.id"
+          cols="12"
+          sm="6"
+          md="4"
           >
-            <v-card>
-              <v-card-title><h2>{{ annonce.titre }}</h2></v-card-title>
-              <v-card-subtitle>Département: {{ annonce.departement }}</v-card-subtitle>
-              <v-card-text>{{ annonce.description }}</v-card-text>
-              <v-card-actions>
-                <v-btn :to="`/annonces/${annonce.id}`" color="primary">
+          <v-card>
+            <v-card-title><h2>{{ annonce.titre }}</h2></v-card-title>
+            <v-card-subtitle>Département: {{ annonce.departement }}</v-card-subtitle>
+            <v-card-text>{{ annonce.description }}</v-card-text>
+              <v-row class="mx-auto justify-center">
+                <v-col cols="12" md="4" v-for="(media, index) in annonce.images"
+                :key="media.url + index">
+                    <v-img v-if="media.ordre == '1'"
+                      :src="media.url"
+                      alt="Image de l'annonce"
+                      cover
+                    />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-btn :to="`/annonces/${annonce.id}`" color="primary" variant ="outlined" class="mx-auto mt-3 mb-5">
                   Voir les détails
                 </v-btn>
-              </v-card-actions>
+              </v-row>
             </v-card>
-          </v-col>
-        </v-row>
+        </v-col>
       </div>
       
       <div v-else>
