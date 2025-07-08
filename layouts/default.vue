@@ -31,8 +31,8 @@
             base-color="blue"
             color="green"
             filter
-            @click="click83"
-            :class="{ 'v-chip--selected': selectedDepartement === '83' }"
+            @click="clicktous"
+            :class="{ 'v-chip--selected': selectedDepartement === 'tous' }"
           >
          
             Tous
