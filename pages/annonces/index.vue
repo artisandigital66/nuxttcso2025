@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <div class="container">
+    <div class="container justify-center mx-auto">
       <h1 class="headline">Liste des annonces</h1>
 
       <div v-if="loading">
@@ -21,6 +21,7 @@
           >
           <v-card>
             <v-card-title><h2>{{ annonce.titre }}</h2></v-card-title>
+            <v-card-subtitle>Département: {{ annonce.soustitre }}</v-card-subtitle>
             <v-card-subtitle>Département: {{ annonce.departement }}</v-card-subtitle>
             <v-card-text>{{ annonce.description }}</v-card-text>
               <v-row class="mx-auto justify-center">
@@ -55,7 +56,7 @@
     
   </ClientOnly>
 </template>
-
+  
 <script setup>
 import { useAnnonceStore } from '~/stores/annonces';
 import { ref, onMounted, onUnmounted } from 'vue';

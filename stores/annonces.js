@@ -9,7 +9,7 @@ export const useAnnonceStore = defineStore('annonceStore', {
     annonces: [],
     filteredAnnonces: [], // Liste filtrée
     annonce: null,
-    dpts: ['81', '31', '09'],
+    dpts: ['81', '31'],
   }),
   actions: {
     async fetchAnnonces() {
@@ -20,7 +20,7 @@ export const useAnnonceStore = defineStore('annonceStore', {
           throw new Error('Firestore instance not initialized');
         }
         // console.log('fetchAnnonces - Instance Firestore:', db);
-        const { data: annonces } = useCollection(collection(db, 'annonces2025-tcso'), { ssr: false });
+        const { data: annonces } = useCollection(collection(db, 'annonces2025-tcso'), { ssr: true });
         watch(
           annonces,
           (newAnnonces) => {
@@ -44,7 +44,7 @@ export const useAnnonceStore = defineStore('annonceStore', {
         this.filteredAnnonces = [];
         return;
       }
-      if (departement === 'tous') {
+      if (departement === 'Tous') {
         this.filteredAnnonces = [...this.annonces];
       } else {
         this.filteredAnnonces = this.annonces.filter((annonce) => annonce.departement === departement);

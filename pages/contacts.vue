@@ -2,23 +2,28 @@
   <div>
     <v-row class="justify-center">
       <v-col cols="10" md="6" class="mt-5">
-        <h1 class="title">
+        <h2 class="justify-center">
           Vous souhaitez acheter vendre ou louer des locaux commerciaux, acheter
           vendre ou louer des murs commerciaux, n’hésitez pas à retrouver toutes
           nos informations de contact par email ou téléphone ou réseaux sociaux
-        </h1>
+        </h2>
       </v-col>
     </v-row>
 
     <v-row class="justify-center my-10">
       <v-col cols="8" md="6" class="text-center">
         <div>
-          <v-icon color="primary">mdi-phone</v-icon
-          ><span class="ml-3">06.85.03.22.66</span>
+          <h2>
+            <v-icon color="primary">mdi-phone</v-icon
+            ><span class="ml-3">06.85.03.22.66</span>
+          </h2>
         </div>
+        
         <div>
-          <v-icon color="primary">mdi-email</v-icon
-          ><span class="ml-3">contact@tcso.fr</span>
+          <h2>
+            <v-icon color="primary">mdi-email</v-icon
+            ><span class="ml-3">nicolas@tcso.fr</span> 
+          </h2>
         </div>
         <div><v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" @click="$router.back()">Retour</v-btn></div>
       </v-col>

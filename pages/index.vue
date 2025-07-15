@@ -11,7 +11,7 @@
             alt="TCSO logo"
             width="50%"
             class="mx-auto mb-5"
-            src="/newlogotcso.png"
+            src="https://res.cloudinary.com/dkhuquewc/image/upload/v1752131487/newlogotcso_rnmy5a.png"
           ></v-img>
           <h2 class="my-3 subtitle-2">Immobilier Professionnel</h2>
           <v-btn variant ="outlined" to="/annonces" small aria-label="Nos annonces" color="primary"
@@ -37,7 +37,7 @@
             alt="TCSO logo"
             width="30%"
             class="mx-auto"
-            src="/newlogotcso.png"
+            src="https://res.cloudinary.com/dkhuquewc/image/upload/v1752131487/newlogotcso_rnmy5a.png"
           ></v-img>
           <h2 class="my-3 headline">Immobilier Professionnel</h2>
           <v-btn variant ="outlined" to="/annonces" small aria-label="Nos annonces" color="primary"
@@ -63,7 +63,7 @@
                 alt="TCSO logo"
                 width="10%"
                 class="mx-auto mt-5 pa-5"
-                src="/newlogotcso.png"
+                src="https://res.cloudinary.com/dkhuquewc/image/upload/v1752131487/newlogotcso_rnmy5a.png"
               ></v-img>
               <h5 class="mx-auto title mt-10">
                 Vendez votre affaire, 1 objectif plusieurs possibilités
