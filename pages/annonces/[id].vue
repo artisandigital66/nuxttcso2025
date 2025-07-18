@@ -16,13 +16,13 @@
         <v-row class="mx-auto justify-center">
           <v-col cols="12" md="8">
             <v-card>
-              <v-card-title><h2>{{ annonce.titre }}</h2></v-card-title>
+              <v-card-title><h3>{{ annonce.soustitre }}</h3></v-card-title>
               <v-card-subtitle>Département: {{ annonce.departement }}</v-card-subtitle>
-              <h2 class="ml-3 mt-3">Description</h2>
+              <h3 class="ml-3 mt-3">Description</h3>
               <v-card-text>{{ annonce.description }}</v-card-text>
-              <h2 class="ml-3 mt-3">Conditions juridiques et financieres</h2>
+              <h3 class="ml-3 mt-3">Conditions juridiques et financieres</h3>
               <v-card-text>{{ annonce.conditions }}</v-card-text>
-              <h2 class="ml-3 mt-3">Environnement</h2>
+              <h3 class="ml-3 mt-3">Environnement</h3>
               <v-card-text>{{ annonce.environnement }}</v-card-text>
             </v-card>
           </v-col>
@@ -54,13 +54,14 @@
         </v-row>
 
         <!-- Visionneuse modale -->
-        <v-dialog v-model="showModal" max-width="800">
+        <v-dialog v-model="showModal" transition="dialog-top-transition">
           <v-card>
             <v-img
               :src="selectedImage"
               alt="Image agrandie"
-              max-height="80vh"
+              max-height="100vh"
               contain
+              cover
             />
             <v-card-actions>
               <v-spacer />
@@ -94,10 +95,10 @@ const selectedImage = ref('');
 
 const annonce = computed(() => {
   const found = annonceStore.annonces.find((a) => a.id === route.params.id);
-  console.log('ID demandé:', route.params.id);
-  console.log('Annonces disponibles:', annonceStore.annonces);
-  console.log('Annonce trouvée:', found);
-  console.log('Images de l\'annonce:', found?.images);
+  // console.log('ID demandé:', route.params.id);
+  // console.log('Annonces disponibles:', annonceStore.annonces);
+  // console.log('Annonce trouvée:', found);
+  // console.log('Images de l\'annonce:', found?.images);
   return found;
 });
 

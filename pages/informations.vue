@@ -5,7 +5,7 @@
         Base de connaissances immobilières et conseils
       </h1>
     </v-col>
-
+    <v-divider></v-divider>
     <!-- <v-col cols="12">
       <iframe
         src="https://www.insee.fr/fr/statistiques/serie/001532540#Graphique"
@@ -22,46 +22,41 @@
       ></video>
     </v-col> -->
 
-    <v-col cols="12" md="3">
-      <v-img
-        class="mt-3"
-        src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/informations%2Fsale-3701777_640.jpg?alt=media&token=bbbaee87-cdf8-447e-b064-2646837c7bb3"
-      ></v-img>
-    </v-col>
+    <v-row class="mx-auto justify-center">
+    <h2 class="mx-auto text-center my-3">Céder son affaire</h2>
+    </v-row>
 
-    <v-col cols="12" md="5">
-      <p>
-        Combien de fois j’ai entendu des commerçants souhaitant «céder leur
-        affaire». Cette expression généraliste si elle traduit la volonté de
-        vendre n’a aucun sens juridiquement parlant.
-      </p>
-      <p>
-        En effet un commerçant c’est-à-dire un professionnel titulaire d’un bail
-        commercial dispose de multiples possibilités s’il souhaite vendre.
-      </p>
-      <p>
-        Ces différentes possibilités se traduiront par des règles financières,
-        juridiques et fiscales différentes.
-      </p>
-      <p>
-        Nous entendrons ici un commerçant établit dans le cadre d’une société
-        (SARL, SAS…) c’est-à-dire une personne morale distincte de la personne
-        physique du commerçant.
-      </p>
-      <p>
-        Le commerçant dans ce contexte qui aurait décidé de «céder son affaire»
-        peut à son gré décider de vendre son fonds de commerce, son seul droit
-        au bail ou sa société.
-      </p>
-    </v-col>
-
-    <v-expansion-panels focusable popout>
+    <v-row class="mb-5">
+      <v-col cols="12" md="8" class="mx-auto justify-center">
+        <p>
+          Combien de fois j’ai entendu des commerçants souhaitant «céder leur
+          affaire». Cette expression généraliste si elle traduit la volonté de
+          vendre n’a aucun sens juridiquement parlant.
+        </p>
+        <p>
+          En effet un commerçant c’est-à-dire un professionnel titulaire d’un bail
+          commercial dispose de multiples possibilités s’il souhaite vendre.
+        </p>
+        <p>
+          Ces différentes possibilités se traduiront par des règles financières,
+          juridiques et fiscales différentes.
+        </p>
+        <p>
+          Nous entendrons ici un commerçant établit dans le cadre d’une société
+          (SARL, SAS…) c’est-à-dire une personne morale distincte de la personne
+          physique du commerçant.
+        </p>
+        <p>
+          Le commerçant dans ce contexte qui aurait décidé de «céder son affaire»
+          peut à son gré décider de vendre son fonds de commerce, son seul droit
+          au bail ou sa société.
+        </p>
+      </v-col>
+    </v-row>
       <v-col cols="12" md="8">
-        <v-expansion-panel>
-          <v-expansion-panel-header>
+
             <h3>La vente d’un fonds de commerce:</h3>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content>
+
             <p class="mt-5">
               Il faut savoir que le droit Français n’a pas jugé utile de définir
               précisément le fonds de commerce, le législateur a seulement donné
@@ -182,15 +177,13 @@
               dans la fourchette généralement retenue une analyse beaucoup plus
               fine s’imposera.
             </p>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
+
+
       </v-col>
       <v-col cols="12" md="8">
-        <v-expansion-panel>
-          <v-expansion-panel-header>
+
             <h3>La cession de droit au bail</h3>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content>
+
             <p class="mt-5">
               Comme nous l’avons vu plus haut le droit au bail est un des
               éléments constitutifs du fonds de commerce. Un élément essentiel
@@ -294,15 +287,12 @@
               expliquer dans les moindres détails, aucune zone d’ombre ne doit
               subsister au moment de la signature.
             </p>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
+
       </v-col>
       <v-col cols="12" md="8">
-        <v-expansion-panel>
-          <v-expansion-panel-header>
+
             <h3>La cession de société</h3>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content>
+
             <p class="mt-5">
               Nous sommes ici dans un cas particulier où un vendeur décide de
               céder les parts ou les titres qu’il détient dans la société
@@ -329,16 +319,66 @@
               commerçant) qui encaissera le prix de cession et qui sera
               fiscalisé à titre personnel.
             </p>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
       </v-col>
-    </v-expansion-panels>
-    <v-col cols="12" md="4" class="justify-center">
+
+    <v-col cols="12" md="8" class="justify-center mb-3">
       <v-img
         src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/informations%2Fkey-2323278_640.jpg?alt=media&token=380d8ec9-9a92-4fb7-96b8-19ba28700f9e"
       ></v-img>
     </v-col>
   </v-row>
+  <v-divider></v-divider>
+  <v-row class="mx-auto justify-center">
+    <v-col cols="12" md="8" class="mx-auto justify-center mb-3">
+    <h2 class="mx-auto justify-center my-5 text-center mb-5">
+      Le bail
+    </h2>
+
+      <p>
+        Ça y est vous avez trouvé votre local et êtes prêt à signer votre bail. Après vous être entendu sur un
+        loyer vous pensez que le tour est joué alors qu’en définitive tout ne fait que commencer...
+      </p>
+      <p>
+        Dans la vie d’un commerçant le bail commercial est probablement un des contrats voire le plus
+        important contrat que le professionnel va signer. Il va en effet conditionner
+        son installation, sa vie commerciale et sa sortie.
+      </p>
+      <p>
+        On imagine souvent à tort qu’une fois négociées les conditions financières tout est fait alors que le bail
+        commercial est un contrat riche en clauses et dispositions qui peut vite devenir un enfer si tout n’a pas
+        été envisagé. C’est un peu comme si en matière d’emprunt on ne regardait que le taux alors que tout
+        un tas d’éléments doivent être pris en compte (durée, assurance, remboursement anticipé...).
+      </p>
+      <p>
+        Nous allons voir ici sans exhaustivité les clauses principales que vous devrez étudier avant toute
+        signature étant entendu que le premier conseil à vous donner sera de vous faire accompagner par un
+        professionnel aguerri à ce type de négociation (avocat, notaire...)
+      </p>
+      <p>
+        La désignation des parties:
+        La question peut paraître simple mais peut devenir épineuse. Qui doit signer le bail et à fortiori qui
+        va s’engager dans ce contrat?
+        Le commerçant personne physique, la société qu’il a constitué tant de questions qui auront leur importance 
+        car une fois le bail signé il ne sera plus possible de changer sans engendrer des frais. A titre d’exemple il est
+        fréquent que la signature du bail puisse intervenir tant que la société n’est pas encore constituée, il sera alors possible de signer
+        soit avec la société en cours deconstitution 
+        soit prévoir la signature du commerçant personne physique avec faculté de substitution c’est à dire la possibilité pour le signataire de se faire 
+        «remplacer» ensuite par la société qu’il aura constituée
+      </p>
+      <p>
+        La désignation du local:
+        Attention de bien vous assurer que tout y est! le local, les éventuelles dépendances, les parkings,les caves, tout est important, ne pas hésiter 
+        et c’est même recommandé d’annexer des plans ou autres descriptifs
+      </p>
+      <p>
+        La durée:
+        On parle classiquement de bail 3,6,9 ce qui signifie que le preneur aura la faculté de quitter les lieux au terme de chaque période triennale. 
+        Le bailleur quant à lui ne pourra délivrer un congé qu’au terme des 9 années. Il est cependant possible de prévoir des durées supérieures
+        assorties de période ferme c’est à dire des périodes pendant lesquelles le preneur ne pourra mettre un terme au contrat
+      </p>
+    </v-col>
+  </v-row>
+  <v-divider></v-divider>
   <v-row>
     <v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" @click="$router.back()">Retour</v-btn>
   </v-row>

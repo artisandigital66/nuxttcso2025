@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <div class="container justify-center mx-auto">
+    <v-row class="container justify-center mx-auto">
       <h1 class="headline">Liste des annonces</h1>
 
       <div v-if="loading">
@@ -18,11 +18,12 @@
           cols="12"
           sm="6"
           md="4"
+          class="mx-auto justify-center"
           >
           <v-card>
-            <v-card-title><h2>{{ annonce.titre }}</h2></v-card-title>
-            <v-card-subtitle>Département: {{ annonce.soustitre }}</v-card-subtitle>
-            <v-card-subtitle>Département: {{ annonce.departement }}</v-card-subtitle>
+            <v-card-title><h3>{{ annonce.titre }}</h3></v-card-title>
+            <v-card-subtitle><h4>{{ annonce.soustitre }}</h4></v-card-subtitle>
+            <v-card-subtitle><h4>Département: {{ annonce.departement }}</h4></v-card-subtitle>
             <v-card-text>{{ annonce.description }}</v-card-text>
               <v-row class="mx-auto justify-center">
                 <v-col cols="12" md="4" v-for="(media, index) in annonce.images"
@@ -49,7 +50,7 @@
         </v-alert> -->
         <v-skeleton-loader type="card"></v-skeleton-loader>
       </div>
-    </div>
+    </v-row>
     <v-row>
       <v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" @click="$router.back()">Retour</v-btn>
     </v-row>
