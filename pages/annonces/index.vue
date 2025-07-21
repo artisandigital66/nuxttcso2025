@@ -17,16 +17,16 @@
           :key="annonce.id"
           cols="12"
           sm="6"
-          md="4"
-          class="mx-auto justify-center"
+          md="8"
+          class="justify-center mx-auto"
           >
-          <v-card>
+          <v-card class="justify-space-around px-3">
             <v-card-title><h3>{{ annonce.titre }}</h3></v-card-title>
             <v-card-subtitle><h4>{{ annonce.soustitre }}</h4></v-card-subtitle>
             <v-card-subtitle><h4>Département: {{ annonce.departement }}</h4></v-card-subtitle>
             <v-card-text>{{ annonce.description }}</v-card-text>
               <v-row class="mx-auto justify-center">
-                <v-col cols="12" md="4" v-for="(media, index) in annonce.images"
+                <v-col class="" cols="12" md="4" v-for="(media, index) in annonce.images"
                 :key="media.url + index">
                     <v-img v-if="media.ordre == '1'"
                       :src="media.url"

@@ -32,6 +32,16 @@
             base-color="blue"
             color="green"
             filter
+            @click="click79"
+            :class="{ 'v-chip--selected': selectedDepartement === '79' }"
+          >
+            79
+          </v-chip>
+
+          <v-chip
+            base-color="blue"
+            color="green"
+            filter
             @click="click81"
             :class="{ 'v-chip--selected': selectedDepartement === '81' }"
           >
@@ -142,6 +152,11 @@ const click31 = () => {
 const click34 = () => {
   selectedDepartement.value = '34';
   annonceStore.filterAnnoncesByDepartement('34');
+};
+
+const click79 = () => {
+  selectedDepartement.value = '79';
+  annonceStore.filterAnnoncesByDepartement('79');
 };
 
 const click81 = () => {
