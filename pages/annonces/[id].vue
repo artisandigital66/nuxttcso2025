@@ -13,10 +13,10 @@
         </v-alert>
       </div>
       <div v-else-if="annonce">
-        <v-row class="mx-auto justify-center">
+        <v-row class="justify-center">
           <v-col cols="12" md="8">
             <v-card>
-              <v-card-title><h3>{{ annonce.soustitre }}</h3></v-card-title>
+              <v-card-subtitle><h3>{{ annonce.soustitre }}</h3></v-card-subtitle>
               <v-card-subtitle>Département: {{ annonce.departement }}</v-card-subtitle>
               <h3 class="ml-3 mt-3">Description</h3>
               <v-card-text>{{ annonce.description }}</v-card-text>

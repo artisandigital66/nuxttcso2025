@@ -12,36 +12,38 @@
         </v-alert>
       </div>
       <div v-else-if="annonceStore.filteredAnnonces.length">
-        <v-col
-          v-for="annonce in annonceStore.filteredAnnonces"
-          :key="annonce.id"
-          cols="12"
-          sm="6"
-          md="8"
-          class="justify-center mx-auto"
-          >
-          <v-card class="justify-space-around px-3">
-            <v-card-title><h3>{{ annonce.titre }}</h3></v-card-title>
-            <v-card-subtitle><h4>{{ annonce.soustitre }}</h4></v-card-subtitle>
-            <v-card-subtitle><h4>Département: {{ annonce.departement }}</h4></v-card-subtitle>
-            <v-card-text>{{ annonce.description }}</v-card-text>
-              <v-row class="mx-auto justify-center">
-                <v-col class="" cols="12" md="4" v-for="(media, index) in annonce.images"
-                :key="media.url + index">
-                    <v-img v-if="media.ordre == '1'"
-                      :src="media.url"
-                      alt="Image de l'annonce"
-                      cover
-                    />
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-btn :to="`/annonces/${annonce.id}`" color="primary" variant ="outlined" class="mx-auto mt-3 mb-5">
-                  Voir les détails
-                </v-btn>
-              </v-row>
-            </v-card>
-        </v-col>
+        <v-row>
+          <v-col
+            v-for="annonce in annonceStore.filteredAnnonces"
+            :key="annonce.id"
+            cols="12"
+            sm="6"
+            md="8"
+            class="justify-center mx-auto"
+            >
+            <v-card class="justify-space-around px-3">
+              <v-card-title><h3>{{ annonce.titre }}</h3></v-card-title>
+              <v-card-subtitle><h4>{{ annonce.soustitre }}</h4></v-card-subtitle>
+              <v-card-subtitle><h4>Département: {{ annonce.departement }}</h4></v-card-subtitle>
+              <v-card-text>{{ annonce.description }}</v-card-text>
+                <v-row class="mx-auto justify-center">
+                  <v-col class="" cols="12" md="4" v-for="(media, index) in annonce.images"
+                  :key="media.url + index">
+                      <v-img v-if="media.ordre == '1'"
+                        :src="media.url"
+                        alt="Image de l'annonce"
+                        cover
+                      />
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-btn :to="`/annonces/${annonce.id}`" color="primary" variant ="outlined" class="mx-auto mt-3 mb-5">
+                    Voir les détails
+                  </v-btn>
+                </v-row>
+              </v-card>
+          </v-col>
+        </v-row>
       </div>
       
       <div v-else>
