@@ -1,6 +1,17 @@
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: 'TCSO, Immobilier professionnel', // default fallback title
+      htmlAttrs: {
+        lang: 'fr',
+      },
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    }
+  },
   compatibilityDate: '2024-11-01',
   devtools: {
     enabled: false,
