@@ -8,28 +8,75 @@
         <v-app-bar-title>TCSO</v-app-bar-title>
         <v-chip-group class="mr-3 flex" v-if="$route.name == 'annonces'">
 
-          <v-chip
+          <!-- <v-chip
             base-color="blue"
+            density="compact"
             color="green"
             filter
             @click="click11"
             :class="{ 'v-chip--selected': selectedDepartement === '11' }"
           >
             11
-          </v-chip>
+          </v-chip> -->
 
           <v-chip
+            density="compact"
             base-color="blue"
+            color="green"
+            filter
+            @click="click31"
+            :class="{ 'v-chip--selected': selectedDepartement === '31' }"
+          >
+            31
+          </v-chip>
+
+          <!-- <v-chip
+            base-color="blue"
+            density="compact"
             color="green"
             filter
             @click="click34"
             :class="{ 'v-chip--selected': selectedDepartement === '34' }"
           >
             34
+          </v-chip> -->
+
+          <v-chip
+            base-color="blue"
+            density="compact"
+            color="green"
+            filter
+            @click="click46"
+            :class="{ 'v-chip--selected': selectedDepartement === '46' }"
+          >
+            46
           </v-chip>
 
           <v-chip
             base-color="blue"
+            density="compact"
+            color="green"
+            filter
+            @click="click64"
+            :class="{ 'v-chip--selected': selectedDepartement === '64' }"
+          >
+            64
+          </v-chip>
+
+          <v-chip
+            base-color="blue"
+            density="compact"
+            color="green"
+            filter
+            @click="click71"
+            :class="{ 'v-chip--selected': selectedDepartement === '71' }"
+          >
+            71
+          </v-chip>
+
+          <v-chip
+            base-color="blue"
+            density="compact"
             color="green"
             filter
             @click="click79"
@@ -38,18 +85,20 @@
             79
           </v-chip>
 
-          <v-chip
+          <!-- <v-chip
             base-color="blue"
+            density="compact"
             color="green"
             filter
             @click="click81"
             :class="{ 'v-chip--selected': selectedDepartement === '81' }"
           >
             81
-          </v-chip>
+          </v-chip> -->
           
           <v-chip
             base-color="blue"
+            density="compact"
             color="green"
             filter
             @click="clicktous"
@@ -152,6 +201,21 @@ const click31 = () => {
 const click34 = () => {
   selectedDepartement.value = '34';
   annonceStore.filterAnnoncesByDepartement('34');
+};
+
+const click46 = () => {
+  selectedDepartement.value = '46';
+  annonceStore.filterAnnoncesByDepartement('46');
+};
+
+const click64 = () => {
+  selectedDepartement.value = '64';
+  annonceStore.filterAnnoncesByDepartement('64');
+};
+
+const click71 = () => {
+  selectedDepartement.value = '71';
+  annonceStore.filterAnnoncesByDepartement('71');
 };
 
 const click79 = () => {
