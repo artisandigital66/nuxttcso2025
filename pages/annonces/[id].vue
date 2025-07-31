@@ -50,10 +50,15 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-btn class="mx-auto mt-10 mb-4" color="red" :href="annonce.pdf">Téléchargez le pdf</v-btn>
+          <v-btn density="compact" class="mx-auto mt-10 mb-4" color="red" :href="annonce.pdf">Téléchargez le pdf</v-btn>
         </v-row>
+        <div class="text-center my-5">
+          <h3>Contactez TCSO pour plus d’informations :</h3>
+          <h3>📞 06 85 03 22 66 (Nicolas Ferréol)</h3>
+          <h3>📧 nicolas@tcso.fr</h3>
+        </div>
         <v-row>
-          <v-btn variant ="outlined" class="mx-auto mb-4" color="primary" @click="$router.back()">Retour</v-btn>
+          <v-btn density="compact" variant ="outlined" class="mx-auto my-4" color="primary" @click="$router.back()">Retour</v-btn>
         </v-row>
 
         <!-- Visionneuse modale -->
