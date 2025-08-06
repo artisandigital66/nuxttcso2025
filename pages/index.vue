@@ -13,7 +13,7 @@
             class="mx-auto mb-5"
             src="https://res.cloudinary.com/dkhuquewc/image/upload/v1752131487/newlogotcso_rnmy5a.png"
           ></v-img>
-          <h2 class="my-3 subtitle-2">Immobilier Professionnel</h2>
+          <h2 class="my-3 subtitle-2">Immobilier Commercial</h2>
           <v-btn variant ="outlined" to="/annonces" small aria-label="Nos annonces" color="primary"
             >Toutes nos annonces
             <v-icon class="ml-2">mdi-arrow-right</v-icon></v-btn
@@ -39,7 +39,7 @@
             class="mx-auto"
             src="https://res.cloudinary.com/dkhuquewc/image/upload/v1752131487/newlogotcso_rnmy5a.png"
           ></v-img>
-          <h2 class="my-3 headline">Immobilier Professionnel</h2>
+          <h2 class="my-3 headline">Immobilier Commercial</h2>
           <v-btn variant ="outlined" to="/annonces" small aria-label="Nos annonces" color="primary"
             >Toutes nos annonces
             <v-icon class="ml-2">mdi-arrow-right</v-icon></v-btn

@@ -1,5 +1,4 @@
-
-  <template>
+<template>
   <ClientOnly>
     <div class="container">
       <h1 class="headline">{{ annonce?.titre || 'Chargement...' }}</h1>
@@ -13,34 +12,32 @@
         </v-alert>
       </div>
       <div v-else-if="annonce">
-        <v-row class="justify-center">
-          <v-col cols="12" md="8">
+        <v-row>
+          <v-col cols="12" md="12">
             <v-card>
-              <v-card-subtitle><h3>{{ annonce.soustitre }}</h3></v-card-subtitle>
+              <v-card-title><h2>{{ annonce.titre }}</h2></v-card-title>
               <v-card-subtitle>Département: {{ annonce.departement }}</v-card-subtitle>
-              <h3 class="ml-3 mt-3">Description</h3>
-              <v-card-text>{{ annonce.description }}</v-card-text>
-              <h3 class="ml-3 mt-3">Conditions juridiques et financieres</h3>
-              <v-card-text>{{ annonce.conditions }}</v-card-text>
-              <h3 class="ml-3 mt-3">Environnement</h3>
-              <v-card-text>{{ annonce.environnement }}</v-card-text>
+              <h2 class="ml-3 mt-3">Description</h2>
+              <v-card-text v-html="renderedDescription"></v-card-text>
+              <h2 class="ml-3 mt-3">Conditions juridiques et financières</h2>
+              <v-card-text v-html="renderedConditions"></v-card-text>
+              <h2 class="ml-3 mt-3">Environnement</h2>
+              <v-card-text v-html="renderedEnvironnement"></v-card-text>
             </v-card>
           </v-col>
-        </v-row>
-        <v-row class="mx-auto justify-center">
-          <v-col cols="12" md="4">
-            <v-carousel v-if="uniqueMedias.length" hide-delimiters>
+          <v-col cols="12" md="12">
+            <v-carousel v-if="uniqueImages.length" hide-delimiters>
               <v-carousel-item
-                v-for="(media, index) in uniqueMedias"
-                :key="media.url + index"
+                v-for="(image, index) in uniqueImages"
+                :key="image.url + index"
               >
                 <v-img
-                  :src="media.url"
+                  :src="image.url"
                   alt="Image de l'annonce"
                   cover
-                  @click="openImageModal(media.url)"
-                  @error="handleImageError(media.url)"
-                  @load="handleImageLoad(media.url)"
+                  @click="openImageModal(image.url)"
+                  @error="handleImageError(image.url)"
+                  @load="handleImageLoad(image.url)"
                 />
               </v-carousel-item>
             </v-carousel>
@@ -49,27 +46,15 @@
             </v-alert>
           </v-col>
         </v-row>
-        <v-row>
-          <v-btn density="compact" class="mx-auto mt-10 mb-4" color="red" :href="annonce.pdf">Téléchargez le pdf</v-btn>
-        </v-row>
-        <div class="text-center my-5">
-          <h3>Contactez TCSO pour plus d’informations :</h3>
-          <h3>📞 06 85 03 22 66 (Nicolas Ferréol)</h3>
-          <h3>📧 nicolas@tcso.fr</h3>
-        </div>
-        <v-row>
-          <v-btn density="compact" variant ="outlined" class="mx-auto my-4" color="primary" @click="$router.back()">Retour</v-btn>
-        </v-row>
 
         <!-- Visionneuse modale -->
-        <v-dialog v-model="showModal" transition="dialog-top-transition">
+        <v-dialog v-model="showModal" max-width="800">
           <v-card>
             <v-img
               :src="selectedImage"
               alt="Image agrandie"
-              max-height="100vh"
+              max-height="80vh"
               contain
-              cover
             />
             <v-card-actions>
               <v-spacer />
@@ -93,6 +78,13 @@
 import { useAnnonceStore } from '~/stores/annonces';
 import { useRoute } from 'vue-router';
 import { computed, ref, onMounted, onUnmounted, watch } from 'vue';
+import MarkdownIt from 'markdown-it';
+
+const md = new MarkdownIt({
+  html: false, // Désactiver le HTML brut pour des raisons de sécurité
+  breaks: true, // Convertir les sauts de ligne en <br>
+  linkify: true, // Convertir les URLs en liens cliquables
+});
 
 const annonceStore = useAnnonceStore();
 const route = useRoute();
@@ -103,22 +95,34 @@ const selectedImage = ref('');
 
 const annonce = computed(() => {
   const found = annonceStore.annonces.find((a) => a.id === route.params.id);
-  // console.log('ID demandé:', route.params.id);
-  // console.log('Annonces disponibles:', annonceStore.annonces);
-  // console.log('Annonce trouvée:', found);
-  // console.log('Images de l\'annonce:', found?.images);
+  console.log('ID demandé:', route.params.id);
+  console.log('Annonces disponibles:', annonceStore.annonces);
+  console.log('Annonce trouvée:', found);
+  console.log('Images de l\'annonce:', found?.images);
   return found;
 });
 
-const uniqueMedias = computed(() => {
+const uniqueImages = computed(() => {
   if (!annonce.value?.images) return [];
   // Supprimer les doublons basés sur l'URL
   const seen = new Set();
-  return annonce.value.images.filter((media) => {
-    if (seen.has(media.url)) return false;
-    seen.add(media.url);
+  return annonce.value.images.filter((image) => {
+    if (seen.has(image.url)) return false;
+    seen.add(image.url);
     return true;
   });
+});
+
+const renderedDescription = computed(() => {
+  return annonce.value?.description ? md.render(annonce.value.description) : '';
+});
+
+const renderedConditions = computed(() => {
+  return annonce.value?.conditions ? md.render(annonce.value.conditions) : '';
+});
+
+const renderedEnvironnement = computed(() => {
+  return annonce.value?.environnement ? md.render(annonce.value.environnement) : '';
 });
 
 let unsubscribe = () => {};
@@ -142,15 +146,15 @@ onMounted(async () => {
   }
 });
 
-onUnmounted(() => {
-  unsubscribe();
-});
+// onUnmounted(() => {
+//  unsubscribe();
+// });
 
 watch(
   () => annonceStore.annonces,
   (newAnnonces) => {
     console.log('Annonces mises à jour:', newAnnonces);
-    console.log('Images uniques:', uniqueMedias.value);
+    console.log('Images uniques:', uniqueImages.value);
   }
 );
 
@@ -172,5 +176,40 @@ const handleImageLoad = (url) => {
 <style scoped>
 .container {
   padding: 20px;
+}
+
+/* Styles pour le contenu Markdown */
+:deep(h1) {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+:deep(h2) {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+:deep(p) {
+  margin-bottom: 1rem;
+}
+
+:deep(ul) {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+:deep(li) {
+  margin-bottom: 0.5rem;
+}
+
+:deep(strong) {
+  font-weight: bold;
+}
+
+:deep(em) {
+  font-style: italic;
 }
 </style>

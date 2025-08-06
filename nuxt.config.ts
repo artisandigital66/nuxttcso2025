@@ -13,6 +13,10 @@ export default defineNuxtConfig({
       meta: [
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
+    noscript: [
+      // <noscript>JavaScript is required</noscript>
+      { textContent: 'JavaScript is required' }
+    ],
       // titleTemplate: '%s — %siteName',
       // templateParams: {
       //   siteName: 'TCSO' // set a site name
