@@ -65,11 +65,15 @@
           </v-card>
         </v-dialog>
       </div>
+      
       <div v-else>
         <v-alert type="warning">
           Aucune annonce trouvée pour l'ID {{ route.params.id }}
         </v-alert>
       </div>
+      <v-row class="justify-center">
+        <v-btn :href="annonce.url" color="red" variant="outlined">PDF</v-btn>
+      </v-row>
     </div>
   </ClientOnly>
 </template>
