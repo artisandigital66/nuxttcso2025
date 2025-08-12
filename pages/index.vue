@@ -22,8 +22,14 @@
     </v-row>
 
     <!-- DESKTOP -->
-    <v-row class="justify-center text-center align-center my-5 d-none d-md-flex d-lg-flex">
-      <v-col cols="6" md="4" class="my-5 justify-center transpa pb-5 elevation-4 bg-black">
+    <v-row class="justify-center text-center d-none d-md-flex d-lg-flex">
+      <v-img
+              class="bg-grey-lighten-2"
+              height="600"
+              src="https://plus.unsplash.com/premium_photo-1661335257817-4552acab9656?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              cover
+            >
+          <v-col cols="8" md="6" class="justify-center center-affix transpa mt-10 pb-5 elevation-4 bg-black mx-auto">
         <h1 class="my-3 display-1">
           TRANSACTION & CONSEIL <br />
           SUD OUEST
@@ -40,6 +46,8 @@
           <v-icon class="ml-2">mdi-arrow-right</v-icon>
         </v-btn>
       </v-col>
+          </v-img>
+      
     </v-row>
 
     <v-row class="justify-center py-5">
@@ -47,6 +55,42 @@
         <v-divider></v-divider>
       </v-col>
     </v-row>
+
+    <v-col cols="12" class="text-center">
+      <h3 class="mx-auto title my-0">DERNIERES TRANSACTIONS</h3>
+      <v-carousel
+        cycle
+        interval="3000"
+        hide-delimiters
+        height="200"
+        :show-arrows="false"
+        class="mt-4"
+      >
+        <v-carousel-item
+          v-for="recentTransaction in recentTransactions"
+          :key="recentTransaction.id"
+          class=""
+        >
+          <v-card
+            class="mx-auto bandeau"
+            max-width="100%"
+          >
+            <v-card-title class="text-h6"><v-icon color="yellow" icon="mdi-star"></v-icon>{{ recentTransaction }}</v-card-title>
+          
+          </v-card>
+        </v-carousel-item>
+        <template v-if="!recentTransactions">
+          <v-card class="mx-auto" max-width="300">
+            <v-card-text>
+              <v-alert type="warning">
+                Aucune transaction récente trouvée
+              </v-alert>
+            </v-card-text>
+          </v-card>
+        </template>
+      </v-carousel>
+    </v-col>
+
 
     <v-row>
       <v-col cols="12" md="8" class="mx-auto text-center">
@@ -195,6 +239,7 @@ const md = new MarkdownIt({
 const annonceStore = useAnnonceStore();
 const loading = ref(true);
 const error = ref(null);
+const recentTransactions = ["transac1","transac2","transac3","transac4","transac5",]
 
 const favoriteAnnonces = computed(() => {
   return annonceStore.favoriteAnnonces || [];
@@ -236,6 +281,11 @@ onUnmounted(() => {
 <style scoped>
 .container {
   padding: 20px;
+}
+
+.bandeau {
+  background-color: darkslategrey;
+  color: white
 }
 
 /* Styles pour le contenu Markdown */

@@ -74,6 +74,14 @@
       <v-row class="justify-center">
         <v-btn :href="annonce.url" color="red" variant="outlined">PDF</v-btn>
       </v-row>
+      <v-row class="justify-center py-5">
+        <v-col cols="12" sm="8">
+          <v-divider></v-divider>
+        </v-col>
+      </v-row>
+      <v-row class="justify-center">
+        <v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" @click="$router.back()">Retour</v-btn>
+      </v-row>
     </div>
   </ClientOnly>
 </template>
