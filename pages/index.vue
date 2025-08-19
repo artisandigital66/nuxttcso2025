@@ -11,7 +11,7 @@
           alt="TCSO logo"
           width="50%"
           class="mx-auto mb-5"
-          src="https://res.cloudinary.com/dkhuquewc/image/upload/v1752131487/newlogotcso_rnmy5a.png"
+          src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
         ></v-img>
         <h2 class="my-3 subtitle-2">Immobilier Commercial</h2>
         <v-btn variant="outlined" to="/annonces" small aria-label="Nos annonces" color="primary">
@@ -25,8 +25,8 @@
     <v-row class="justify-center text-center d-none d-md-flex d-lg-flex">
       <v-img
               class="bg-grey-lighten-2"
-              height="600"
-              src="https://plus.unsplash.com/premium_photo-1661335257817-4552acab9656?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              height="500"
+              src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755164551/plandemassecolor_aswnep.png"
               cover
             >
           <v-col cols="8" md="6" class="justify-center center-affix transpa mt-10 pb-5 elevation-4 bg-black mx-auto">
@@ -38,7 +38,7 @@
           alt="TCSO logo"
           width="30%"
           class="mx-auto"
-          src="https://res.cloudinary.com/dkhuquewc/image/upload/v1752131487/newlogotcso_rnmy5a.png"
+          src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
         ></v-img>
         <h2 class="my-3 headline">Immobilier Commercial</h2>
         <v-btn variant="outlined" to="/annonces" small aria-label="Nos annonces" color="primary">
@@ -57,7 +57,7 @@
     </v-row>
 
     <v-col cols="12" class="text-center">
-      <h3 class="mx-auto title my-0">DERNIERES TRANSACTIONS</h3>
+      <h3 class="mx-auto title my-0">DERNIERS LOTS DISPONIBLES</h3>
       <v-carousel
         cycle
         interval="3000"
@@ -122,8 +122,8 @@
             <v-card class="justify-space-around px-3">
               <v-card-title><h3>{{ annonce.titre }}</h3></v-card-title>
               <v-card-subtitle><h4>{{ annonce.soustitre }}</h4></v-card-subtitle>
-              <v-card-subtitle><h4>Département: {{ annonce.departement }}</h4></v-card-subtitle>
-              <v-card-text v-html="renderMarkdown(annonce.description, 100)"></v-card-text>
+              <!-- <v-card-subtitle><h4>Département: {{ annonce.departement }}</h4></v-card-subtitle> -->
+              <v-card-text v-html="renderMarkdown(annonce.description, 200)"></v-card-text>
               <v-row class="mx-auto justify-center">
                 <v-col
                   cols="12"
@@ -134,7 +134,7 @@
                   <v-img
                     v-if="media.ordre == '1'"
                     :src="media.url"
-                    alt="Image de l'annonce"
+                    :alt="media.titre"
                     cover
                   />
                 </v-col>
@@ -176,7 +176,7 @@
                 alt="TCSO logo"
                 width="10%"
                 class="mx-auto mt-5 pa-5"
-                src="https://res.cloudinary.com/dkhuquewc/image/upload/v1752131487/newlogotcso_rnmy5a.png"
+                src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
               ></v-img>
               <h5 class="mx-auto title mt-10">
                 Vendez votre affaire, 1 objectif plusieurs possibilités
@@ -239,7 +239,7 @@ const md = new MarkdownIt({
 const annonceStore = useAnnonceStore();
 const loading = ref(true);
 const error = ref(null);
-const recentTransactions = ["transac1","transac2","transac3","transac4","transac5",]
+const recentTransactions = ["LOURDES(65)","QUESTEMBERT(56)"]
 
 const favoriteAnnonces = computed(() => {
   return annonceStore.favoriteAnnonces || [];

@@ -15,8 +15,8 @@
         <v-row>
           <v-col cols="12" md="12">
             <v-card>
-              <v-card-title><h2>{{ annonce.titre }}</h2></v-card-title>
-              <v-card-subtitle>Département: {{ annonce.departement }}</v-card-subtitle>
+              <!-- <v-card-title><h2>{{ annonce.titre }}</h2></v-card-title> -->
+              <v-card-subtitle>{{ annonce.soustitre }}</v-card-subtitle>
               <h2 class="ml-3 mt-3">Description</h2>
               <v-card-text v-html="renderedDescription"></v-card-text>
               <h2 class="ml-3 mt-3">Conditions juridiques et financières</h2>

@@ -24,10 +24,11 @@
             <v-card class="justify-space-around px-3">
               <v-card-title><h3>{{ annonce.titre }}</h3></v-card-title>
               <v-card-subtitle><h4>{{ annonce.soustitre }}</h4></v-card-subtitle>
-              <v-card-subtitle><h4>Département: {{ annonce.departement }}</h4></v-card-subtitle>
-              <v-card-text v-html="renderMarkdown(annonce.description, 100)"></v-card-text>
+              <!-- <v-card-subtitle><h4>Département: {{ annonce.departement }}</h4></v-card-subtitle> -->
+              <v-card-text v-html="renderMarkdown(annonce.description)"></v-card-text>
               <v-row class="mx-auto justify-center">
                 <v-col
+                  class="mx-auto justify-center"
                   cols="12"
                   md="4"
                   v-for="(media, index) in annonce.images"
@@ -38,6 +39,7 @@
                     :src="media.url"
                     alt="Image de l'annonce"
                     cover
+                    class="mx-auto justify-center"
                   />
                 </v-col>
               </v-row>
