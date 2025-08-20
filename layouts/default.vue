@@ -6,18 +6,20 @@
           <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </template>
         <v-app-bar-title>TCSO</v-app-bar-title>
-        <v-chip-group class="mr-3 flex" v-if="$route.name == 'annonces'">
+        <div  v-if="$route.name == 'annonces'">
+        recherche par departement
+        <v-chip-group class="mr-3 flex">
 
-          <!-- <v-chip
+          <v-chip
             base-color="blue"
             density="compact"
             color="green"
             filter
-            @click="click11"
-            :class="{ 'v-chip--selected': selectedDepartement === '11' }"
+            @click="click29"
+            :class="{ 'v-chip--selected': selectedDepartement === '29' }"
           >
-            11
-          </v-chip> -->
+            29
+          </v-chip>
 
           <v-chip
             density="compact"
@@ -30,7 +32,7 @@
             31
           </v-chip>
 
-          <!-- <v-chip
+          <v-chip
             base-color="blue"
             density="compact"
             color="green"
@@ -39,7 +41,7 @@
             :class="{ 'v-chip--selected': selectedDepartement === '34' }"
           >
             34
-          </v-chip> -->
+          </v-chip>
 
           <v-chip
             base-color="blue"
@@ -50,6 +52,28 @@
             :class="{ 'v-chip--selected': selectedDepartement === '46' }"
           >
             46
+          </v-chip>
+
+          <v-chip
+            base-color="blue"
+            density="compact"
+            color="green"
+            filter
+            @click="click56"
+            :class="{ 'v-chip--selected': selectedDepartement === '56' }"
+          >
+            56
+          </v-chip>
+
+          <v-chip
+            base-color="blue"
+            density="compact"
+            color="green"
+            filter
+            @click="click64"
+            :class="{ 'v-chip--selected': selectedDepartement === '64' }"
+          >
+            64
           </v-chip>
 
           <v-chip
@@ -74,7 +98,7 @@
             71
           </v-chip>
 
-          <v-chip
+          <!-- <v-chip
             base-color="blue"
             density="compact"
             color="green"
@@ -83,7 +107,7 @@
             :class="{ 'v-chip--selected': selectedDepartement === '79' }"
           >
             79
-          </v-chip>
+          </v-chip> -->
 
           <!-- <v-chip
             base-color="blue"
@@ -107,6 +131,7 @@
             Tous
           </v-chip>
         </v-chip-group>
+        </div>
       </v-app-bar>
         <v-navigation-drawer
           v-model="drawer"
@@ -188,7 +213,7 @@ watch(group, () => {
 
 // Fonctions de filtrage
 
-const click11 = () => {
+const click29 = () => {
   selectedDepartement.value = '11';
   annonceStore.filterAnnoncesByDepartement('11');
 };
@@ -206,6 +231,11 @@ const click34 = () => {
 const click46 = () => {
   selectedDepartement.value = '46';
   annonceStore.filterAnnoncesByDepartement('46');
+};
+
+const click56 = () => {
+  selectedDepartement.value = '56';
+  annonceStore.filterAnnoncesByDepartement('56');
 };
 
 const click64 = () => {

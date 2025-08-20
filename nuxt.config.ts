@@ -3,7 +3,7 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'TCSO, Immobilier professionnel', // default fallback title
+      title: 'TCSO, Immobilier Commercial', // default fallback title
       htmlAttrs: {
         lang: 'fr',
       },
@@ -14,13 +14,12 @@ export default defineNuxtConfig({
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
     noscript: [
-      // <noscript>JavaScript is required</noscript>
       { textContent: 'JavaScript is required' }
     ],
-      // titleTemplate: '%s — %siteName',
-      // templateParams: {
-      //   siteName: 'TCSO' // set a site name
-      // }
+      titleTemplate: '%s — %siteName',
+      templateParams: {
+        siteName: 'TCSO' // set a site name
+      }
     }
   },
   compatibilityDate: '2024-11-01',
