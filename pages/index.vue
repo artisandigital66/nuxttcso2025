@@ -24,30 +24,29 @@
     <!-- DESKTOP -->
     <v-row class="justify-center text-center d-none d-md-flex d-lg-flex">
       <v-img
-              class="bg-grey-lighten-2"
-              height="500"
-              src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755164551/plandemassecolor_aswnep.png"
-              cover
-            >
-          <v-col cols="8" md="6" class="justify-center center-affix transpa mt-10 pb-5 elevation-4 bg-black mx-auto">
-        <h1 class="my-3 display-1">
-          TRANSACTION & CONSEIL <br />
-          SUD OUEST
-        </h1>
-        <v-img
-          alt="TCSO logo"
-          width="30%"
-          class="mx-auto"
-          src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
-        ></v-img>
-        <h2 class="my-3 headline">Immobilier Commercial</h2>
-        <v-btn variant="outlined" to="/annonces" small aria-label="Nos annonces" color="primary">
-          Toutes nos annonces
-          <v-icon class="ml-2">mdi-arrow-right</v-icon>
-        </v-btn>
-      </v-col>
-          </v-img>
-      
+        class="bg-grey-lighten-2"
+        height="500"
+        src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755164551/plandemassecolor_aswnep.png"
+        cover
+      >
+        <v-col cols="8" md="6" class="justify-center center-affix transpa mt-10 pb-5 elevation-4 bg-black mx-auto">
+          <h1 class="my-3 display-1">
+            TRANSACTION & CONSEIL <br />
+            SUD OUEST
+          </h1>
+          <v-img
+            alt="TCSO logo"
+            width="30%"
+            class="mx-auto"
+            src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
+          ></v-img>
+          <h2 class="my-3 headline">Immobilier Commercial</h2>
+          <v-btn variant="outlined" to="/annonces" small aria-label="Nos annonces" color="primary">
+            Toutes nos annonces
+            <v-icon class="ml-2">mdi-arrow-right</v-icon>
+          </v-btn>
+        </v-col>
+      </v-img>
     </v-row>
 
     <v-row class="justify-center py-5">
@@ -57,40 +56,58 @@
     </v-row>
 
     <v-col cols="12" class="text-center">
-      <h3 class="mx-auto title my-0">DERNIERS LOTS DISPONIBLES</h3>
-      <v-carousel
-        cycle
-        interval="3000"
-        hide-delimiters
-        height="200"
-        :show-arrows="false"
-        class="mt-4"
-      >
-        <v-carousel-item
-          v-for="recentTransaction in recentTransactions"
-          :key="recentTransaction.id"
+      <h3 class="mx-auto title my-0">LOTS DISPONIBLES IMMEDIATEMENT</h3>
+      <ClientOnly>
+        <v-carousel
+          cycle
+          interval="3000"
+          hide-delimiters
+          height=""
+          :show-arrows="false"
           class=""
         >
-          <v-card
-            class="mx-auto bandeau"
-            max-width="100%"
+          <v-carousel-item
+            v-for="transaction in recentTransactions"
+            :key="transaction.id"
           >
-            <v-card-title class="text-h6"><v-icon color="yellow" icon="mdi-star"></v-icon>{{ recentTransaction }}</v-card-title>
-          
-          </v-card>
-        </v-carousel-item>
-        <template v-if="!recentTransactions">
-          <v-card class="mx-auto" max-width="300">
-            <v-card-text>
-              <v-alert type="warning">
-                Aucune transaction récente trouvée
-              </v-alert>
-            </v-card-text>
-          </v-card>
-        </template>
-      </v-carousel>
+            <v-card class="mx-auto bandeau" max-width="600">
+              <!-- <v-img
+                :src="transaction.image"
+                alt="Image de la transaction"
+                height="150"
+                cover
+                @error="handleImageError(transaction.image)"
+              /> -->
+              <v-card-title class="text-h6">
+                <v-icon color="yellow" icon="mdi-star" class="mr-2"></v-icon>
+                {{ transaction.titre }}
+              </v-card-title>
+              <v-card-subtitle>{{ transaction.soustitre }}</v-card-subtitle>
+              <v-card-actions>
+                <v-btn
+                  :to="`/annonces/${transaction.id}`"
+                  color="white"
+                  variant="outlined"
+                  class="mx-auto"
+                  size="small"
+                >
+                  Voir les détails
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-carousel-item>
+          <template v-if="!recentTransactions.length">
+            <v-card class="mx-auto" max-width="300">
+              <v-card-text>
+                <v-alert type="warning">
+                  Aucune transaction récente trouvée
+                </v-alert>
+              </v-card-text>
+            </v-card>
+          </template>
+        </v-carousel>
+      </ClientOnly>
     </v-col>
-
 
     <v-row>
       <v-col cols="12" md="8" class="mx-auto text-center">
@@ -122,7 +139,6 @@
             <v-card class="justify-space-around px-3">
               <v-card-title><h3>{{ annonce.titre }}</h3></v-card-title>
               <v-card-subtitle><h4>{{ annonce.soustitre }}</h4></v-card-subtitle>
-              <!-- <v-card-subtitle><h4>Département: {{ annonce.departement }}</h4></v-card-subtitle> -->
               <v-card-text v-html="renderMarkdown(annonce.description, 200)"></v-card-text>
               <v-row class="mx-auto justify-center">
                 <v-col
@@ -132,10 +148,11 @@
                   :key="media.url + index"
                 >
                   <v-img
-                    v-if="media.ordre == '1'"
+                    v-show="media.ordre == '1'"
                     :src="media.url"
                     :alt="media.titre"
                     cover
+                    @error="handleImageError(media.url)"
                   />
                 </v-col>
               </v-row>
@@ -227,19 +244,36 @@
 
 <script setup>
 import { useAnnonceStore } from '~/stores/annonces';
-import { ref, onMounted, onUnmounted, computed, watch } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 import MarkdownIt from 'markdown-it';
 
 const md = new MarkdownIt({
-  html: false, // Désactiver le HTML brut pour des raisons de sécurité
-  breaks: true, // Convertir les sauts de ligne en <br>
-  linkify: true, // Convertir les URLs en liens cliquables
+  html: false,
+  breaks: true,
+  linkify: true,
 });
 
 const annonceStore = useAnnonceStore();
 const loading = ref(true);
 const error = ref(null);
-const recentTransactions = ["LOURDES(65)","QUESTEMBERT(56)"]
+
+const recentTransactions = ref([
+  {
+    id: 'v8OM76B9YyjojnbTHiZL',
+    titre: 'Saint Maixent (79)',
+    soustitre: 'Local commercial 100m²',
+  },
+  {
+    id: 'KVfosZdxMgNvQWPFKydO',
+    titre: 'Brest (29)',
+    soustitre: 'Local commercial 150m²',
+  },
+  {
+    id: 'dmmM4mwkvFSThC8PW6PX',
+    titre: 'Nissan-les-Enserunes (34)',
+    soustitre: 'Local commercial 120m²',
+  },
+]);
 
 const favoriteAnnonces = computed(() => {
   return annonceStore.favoriteAnnonces || [];
@@ -249,6 +283,10 @@ const renderMarkdown = (text, maxLength) => {
   if (!text) return '';
   const truncated = text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
   return md.render(truncated);
+};
+
+const handleImageError = (url) => {
+  console.error('Erreur de chargement de l\'image:', url);
 };
 
 let unsubscribe = () => {};
@@ -266,13 +304,6 @@ onMounted(async () => {
   }
 });
 
-watch(
-  () => favoriteAnnonces.value,
-  (newAnnonces) => {
-    console.log('favoriteAnnonces mis à jour:', newAnnonces);
-  }
-);
-
 onUnmounted(() => {
   unsubscribe();
 });
@@ -285,10 +316,9 @@ onUnmounted(() => {
 
 .bandeau {
   background-color: darkslategrey;
-  color: white
+  color: white;
 }
 
-/* Styles pour le contenu Markdown */
 :deep(h1) {
   font-size: 1.5rem;
   font-weight: bold;

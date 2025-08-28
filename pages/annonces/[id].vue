@@ -15,7 +15,6 @@
         <v-row>
           <v-col cols="12" md="12">
             <v-card>
-              <!-- <v-card-title><h2>{{ annonce.titre }}</h2></v-card-title> -->
               <v-card-subtitle>{{ annonce.soustitre }}</v-card-subtitle>
               <h2 class="ml-3 mt-3">Description</h2>
               <v-card-text v-html="renderedDescription"></v-card-text>
@@ -26,28 +25,29 @@
             </v-card>
           </v-col>
           <v-col cols="12" md="12">
-            <v-carousel v-if="uniqueImages.length" hide-delimiters>
-              <v-carousel-item
-                v-for="(image, index) in uniqueImages"
-                :key="image.url + index"
-              >
-                <v-img
-                  :src="image.url"
-                  alt="Image de l'annonce"
-                  cover
-                  @click="openImageModal(image.url)"
-                  @error="handleImageError(image.url)"
-                  @load="handleImageLoad(image.url)"
-                />
-              </v-carousel-item>
-            </v-carousel>
-            <v-alert v-else type="warning">
-              Aucune image disponible pour cette annonce
-            </v-alert>
+            <ClientOnly>
+              <v-carousel v-if="uniqueImages.length" hide-delimiters>
+                <v-carousel-item
+                  v-for="(image, index) in uniqueImages"
+                  :key="image.url + index"
+                >
+                  <v-img
+                    :src="image.url"
+                    alt="Image de l'annonce"
+                    cover
+                    @click="openImageModal(image.url)"
+                    @error="handleImageError(image.url)"
+                    @load="handleImageLoad(image.url)"
+                  />
+                </v-carousel-item>
+              </v-carousel>
+              <v-alert v-else type="warning">
+                Aucune image disponible pour cette annonce
+              </v-alert>
+            </ClientOnly>
           </v-col>
         </v-row>
 
-        <!-- Visionneuse modale -->
         <v-dialog v-model="showModal" max-width="800">
           <v-card>
             <v-img
@@ -65,14 +65,20 @@
           </v-card>
         </v-dialog>
       </div>
-      
       <div v-else>
         <v-alert type="warning">
           Aucune annonce trouvée pour l'ID {{ route.params.id }}
         </v-alert>
       </div>
       <v-row class="justify-center">
-        <v-btn :href="annonce.url" color="red" variant="outlined">PDF</v-btn>
+        <v-btn
+          v-if="annonce?.url"
+          :href="annonce.url"
+          color="red"
+          variant="outlined"
+        >
+          PDF
+        </v-btn>
       </v-row>
       <v-row class="justify-center py-5">
         <v-col cols="12" sm="8">
@@ -80,7 +86,14 @@
         </v-col>
       </v-row>
       <v-row class="justify-center">
-        <v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" @click="$router.back()">Retour</v-btn>
+        <v-btn
+          variant="outlined"
+          class="mx-auto mt-10 mb-4"
+          color="primary"
+          @click="$router.back()"
+        >
+          Retour
+        </v-btn>
       </v-row>
     </div>
   </ClientOnly>
@@ -89,13 +102,13 @@
 <script setup>
 import { useAnnonceStore } from '~/stores/annonces';
 import { useRoute } from 'vue-router';
-import { computed, ref, onMounted, onUnmounted, watch } from 'vue';
+import { computed, ref, onMounted, onUnmounted } from 'vue';
 import MarkdownIt from 'markdown-it';
 
 const md = new MarkdownIt({
-  html: false, // Désactiver le HTML brut pour des raisons de sécurité
-  breaks: true, // Convertir les sauts de ligne en <br>
-  linkify: true, // Convertir les URLs en liens cliquables
+  html: false,
+  breaks: true,
+  linkify: true,
 });
 
 const annonceStore = useAnnonceStore();
@@ -116,7 +129,6 @@ const annonce = computed(() => {
 
 const uniqueImages = computed(() => {
   if (!annonce.value?.images) return [];
-  // Supprimer les doublons basés sur l'URL
   const seen = new Set();
   return annonce.value.images.filter((image) => {
     if (seen.has(image.url)) return false;
@@ -141,11 +153,9 @@ let unsubscribe = () => {};
 
 onMounted(async () => {
   try {
+    console.log('Chargement de l\'annonce...');
     if (!annonceStore.annonces.length) {
-      console.log('Chargement des annonces...');
       unsubscribe = await annonceStore.fetchAnnonces();
-      // Attendre que les annonces soient chargées
-      await new Promise(resolve => setTimeout(resolve, 1000));
     }
     if (!annonce.value) {
       error.value = new Error(`Aucune annonce trouvée pour l'ID ${route.params.id}`);
@@ -158,17 +168,9 @@ onMounted(async () => {
   }
 });
 
-// onUnmounted(() => {
-//  unsubscribe();
-// });
-
-watch(
-  () => annonceStore.annonces,
-  (newAnnonces) => {
-    console.log('Annonces mises à jour:', newAnnonces);
-    console.log('Images uniques:', uniqueImages.value);
-  }
-);
+onUnmounted(() => {
+  unsubscribe();
+});
 
 const openImageModal = (url) => {
   console.log('Ouverture de la modale avec l\'image:', url);
@@ -190,7 +192,6 @@ const handleImageLoad = (url) => {
   padding: 20px;
 }
 
-/* Styles pour le contenu Markdown */
 :deep(h1) {
   font-size: 1.5rem;
   font-weight: bold;

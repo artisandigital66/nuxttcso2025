@@ -11,7 +11,8 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
       meta: [
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'description', content: 'Agence Immobilière specialisée dans la transaction de locaux commerciaux'},
     ],
     noscript: [
       { textContent: 'JavaScript is required' }
@@ -43,8 +44,12 @@ export default defineNuxtConfig({
     },
     //...
     'nuxt-vuefire',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    'nuxt-gtag'
   ],
+  gtag: {
+    id: 'GTM-WCKZKJNL'
+  },
   vite: {
     optimizeDeps: {
       include: [

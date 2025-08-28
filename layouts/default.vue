@@ -6,216 +6,162 @@
           <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </template>
         <v-app-bar-title>TCSO</v-app-bar-title>
-        <div  v-if="$route.name == 'annonces'">
-        recherche par departement
-        <v-chip-group class="mr-3 flex">
-
-          <v-chip
-            base-color="blue"
-            density="compact"
-            color="green"
-            filter
-            @click="click29"
-            :class="{ 'v-chip--selected': selectedDepartement === '29' }"
-          >
-            29
-          </v-chip>
-
-          <v-chip
-            density="compact"
-            base-color="blue"
-            color="green"
-            filter
-            @click="click31"
-            :class="{ 'v-chip--selected': selectedDepartement === '31' }"
-          >
-            31
-          </v-chip>
-
-          <v-chip
-            base-color="blue"
-            density="compact"
-            color="green"
-            filter
-            @click="click34"
-            :class="{ 'v-chip--selected': selectedDepartement === '34' }"
-          >
-            34
-          </v-chip>
-
-          <v-chip
-            base-color="blue"
-            density="compact"
-            color="green"
-            filter
-            @click="click46"
-            :class="{ 'v-chip--selected': selectedDepartement === '46' }"
-          >
-            46
-          </v-chip>
-
-          <v-chip
-            base-color="blue"
-            density="compact"
-            color="green"
-            filter
-            @click="click56"
-            :class="{ 'v-chip--selected': selectedDepartement === '56' }"
-          >
-            56
-          </v-chip>
-
-          <v-chip
-            base-color="blue"
-            density="compact"
-            color="green"
-            filter
-            @click="click64"
-            :class="{ 'v-chip--selected': selectedDepartement === '64' }"
-          >
-            64
-          </v-chip>
-
-          <v-chip
-            base-color="blue"
-            density="compact"
-            color="green"
-            filter
-            @click="click65"
-            :class="{ 'v-chip--selected': selectedDepartement === '65' }"
-          >
-            65
-          </v-chip>
-
-          <v-chip
-            base-color="blue"
-            density="compact"
-            color="green"
-            filter
-            @click="click71"
-            :class="{ 'v-chip--selected': selectedDepartement === '71' }"
-          >
-            71
-          </v-chip>
-
-          <!-- <v-chip
-            base-color="blue"
-            density="compact"
-            color="green"
-            filter
-            @click="click79"
-            :class="{ 'v-chip--selected': selectedDepartement === '79' }"
-          >
-            79
-          </v-chip> -->
-
-          <!-- <v-chip
-            base-color="blue"
-            density="compact"
-            color="green"
-            filter
-            @click="click81"
-            :class="{ 'v-chip--selected': selectedDepartement === '81' }"
-          >
-            81
-          </v-chip> -->
-          
-          <v-chip
-            base-color="blue"
-            density="compact"
-            color="green"
-            filter
-            @click="clicktous"
-            :class="{ 'v-chip--selected': selectedDepartement === 'Tous' }"
-          >
-            Tous
-          </v-chip>
-        </v-chip-group>
+        <div v-if="$route.name === 'annonces'">
+          recherche par département
+          <v-chip-group class="mr-3 flex">
+            <v-chip
+              base-color="blue"
+              density="compact"
+              color="green"
+              filter
+              @click="click29"
+              :class="{ 'v-chip--selected': selectedDepartement === '29' }"
+            >
+              29
+            </v-chip>
+            <v-chip
+              base-color="blue"
+              density="compact"
+              color="green"
+              filter
+              @click="click31"
+              :class="{ 'v-chip--selected': selectedDepartement === '31' }"
+            >
+              31
+            </v-chip>
+            <v-chip
+              base-color="blue"
+              density="compact"
+              color="green"
+              filter
+              @click="click34"
+              :class="{ 'v-chip--selected': selectedDepartement === '34' }"
+            >
+              34
+            </v-chip>
+            <v-chip
+              base-color="blue"
+              density="compact"
+              color="green"
+              filter
+              @click="click46"
+              :class="{ 'v-chip--selected': selectedDepartement === '46' }"
+            >
+              46
+            </v-chip>
+            <v-chip
+              base-color="blue"
+              density="compact"
+              color="green"
+              filter
+              @click="click56"
+              :class="{ 'v-chip--selected': selectedDepartement === '56' }"
+            >
+              56
+            </v-chip>
+            <v-chip
+              base-color="blue"
+              density="compact"
+              color="green"
+              filter
+              @click="click64"
+              :class="{ 'v-chip--selected': selectedDepartement === '64' }"
+            >
+              64
+            </v-chip>
+            <v-chip
+              base-color="blue"
+              density="compact"
+              color="green"
+              filter
+              @click="click65"
+              :class="{ 'v-chip--selected': selectedDepartement === '65' }"
+            >
+              65
+            </v-chip>
+            <v-chip
+              base-color="blue"
+              density="compact"
+              color="green"
+              filter
+              @click="click71"
+              :class="{ 'v-chip--selected': selectedDepartement === '71' }"
+            >
+              71
+            </v-chip>
+            <v-chip
+              base-color="blue"
+              density="compact"
+              color="green"
+              filter
+              @click="clicktous"
+              :class="{ 'v-chip--selected': selectedDepartement === 'Tous' }"
+            >
+              Tous
+            </v-chip>
+          </v-chip-group>
         </div>
       </v-app-bar>
-        <v-navigation-drawer
-          v-model="drawer"
-          :location="$vuetify.display.mobile ? 'bottom' : undefined"
-          temporary
-        >
+      <v-navigation-drawer
+        v-model="drawer"
+        :location="$vuetify?.display?.mobile ? 'bottom' : undefined"
+        temporary
+      >
+        <ClientOnly>
           <v-list>
-            <v-list-group active-class="teal--text text--accent-4">
-              <v-list-item to="/">
-                <template v-slot:prepend>
-                  <v-icon>mdi-home</v-icon>
-                </template>
-                <v-list-item-title>Accueil</v-list-item-title>
-              </v-list-item>
-
-              <v-list-item to="/annonces">
-                <template v-slot:prepend>
-                  <v-icon>mdi-text-box-plus-outline</v-icon>
-                </template>
-                <v-list-item-title>Annonces</v-list-item-title>
-              </v-list-item>
-
-              <v-list-item to="/informations">
-                <template v-slot:prepend>
-                  <v-icon>mdi-information-outline</v-icon>
-                </template>
-                <v-list-item-title>Informations</v-list-item-title>
-              </v-list-item>
-
-              <v-list-item to="/qui">
-                <template v-slot:prepend>
-                  <v-icon>mdi-account-search-outline</v-icon>
-                </template>
-                <v-list-item-title>Qui sommes nous?</v-list-item-title>
-              </v-list-item>
-
-              <v-list-item to="/contacts">
-                <template v-slot:prepend>
-                  <v-icon>mdi-at</v-icon>
-                </template>
-                <v-list-item-title>Contacts</v-list-item-title>
-              </v-list-item>
-            </v-list-group>
+            <v-list-item to="/" prepend-icon="mdi-home">
+              <v-list-item-title>Accueil</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/annonces" prepend-icon="mdi-text-box-plus-outline">
+              <v-list-item-title>Annonces</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/informations" prepend-icon="mdi-information-outline">
+              <v-list-item-title>Informations</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/qui" prepend-icon="mdi-account-search-outline">
+              <v-list-item-title>Qui sommes nous?</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/contacts" prepend-icon="mdi-at">
+              <v-list-item-title>Contacts</v-list-item-title>
+            </v-list-item>
           </v-list>
-        </v-navigation-drawer>
-        <v-main>
-          <v-container fluid>
-            <div class="py-0">
-              <slot />
-            </div>
-          </v-container>
-        </v-main>
+        </ClientOnly>
+      </v-navigation-drawer>
+      <v-main>
+        <v-container fluid>
+          <div class="py-0">
+            <slot />
+          </div>
+        </v-container>
+      </v-main>
     </v-app>
   </ClientOnly>
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useAnnonceStore } from '~/stores/annonces';
 
 const drawer = ref(false);
-const group = ref(null);
-const selectedDepartement = ref('Tous'); // Suivre le département sélectionné
+const selectedDepartement = ref('Tous');
 const annonceStore = useAnnonceStore();
 const route = useRoute();
 
-onMounted(() => {
+onMounted(async () => {
   if (route.name === 'annonces') {
-    annonceStore.fetchAnnonces();
-    annonceStore.filterAnnoncesByDepartement('Tous'); // Afficher toutes les annonces par défaut
-    clicktous()
+    try {
+      await annonceStore.fetchAnnonces();
+      annonceStore.filterAnnoncesByDepartement('Tous');
+    } catch (err) {
+      console.error('Erreur lors du chargement des annonces:', err);
+    }
   }
 });
 
-watch(group, () => {
-  drawer.value = false;
-});
-
-// Fonctions de filtrage
-
 const click29 = () => {
-  selectedDepartement.value = '11';
-  annonceStore.filterAnnoncesByDepartement('11');
+  selectedDepartement.value = '29';
+  annonceStore.filterAnnoncesByDepartement('29');
 };
 
 const click31 = () => {
@@ -253,17 +199,8 @@ const click71 = () => {
   annonceStore.filterAnnoncesByDepartement('71');
 };
 
-const click79 = () => {
-  selectedDepartement.value = '79';
-  annonceStore.filterAnnoncesByDepartement('79');
-};
-
-const click81 = () => {
-  selectedDepartement.value = '81';
-  annonceStore.filterAnnoncesByDepartement('81');
-};
 const clicktous = () => {
-  selectedDepartement.value = 'tous';
+  selectedDepartement.value = 'Tous';
   annonceStore.filterAnnoncesByDepartement('Tous');
 };
 </script>

@@ -11,10 +11,10 @@
           Erreur : {{ error.message }}
         </v-alert>
       </div>
-      <div v-else-if="annonceStore.filteredAnnonces.length">
+      <div v-else-if="filteredAnnonces && filteredAnnonces.length">
         <v-row>
           <v-col
-            v-for="annonce in annonceStore.filteredAnnonces"
+            v-for="annonce in filteredAnnonces"
             :key="annonce.id"
             cols="12"
             sm="6"
@@ -24,22 +24,22 @@
             <v-card class="justify-space-around px-3">
               <v-card-title><h3>{{ annonce.titre }}</h3></v-card-title>
               <v-card-subtitle><h4>{{ annonce.soustitre }}</h4></v-card-subtitle>
-              <!-- <v-card-subtitle><h4>Département: {{ annonce.departement }}</h4></v-card-subtitle> -->
-              <v-card-text v-html="renderMarkdown(annonce.description)"></v-card-text>
+              <v-card-text v-html="renderMarkdown(annonce.description, 200)"></v-card-text>
               <v-row class="mx-auto justify-center">
                 <v-col
                   class="mx-auto justify-center"
                   cols="12"
                   md="4"
-                  v-for="(media, index) in annonce.images"
+                  v-for="(media, index) in annonce.images || []"
                   :key="media.url + index"
                 >
                   <v-img
-                    v-if="media.ordre == '1'"
+                    v-show="media.ordre == '1'"
                     :src="media.url"
                     alt="Image de l'annonce"
                     cover
                     class="mx-auto justify-center"
+                    @error="handleImageError(media.url)"
                   />
                 </v-col>
               </v-row>
@@ -78,24 +78,31 @@
 
 <script setup>
 import { useAnnonceStore } from '~/stores/annonces';
-import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 import MarkdownIt from 'markdown-it';
 
 const md = new MarkdownIt({
-  html: false, // Désactiver le HTML brut pour des raisons de sécurité
-  breaks: true, // Convertir les sauts de ligne en <br>
-  linkify: true, // Convertir les URLs en liens cliquables
+  html: false,
+  breaks: true,
+  linkify: true,
 });
 
 const annonceStore = useAnnonceStore();
 const loading = ref(true);
 const error = ref(null);
 
-const renderMarkdown = (text, maxLength) => {
+const filteredAnnonces = computed(() => {
+  return annonceStore.filteredAnnonces || [];
+});
+
+const renderMarkdown = (text, maxLength = 200) => {
   if (!text) return '';
-  // Limiter le texte à maxLength caractères pour l'extrait
   const truncated = text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-  return md.render(text);
+  return md.render(truncated);
+};
+
+const handleImageError = (url) => {
+  console.error('Erreur de chargement de l\'image:', url);
 };
 
 let unsubscribe = () => {};
@@ -103,8 +110,8 @@ let unsubscribe = () => {};
 onMounted(async () => {
   try {
     console.log('Démarrage du chargement des annonces...');
-    // unsubscribe = await annonceStore.fetchAnnonces();
-    console.log('filteredAnnonces après chargement:', annonceStore.filteredAnnonces);
+    unsubscribe = await annonceStore.fetchAnnonces();
+    console.log('filteredAnnonces après chargement:', filteredAnnonces.value);
   } catch (err) {
     error.value = err;
     console.error('Erreur lors du chargement des annonces:', err);
@@ -113,16 +120,9 @@ onMounted(async () => {
   }
 });
 
-watch(
-  () => annonceStore.filteredAnnonces,
-  (newAnnonces) => {
-    console.log('filteredAnnonces mis à jour:', newAnnonces);
-  }
-);
-
-// onUnmounted(() => {
-//   unsubscribe();
-// });
+onUnmounted(() => {
+  unsubscribe();
+});
 </script>
 
 <style scoped>
@@ -130,7 +130,6 @@ watch(
   padding: 20px;
 }
 
-/* Styles pour le contenu Markdown */
 :deep(h1) {
   font-size: 1.5rem;
   font-weight: bold;
