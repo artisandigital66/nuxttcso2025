@@ -36,7 +36,7 @@
                   <v-img
                     v-show="media.ordre == '1'"
                     :src="media.url"
-                    alt="Image de l'annonce"
+                    :alt="image.titre"
                     cover
                     class="mx-auto justify-center"
                     @error="handleImageError(media.url)"

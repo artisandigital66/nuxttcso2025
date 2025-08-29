@@ -33,7 +33,7 @@
                 >
                   <v-img
                     :src="image.url"
-                    alt="Image de l'annonce"
+                    :alt="image.titre"
                     cover
                     @click="openImageModal(image.url)"
                     @error="handleImageError(image.url)"
@@ -44,6 +44,9 @@
               <v-alert v-else type="warning">
                 Aucune image disponible pour cette annonce
               </v-alert>
+              <v-row>
+                <v-btn class="mx-auto mt-10 mb-4" color="red" :href="annonce.pdf">Téléchargez le pdf</v-btn>
+              </v-row>
             </ClientOnly>
           </v-col>
         </v-row>

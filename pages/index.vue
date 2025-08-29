@@ -71,13 +71,6 @@
             :key="transaction.id"
           >
             <v-card class="mx-auto bandeau" max-width="600">
-              <!-- <v-img
-                :src="transaction.image"
-                alt="Image de la transaction"
-                height="150"
-                cover
-                @error="handleImageError(transaction.image)"
-              /> -->
               <v-card-title class="text-h6">
                 <v-icon color="yellow" icon="mdi-star" class="mr-2"></v-icon>
                 {{ transaction.titre }}
