@@ -6,7 +6,7 @@
           <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </template>
         <v-app-bar-title>TCSO</v-app-bar-title>
-        <div v-if="$route.name === 'annonces'">
+        <!-- <div v-if="$route.name === 'annonces'">
           recherche par département
           <v-chip-group class="mr-3 flex">
             <v-chip
@@ -100,7 +100,7 @@
               Tous
             </v-chip>
           </v-chip-group>
-        </div>
+        </div> -->
       </v-app-bar>
       <v-navigation-drawer
         v-model="drawer"
