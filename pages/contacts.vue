@@ -29,22 +29,6 @@
       </v-col>
     </v-row>
 
-    <!-- <div class="container contact-form justify-center">
-      <v-row class="justify-center form mb-10">
-        <v-col cols="12" md="6">
-          <v-text-field label="Nom*" v-model="nom" outlined></v-text-field>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field label="Email*" v-model="email" outlined></v-text-field>
-        </v-col>
-        <v-col cols="12">
-          <v-textarea label="Message*" v-model="message" outlined></v-textarea>
-        </v-col>
-        <v-btn @click="sendEmail" color="primary"
-          >Envoyer<v-icon class="ml-2">mdi-email-send</v-icon></v-btn
-        >
-      </v-row>
-    </div> -->
   </div>
 </template>
 

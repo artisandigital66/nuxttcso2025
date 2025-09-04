@@ -26,7 +26,7 @@
       <v-img
         class="bg-grey-lighten-2"
         height="500"
-        src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755164551/plandemassecolor_aswnep.png"
+        src="https://res.cloudinary.com/dkhuquewc/image/upload/v1756972964/enseigne-macon2_tp4org.jpg"
         cover
       >
         <v-col cols="8" md="6" class="justify-center center-affix transpa mt-10 pb-5 elevation-4 bg-black mx-auto">
@@ -306,10 +306,39 @@ onUnmounted(() => {
 .container {
   padding: 20px;
 }
-
+.transpa{
+  opacity: 0.7;
+}
 .bandeau {
   background-color: darkslategrey;
   color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.bandeau:hover {
+  transform: scale(1.02);
+}
+
+.v-carousel {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.v-card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.v-card-subtitle {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.v-btn {
+  text-transform: none;
+  font-weight: 500;
 }
 
 :deep(h1) {
