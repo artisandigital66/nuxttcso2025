@@ -132,6 +132,59 @@
           <div class="py-0">
             <slot />
           </div>
+          <!-- <CookieControl locale="fr" /> -->
+          <v-footer class="d-flex flex-column" color="#0c7ca2ff" rounded="0">
+    <div class="d-flex w-100 align-center px-4 py-2">
+      <strong>Connectez vous sur nos réseaux sociaux!</strong>
+
+      <div class="d-flex ms-auto">
+        <v-btn
+          icon="mdi-linkedin"
+          size=""
+          variant="plain"
+          href="https://www.linkedin.com/company/transaction-et-conseil-sud-ouest-tcso"
+        ></v-btn>
+      </div>
+    </div>
+
+    <div class="px-4 py-2 bg-surface-variant text-center w-100 rounded-lg transpa">
+      <div>
+        <v-btn
+            :to="`/`"
+            size="x-small"
+            color=""
+            variant="plain"
+            class="mx-auto mt-3"
+          >
+            Accueil
+        </v-btn>
+      </div>
+      <div>
+        <v-btn
+            :to="`/annonces`"
+            size="x-small"
+            color=""
+            variant="plain"
+            class="mx-auto mt-0"
+          >
+            Annonces
+        </v-btn>
+      </div>
+      <div>
+        <v-btn
+            :to="`/mentions`"
+            size="x-small"
+            color=""
+            variant="plain"
+            class="mx-auto mb-3"
+          >
+            Mentions légales
+        </v-btn>
+      </div>
+      
+      {{ new Date().getFullYear() }} — <strong>&copy TCSO</strong>
+    </div>
+  </v-footer>
         </v-container>
       </v-main>
     </v-app>
@@ -147,6 +200,27 @@ const drawer = ref(false);
 const selectedDepartement = ref('Tous');
 const annonceStore = useAnnonceStore();
 const route = useRoute();
+const {
+  cookiesEnabled,
+  cookiesEnabledIds,
+  isConsentGiven,
+  isModalActive,
+  moduleOptions,
+} = useCookieControl()
+
+watch(
+  () => cookiesEnabledIds.value,
+  (current, previous) => {
+    if (
+      !previous?.includes('google-analytics') &&
+      current?.includes('google-analytics')
+    ) {
+      // cookie with id `google-analytics` got added
+      window.location.reload() // placeholder for your custom change handler
+    }
+  },
+  { deep: true },
+)
 
 onMounted(async () => {
   if (route.name === 'annonces') {
@@ -209,5 +283,8 @@ const clicktous = () => {
 .v-chip--selected {
   background-color: teal !important;
   color: white !important;
+}
+.transpa{
+  opacity: 0.7;
 }
 </style>

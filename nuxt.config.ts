@@ -42,11 +42,14 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
-    //...
+    '@dargmuesli/nuxt-cookie-control',
     'nuxt-vuefire',
     '@pinia/nuxt',
     'nuxt-gtag'
   ],
+  cookieControl: {
+  // typed module options
+},
   gtag: {
     id: 'GTM-WCKZKJNL'
   },
