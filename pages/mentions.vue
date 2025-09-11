@@ -24,7 +24,7 @@
           <h5>Edition du site </h5>
           <br>
             Le présent site, accessible à l’URL www.tcso.fr (le « Site »), est édité par :
-            Nicolas Ferreol, résidant 35 Avenue Raymond Naves 31500 Toulouse, de nationalité Française (France), né(e) le 13/04/1972,  inscrite au R.C.S. de TOULOUSE sous le numéro RCS TOULOUSE B 123 456 789,
+            Nicolas Ferreol, résidant 35 Avenue Raymond Naves 31500 Toulouse, de nationalité Française (France), né(e) le 13/04/1972,  inscrite au R.C.S. de TOULOUSE sous le numéro 880 465 612 R.C.S. Toulouse,
             Le numéro individuel TVA de l’éditeur est : FR 31 123456789.
         </p>
         <p>
