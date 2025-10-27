@@ -49,6 +49,7 @@
                   color="primary"
                   variant="outlined"
                   class="mx-auto mt-3 mb-5"
+                  aria-label="annonce"
                 >
                   Voir les détails
                 </v-btn>
@@ -68,6 +69,7 @@
         variant="outlined"
         class="mx-auto mt-10 mb-4"
         color="primary"
+        aria-label="retour"
         @click="$router.back()"
       >
         Retour

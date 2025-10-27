@@ -143,6 +143,7 @@
           size=""
           variant="plain"
           href="https://www.linkedin.com/company/transaction-et-conseil-sud-ouest-tcso"
+          aria-label="LinkedIn"
         ></v-btn>
       </div>
     </div>
@@ -155,6 +156,7 @@
             color=""
             variant="plain"
             class="mx-auto mt-3"
+            aria-label="home"
           >
             Accueil
         </v-btn>
@@ -166,6 +168,7 @@
             color=""
             variant="plain"
             class="mx-auto mt-0"
+            aria-label="annonces"
           >
             Annonces
         </v-btn>
@@ -177,6 +180,7 @@
             color=""
             variant="plain"
             class="mx-auto mb-3"
+            aria-label="mentions légales"
           >
             Mentions légales
         </v-btn>

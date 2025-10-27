@@ -380,7 +380,7 @@
   </v-row>
   <v-divider></v-divider>
   <v-row>
-    <v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" @click="$router.back()">Retour</v-btn>
+    <v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" aria-label="retour" @click="$router.back()">Retour</v-btn>
   </v-row>
 </template>
  

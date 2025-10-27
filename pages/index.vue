@@ -25,7 +25,7 @@
     <v-row class="justify-center text-center d-none d-md-flex d-lg-flex">
       <v-img
         class="bg-grey-lighten-2"
-        height="500"
+        height="600"
         src="https://res.cloudinary.com/dkhuquewc/image/upload/v1756972964/enseigne-macon2_tp4org.jpg"
         cover
       >
@@ -49,14 +49,14 @@
       </v-img>
     </v-row>
 
-    <v-row class="justify-center py-5">
+    <!-- <v-row class="justify-center py-5">
       <v-col cols="12" sm="8">
         <v-divider></v-divider>
       </v-col>
-    </v-row>
+    </v-row> -->
 
-    <v-col cols="12" class="text-center">
-      <h3 class="mx-auto title my-0">LOTS DISPONIBLES IMMEDIATEMENT</h3>
+    <v-col cols="12" class="text-center mt-0">
+      <h3 class="mx-auto title my-3">LOTS DISPONIBLES IMMEDIATEMENT</h3>
       <ClientOnly>
         <v-carousel
           cycle
