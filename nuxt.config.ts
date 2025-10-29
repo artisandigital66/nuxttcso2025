@@ -1,44 +1,32 @@
-import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+// nuxt.config.ts
+import vuetify from 'vite-plugin-vuetify'
 
-export default defineNuxtConfig({
+export default {
   app: {
     head: {
-      title: 'TCSO, Immobilier Commercial', // default fallback title
-      htmlAttrs: {
-        lang: 'fr',
-      },
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      ],
+      title: 'TCSO, Immobilier Commercial',
+      htmlAttrs: { lang: 'fr' },
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
       meta: [
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'description', content: 'Agence Immobilière specialisée dans la transaction de locaux commerciaux'},
-    ],
-    noscript: [
-      { textContent: 'JavaScript is required' }
-    ],
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: 'Agence Immobilière spécialisée dans la transaction de locaux commerciaux' },
+      ],
+      noscript: [{ children: 'JavaScript is required' }],
       titleTemplate: '%s — %siteName',
-      templateParams: {
-        siteName: 'TCSO' // set a site name
-      }
+      templateParams: { siteName: 'TCSO' }
     }
   },
-  compatibilityDate: '2024-11-01',
-  devtools: {
-    enabled: false,
 
-    timeline: {
-      enabled: true,
-    },
-  },
+  compatibilityDate: '2024-11-01',
+  devtools: { enabled: false, timeline: { enabled: true } },
   debug: false,
-  build: {
-    transpile: ['vuetify'],
-  },
+
+  build: { transpile: ['vuetify'] },
+
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
-        // @ts-expect-error
+        config.plugins = config.plugins || []
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
@@ -47,12 +35,10 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-gtag'
   ],
-  cookieControl: {
-  // typed module options
-},
-  gtag: {
-    id: 'GTM-WCKZKJNL'
-  },
+
+  cookieControl: {},
+  gtag: { id: 'GTM-WCKZKJNL' },
+
   vite: {
     optimizeDeps: {
       include: [
@@ -71,6 +57,7 @@ export default defineNuxtConfig({
       },
     },
   },
+
   vuefire: {
     config: {
       apiKey: process.env.FIREBASE_API_KEY,
@@ -81,10 +68,9 @@ export default defineNuxtConfig({
       messagingSenderId: process.env.MESSAGINGSENDERID,
       appId: process.env.APPID,
     },
-    firestore: true, // Activer explicitement Firestore
+    firestore: true,
+    auth: false,
   },
-  
-  plugins:
-    []
 
-})
+  plugins: []
+}
