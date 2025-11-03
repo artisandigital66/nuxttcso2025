@@ -37,7 +37,30 @@ export default {
   ],
 
   cookieControl: {},
-  gtag: { id: 'GTM-WCKZKJNL' },
+
+gtag: {
+  id: 'G-MYM02XCJFT', // TON ID GA4
+
+  config: {
+    debug_mode: false,
+    send_page_view: true,
+    anonymize_ip: true,
+  },
+
+  pageView: {
+    enabled: true,
+  },
+
+  // CORRIGÉ : tags doit être un TABLEAU
+  tags: [
+    {
+      id: 'G-MYM02XCJFT',
+      config: {
+        send_page_view: true,
+      }
+    }
+  ]
+},
 
   vite: {
     optimizeDeps: {
