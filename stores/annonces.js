@@ -24,8 +24,8 @@ export const useAnnonceStore = defineStore('annonces', {
             url: '', // Valeur par défaut pour éviter les erreurs
             ...doc.data(),
           }));
-          this.filteredAnnonces = this.annonces;
-          console.log('Annonces chargées:', this.annonces);
+          this.filteredAnnonces = this.annonces.filter(annonce => annonce.online === true);
+          console.log('Annonces chargées:', this.annonces.filter(annonce => annonce.online === true));
           console.log('Annonces favorites:', this.favoriteAnnonces);
           console.log('Annonces filtrées:', this.filteredAnnonces);
           resolve(unsubscribe);

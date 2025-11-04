@@ -1,4 +1,5 @@
 // nuxt.config.ts
+import type { Plugin } from 'vite'
 import vuetify from 'vite-plugin-vuetify'
 
 export default {
@@ -24,8 +25,8 @@ export default {
   build: { transpile: ['vuetify'] },
 
   modules: [
-    (_options, nuxt) => {
-      nuxt.hooks.hook('vite:extendConfig', (config) => {
+    (_options: any, nuxt: { hooks: { hook: (arg0: string, arg1: (config: { plugins: Plugin<any>[][] }) => void) => void } }) => {
+      nuxt.hooks.hook('vite:extendConfig', (config: { plugins: Plugin<any>[][] }) => {
         config.plugins = config.plugins || []
         config.plugins.push(vuetify({ autoImport: true }))
       })
