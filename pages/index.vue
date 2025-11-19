@@ -268,9 +268,7 @@ const recentTransactions = ref([
   },
 ]);
 
-const favoriteAnnonces = computed(() => {
-  return annonceStore.favoriteAnnonces || [];
-});
+const favoriteAnnonces = computed(() => annonceStore.favoriteAnnonces)
 
 const renderMarkdown = (text, maxLength) => {
   if (!text) return '';
@@ -283,6 +281,8 @@ const handleImageError = (url) => {
 };
 
 let unsubscribe = () => {};
+
+
 
 onMounted(async () => {
   try {

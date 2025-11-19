@@ -1,47 +1,49 @@
-import { defineStore } from 'pinia';
-import { getFirestore, collection, onSnapshot } from 'firebase/firestore';
-import { inject } from 'vue';
+// stores/annonces.js – VERSION QUI MARCHE POUR TOUT
+import { defineStore } from 'pinia'
+import { collection, onSnapshot } from 'firebase/firestore'
+import { useFirestore } from 'vuefire'
 
 export const useAnnonceStore = defineStore('annonces', {
   state: () => ({
     annonces: [],
     filteredAnnonces: [],
+    selectedDepartement: 'Tous'
   }),
+
   getters: {
-    favoriteAnnonces(state) {
-      return state.annonces.filter(annonce => annonce.favorite === true) || [];
-    },
+    // ← IMPORTANT : getter pour le bandeau d’accueil
+    favoriteAnnonces: (state) => {
+      return state.annonces
+        .filter(a => a.favorite === true)
+        .slice(0, 3) // ou sans limite si tu veux toutes
+    }
   },
+
   actions: {
     async fetchAnnonces() {
-      const db = inject('firestore') || getFirestore();
-      const annoncesRef = collection(db, 'annonces2025-tcso');
-      return new Promise((resolve, reject) => {
-        const unsubscribe = onSnapshot(annoncesRef, (snapshot) => {
-          this.annonces = snapshot.docs.map(doc => ({
-            id: doc.id,
-            favorite: false,
-            url: '', // Valeur par défaut pour éviter les erreurs
-            ...doc.data(),
-          }));
-          this.filteredAnnonces = this.annonces.filter(annonce => annonce.online === true);
-          console.log('Annonces chargées:', this.annonces.filter(annonce => annonce.online === true));
-          console.log('Annonces favorites:', this.favoriteAnnonces);
-          console.log('Annonces filtrées:', this.filteredAnnonces);
-          resolve(unsubscribe);
-        }, (error) => {
-          console.error('Erreur Firestore:', error);
-          reject(error);
-        });
-      });
+      const db = useFirestore()
+      const ref = collection(db, 'annonces2025-tcso')
+
+      const unsub = onSnapshot(ref, (snap) => {
+        this.annonces = snap.docs.map(doc => ({
+          id: doc.id,
+          favorite: false,        // ← garde false par défaut
+          url: '',
+          ...doc.data()
+        }))
+
+        // Réinitialise les filtres
+        this.filterByDepartement('Tous')
+      })
+
+      return unsub
     },
-    filterAnnoncesByDepartement(departement) {
-      if (departement === 'Tous') {
-        this.filteredAnnonces = this.annonces;
-      } else {
-        this.filteredAnnonces = this.annonces.filter(annonce => annonce.departement === departement);
-      }
-      console.log('Annonces filtrées par département:', this.filteredAnnonces);
-    },
-  },
-});
+
+    filterByDepartement(dept) {
+      this.selectedDepartement = dept || 'Tous'
+      this.filteredAnnonces = this.selectedDepartement === 'Tous'
+        ? [...this.annonces]
+        : this.annonces.filter(a => a.departement === this.selectedDepartement)
+    }
+  }
+})
