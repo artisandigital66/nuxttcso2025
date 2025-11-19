@@ -27,11 +27,11 @@
       <template v-slot:prepend>
         <v-icon icon="mdi-earth" class="mr-2" size="20"></v-icon>
       </template>
-      <v-list-item-title>Tous les départements ({{ departements[0]?.count || 0 }})</v-list-item-title>
+      <v-list-item-title>Tous les départements </v-list-item-title>
     </v-list-item>
     <v-divider class="mt-2"/>
   </template>
-  
+
           <template v-slot:item="{ item, props }">
             <v-list-item v-bind="props">
               <template v-slot:prepend>
@@ -41,10 +41,16 @@
             </v-list-item>
           </template>
 
-          <template v-slot:selection="{ item }">
+          <!-- <template v-slot:selection="{ item }">
             <v-icon :icon="item.icon" class="mr-2" size="18"></v-icon>
             <span class="text-caption font-weight-medium">{{ item.text }}</span>
-          </template>
+          </template> -->
+
+          <!-- Sélection affichée -->
+  <template v-slot:selection="{ item }">
+    <v-icon :icon="item.raw.icon" class="mr-2" size="18"></v-icon>
+    <span class="text-caption font-weight-medium">{{ item.raw.value }}</span>
+  </template>
         </v-select>
       </v-app-bar>
 
