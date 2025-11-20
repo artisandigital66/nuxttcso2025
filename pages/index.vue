@@ -49,12 +49,6 @@
       </v-img>
     </v-row>
 
-    <!-- <v-row class="justify-center py-5">
-      <v-col cols="12" sm="8">
-        <v-divider></v-divider>
-      </v-col>
-    </v-row> -->
-
     <v-col cols="12" class="text-center mt-0">
       <h3 class="mx-auto title my-3">LOTS DISPONIBLES IMMEDIATEMENT</h3>
       <ClientOnly>

@@ -52,7 +52,6 @@ gtag: {
     enabled: true,
   },
 
-  // CORRIGÉ : tags doit être un TABLEAU
   tags: [
     {
       id: 'G-MYM02XCJFT',

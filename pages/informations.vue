@@ -6,21 +6,6 @@
       </h1>
     </v-col>
     <v-divider></v-divider>
-    <!-- <v-col cols="12">
-      <iframe
-        src="https://www.insee.fr/fr/statistiques/serie/001532540#Graphique"
-        frameborder="0"
-        height="400"
-        width="100%"
-      ></iframe>
-    </v-col> -->
-
-    <!-- <v-col cols="12">
-      <video
-        controls
-        src="https://drive.google.com/file/d/1_IjO4CCmDvxpkvLWIiPS33XfCsUEGCBr/view?usp=sharing"
-      ></video>
-    </v-col> -->
 
     <v-row class="mx-auto justify-center">
     <h2 class="mx-auto text-center my-3">Céder son affaire</h2>

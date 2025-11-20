@@ -9,11 +9,6 @@
     <v-divider></v-divider>
 
     <v-row class="my-10 py-5">
-      <v-col cols="12" md="3" class="py-5">
-        <!-- <v-img
-          src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/qui%2FPORTRAIT2.jpg?alt=media&token=fb425365-1ee3-4763-93e8-e1b931bf6bb8"
-        ></v-img> -->
-      </v-col>
       <v-col cols="12" md="9" class="mt-2">
         <p>
             Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique, il est précisé aux utilisateurs du site tcso.fr l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.

@@ -41,11 +41,6 @@
             </v-list-item>
           </template>
 
-          <!-- <template v-slot:selection="{ item }">
-            <v-icon :icon="item.icon" class="mr-2" size="18"></v-icon>
-            <span class="text-caption font-weight-medium">{{ item.text }}</span>
-          </template> -->
-
           <!-- Sélection affichée -->
   <template v-slot:selection="{ item }">
     <v-icon :icon="item.raw.icon" class="mr-2" size="18"></v-icon>
@@ -87,7 +82,7 @@
           </div>
 
           <!-- COOKIES -->
-          <CookieControl locale="fr" />
+          <!-- <CookieControl locale="fr" /> -->
 
           <!-- FOOTER COMPLET -->
           <v-footer class="d-flex flex-column" color="#0c7ca2ff" rounded="0">
