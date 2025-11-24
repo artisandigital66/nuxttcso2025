@@ -34,7 +34,7 @@
                   <v-img
                     :src="image.url"
                     :alt="image.titre"
-                    cover
+                    
                     @click="openImageModal(image.url)"
                     @error="handleImageError(image.url)"
                     @load="handleImageLoad(image.url)"
@@ -56,7 +56,8 @@
             <v-img
               :src="selectedImage"
               alt="Image agrandie"
-              max-height="80vh"
+              max-height="100vh"
+              max-width="80vw"
               contain
             />
             <v-card-actions>
@@ -73,7 +74,7 @@
           Aucune annonce trouvée pour l'ID {{ route.params.id }}
         </v-alert>
       </div>
-      <v-row class="justify-center">
+      <!-- <v-row class="justify-center">
         <v-btn
           v-if="annonce?.url"
           :href="annonce.url"
@@ -82,7 +83,7 @@
         >
           PDF
         </v-btn>
-      </v-row>
+      </v-row> -->
       <v-row class="justify-center py-5">
         <v-col cols="12" sm="8">
           <v-divider></v-divider>
