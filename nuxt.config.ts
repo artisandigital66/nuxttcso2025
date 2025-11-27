@@ -37,7 +37,62 @@ export default {
     'nuxt-gtag'
   ],
 
-  cookieControl: {},
+  cookieControl: {
+    barPosition: 'bottom-full',
+  // Switch to toggle if clicking the overlay outside the configuration modal closes the modal.
+    closeModalOnClickOutside: true,
+    colors: {
+      barBackground: '#3CA2A4',
+      barButtonBackground: '#3CA2A4',
+      barButtonColor: '#000',
+      barButtonHoverBackground: '#333',
+      barButtonHoverColor: '#3CA2A4',
+      barTextColor: '#fff',
+      checkboxActiveBackground: '#000',
+      checkboxActiveCircleBackground: '#fff',
+      checkboxDisabledBackground: '#ddd',
+      checkboxDisabledCircleBackground: '#fff',
+      checkboxInactiveBackground: '#000',
+      checkboxInactiveCircleBackground: '#fff',
+      controlButtonBackground: '#3CA2A4',
+      controlButtonHoverBackground: '#2B7691',
+      controlButtonIconColor: '#fff',
+      controlButtonIconHoverColor: '#fff',
+      focusRingColor: '#808080',
+      modalBackground: '#fff',
+      modalButtonBackground: '#000',
+      modalButtonColor: '#fff',
+      modalButtonHoverBackground: '#333',
+      modalButtonHoverColor: '#fff',
+      modalOverlay: '#000',
+      modalOverlayOpacity: 0.8,
+      modalTextColor: '#22b85bff',
+      modalUnsavedColor: '#fff',
+    },
+    text: {
+      barTitle: 'Cookies',
+      barDescription: 'We use our own cookies and third-party cookies so that we can show you this website and better understand how you use it, with a view to improving the services we offer. If you continue browsing, we consider that you have accepted the cookies.',
+      acceptAll: 'Accept all',
+      declineAll: 'Delete all',
+      manageCookies: 'Manage cookies',
+      unsaved: 'You have unsaved settings',
+      close: 'Close',
+      save: 'Save',
+      necessary: 'Necessary cookies',
+      optional: 'Optional cookies',
+      functional: 'Functional cookies',
+      blockedIframe: 'To see this, please enable functional cookies',
+      here: 'here'
+    },
+
+
+// The cookies that are to be controlled.
+// See detailed explanation further down below!
+cookies: {
+  // necessary: [],
+  optional: [],
+}
+  },
 
 gtag: {
   id: 'G-MYM02XCJFT', // TON ID GA4

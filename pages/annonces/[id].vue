@@ -1,8 +1,10 @@
 <template>
   <ClientOnly>
-    <div class="container">
-      <h1 class="headline">{{ annonce?.titre || 'Chargement...' }}</h1>
-
+    <div class="container mx-auto">
+      <v-card class="mb-5">
+        <h1 class="headline ml-3">{{ annonce?.titre || 'Chargement...' }}</h1>
+        <h2 class="mb-3 ml-3">{{ annonce?.soustitre }}</h2>
+      </v-card>
       <div v-if="loading">
         <v-skeleton-loader type="card" />
       </div>
@@ -15,38 +17,79 @@
         <v-row>
           <v-col cols="12" md="12">
             <v-card>
-              <v-card-subtitle>{{ annonce.soustitre }}</v-card-subtitle>
-              <h2 class="ml-3 mt-3">Description</h2>
-              <v-card-text v-html="renderedDescription"></v-card-text>
-              <h2 class="ml-3 mt-3">Conditions juridiques et financières</h2>
-              <v-card-text v-html="renderedConditions"></v-card-text>
-              <h2 class="ml-3 mt-3">Environnement</h2>
-              <v-card-text v-html="renderedEnvironnement"></v-card-text>
+              
+                <!-- <v-tabs
+                bg-color="#3CA2A4"
+                grow
+              >
+                  <v-tab value="description">Description</v-tab>
+
+                  <v-tab value="environnement">Environnement commercial</v-tab>
+
+                  <v-tab value="conditions">Conditions juridiques et financières</v-tab>
+                </v-tabs>
+
+                <v-tabs-window v-model="tab">
+                  <v-tabs-window-item value="description">
+                    <v-card class="mb-5">
+                      <v-card-text v-html="renderedDescription"></v-card-text>
+                    </v-card>
+                  </v-tabs-window-item>
+                  <v-tabs-window-item value="environnement">
+                    <v-card class="mt-3">
+                      <v-card-text v-html="renderedConditions"></v-card-text>
+                    </v-card>
+                  </v-tabs-window-item>
+                  <v-tabs-window-item value="conditions">
+                    <v-card class="mt-3">
+                      <v-card-text v-html="renderedEnvironnement"></v-card-text>
+                    </v-card>
+                  </v-tabs-window-item>
+                </v-tabs-window> -->
+              <h3 class="ml-3 mt-3">Description</h3>
+              <v-card class="mb-5">
+                <v-card-text v-html="renderedDescription"></v-card-text>
+              </v-card>
+              <h3 class="ml-3 mt-3">Conditions juridiques et financières</h3>
+              <v-card class="mt-3">
+                <v-card-text v-html="renderedConditions"></v-card-text>
+              </v-card>
+              <h3 class="ml-3 mt-3">Environnement commercial</h3>
+              <v-card class="mt-3">
+                <v-card-text v-html="renderedEnvironnement"></v-card-text>
+              </v-card>
             </v-card>
           </v-col>
           <v-col cols="12" md="12">
             <ClientOnly>
-              <v-carousel v-if="uniqueImages.length" hide-delimiters>
-                <v-carousel-item
-                  v-for="(image, index) in uniqueImages"
-                  :key="image.url + index"
-                >
-                  <v-img
-                    :src="image.url"
-                    :alt="image.titre"
-                    
-                    @click="openImageModal(image.url)"
-                    @error="handleImageError(image.url)"
-                    @load="handleImageLoad(image.url)"
-                  />
-                </v-carousel-item>
-              </v-carousel>
-              <v-alert v-else type="warning">
-                Aucune image disponible pour cette annonce
-              </v-alert>
-              <v-row>
+              
+              <v-card class="my-3">
+                <h3 class="ml-3 mt-3">Medias et documents</h3>
+                <v-carousel v-if="uniqueImages.length" hide-delimiters>
+                  <v-carousel-item
+                   class="mt-2 mb-5"
+                    v-for="(image, index) in uniqueImages"
+                    :key="image.url + index"
+                  >
+                    <v-img
+                      :src="image.url"
+                      :alt="image.titre"
+                      
+                      @click="openImageModal(image.url)"
+                      @error="handleImageError(image.url)"
+                      @load="handleImageLoad(image.url)"
+                    />
+                  </v-carousel-item>
+                </v-carousel>
+                
+                <v-alert v-else type="warning">
+                  Aucune image disponible pour cette annonce
+                </v-alert>
+                <v-row class="mb-10">
                 <v-btn class="mx-auto mt-10 mb-4" color="red" :href="annonce.pdf">Téléchargez le pdf</v-btn>
               </v-row>
+              </v-card>
+              
             </ClientOnly>
           </v-col>
         </v-row>
@@ -74,16 +117,7 @@
           Aucune annonce trouvée pour l'ID {{ route.params.id }}
         </v-alert>
       </div>
-      <!-- <v-row class="justify-center">
-        <v-btn
-          v-if="annonce?.url"
-          :href="annonce.url"
-          color="red"
-          variant="outlined"
-        >
-          PDF
-        </v-btn>
-      </v-row> -->
+      
       <v-row class="justify-center py-5">
         <v-col cols="12" sm="8">
           <v-divider></v-divider>
@@ -114,7 +148,7 @@ const md = new MarkdownIt({
   breaks: true,
   linkify: true,
 });
-
+const tab = ref(null)
 const annonceStore = useAnnonceStore();
 const route = useRoute();
 const loading = ref(true);

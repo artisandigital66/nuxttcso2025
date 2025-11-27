@@ -91,10 +91,19 @@
               <div class="d-flex ms-auto">
                 <v-btn
                   icon="mdi-linkedin"
+                  color="white"
                   size=""
                   variant="plain"
                   href="https://www.linkedin.com/company/transaction-et-conseil-sud-ouest-tcso"
-                  aria-label="LinkedIn"
+                  aria-label="Suivez nous sur LinkedIn"
+                ></v-btn>
+                <v-btn
+                  icon="mdi-youtube"
+                  color="red"
+                  size=""
+                  variant="plain"
+                  href="https://www.youtube.com/"
+                  aria-label="Suivez nous sur Youtube"
                 ></v-btn>
               </div>
             </div>
