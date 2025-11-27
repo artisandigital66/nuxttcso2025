@@ -102,7 +102,7 @@
                   color="red"
                   size=""
                   variant="plain"
-                  href="https://www.youtube.com/"
+                  href="https://www.youtube.com/@laurentferreol9478/"
                   aria-label="Suivez nous sur Youtube"
                 ></v-btn>
               </div>
