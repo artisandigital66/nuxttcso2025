@@ -91,6 +91,7 @@
               <div class="d-flex ms-auto">
                 <v-btn
                   icon="mdi-linkedin"
+                  target="_blank"
                   color="white"
                   size=""
                   variant="plain"
@@ -99,6 +100,7 @@
                 ></v-btn>
                 <v-btn
                   icon="mdi-youtube"
+                  target="_blank"
                   color="red"
                   size=""
                   variant="plain"

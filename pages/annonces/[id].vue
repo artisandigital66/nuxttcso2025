@@ -2,8 +2,20 @@
   <ClientOnly>
     <div class="container mx-auto">
       <v-card class="mb-5">
-        <h1 class="headline ml-3">{{ annonce?.titre || 'Chargement...' }}</h1>
-        <h2 class="mb-3 ml-3">{{ annonce?.soustitre }}</h2>
+        <v-row>
+        <v-col cols="3">
+          <v-img
+                alt="TCSO logo"
+                width="30%"
+                class="mx-auto my-2 pa-5"
+                src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
+            ></v-img>
+        </v-col>
+        <v-col cols="8">
+          <h1 class="headline ml-3">{{ annonce?.titre || 'Chargement...' }}</h1>
+          <h2 class="mb-3 ml-3">{{ annonce?.soustitre }}</h2>
+        </v-col>
+        </v-row>
       </v-card>
       <div v-if="loading">
         <v-skeleton-loader type="card" />
@@ -16,37 +28,36 @@
       <div v-else-if="annonce">
         <v-row>
           <v-col cols="12" md="12">
-            <v-card>
-              
-                <!-- <v-tabs
+            <!-- v-tabs -->
+            <v-card elevation="6" class="mb-6">
+              <v-tabs
+                v-model="activeTab"
                 bg-color="#3CA2A4"
+                color="white"
                 grow
+                slider-color="white"
               >
-                  <v-tab value="description">Description</v-tab>
+                <v-tab value="description">Description</v-tab>
+                <v-tab value="environnement">Environnement commercial</v-tab>
+                <v-tab value="conditions">Conditions juridiques & financières</v-tab>
+              </v-tabs>
 
-                  <v-tab value="environnement">Environnement commercial</v-tab>
+              <v-window v-model="activeTab" class="pa-6">
+                <v-window-item value="description">
+                  <div v-html="renderedDescription" class="prose max-w-none" />
+                </v-window-item>
 
-                  <v-tab value="conditions">Conditions juridiques et financières</v-tab>
-                </v-tabs>
+                <v-window-item value="environnement">
+                  <div v-html="renderedEnvironnement" class="prose max-w-none" />
+                </v-window-item>
 
-                <v-tabs-window v-model="tab">
-                  <v-tabs-window-item value="description">
-                    <v-card class="mb-5">
-                      <v-card-text v-html="renderedDescription"></v-card-text>
-                    </v-card>
-                  </v-tabs-window-item>
-                  <v-tabs-window-item value="environnement">
-                    <v-card class="mt-3">
-                      <v-card-text v-html="renderedConditions"></v-card-text>
-                    </v-card>
-                  </v-tabs-window-item>
-                  <v-tabs-window-item value="conditions">
-                    <v-card class="mt-3">
-                      <v-card-text v-html="renderedEnvironnement"></v-card-text>
-                    </v-card>
-                  </v-tabs-window-item>
-                </v-tabs-window> -->
-              <h3 class="ml-3 mt-3">Description</h3>
+                <v-window-item value="conditions">
+                  <div v-html="renderedConditions" class="prose max-w-none" />
+                </v-window-item>
+              </v-window>
+            </v-card>
+
+              <!-- <h3 class="ml-3 mt-3">Description</h3>
               <v-card class="mb-5">
                 <v-card-text v-html="renderedDescription"></v-card-text>
               </v-card>
@@ -57,8 +68,8 @@
               <h3 class="ml-3 mt-3">Environnement commercial</h3>
               <v-card class="mt-3">
                 <v-card-text v-html="renderedEnvironnement"></v-card-text>
-              </v-card>
-            </v-card>
+              </v-card> -->
+            
           </v-col>
           <v-col cols="12" md="12">
             <ClientOnly>
@@ -130,7 +141,7 @@
           color="primary"
           @click="$router.back()"
         >
-          Retour
+          Retour aux annonces
         </v-btn>
       </v-row>
     </div>
@@ -143,12 +154,22 @@ import { useRoute } from 'vue-router';
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import MarkdownIt from 'markdown-it';
 
+const activeTab = ref('description') // ← tab actif
+
+  const items = [
+    {titre: 'Descriptionxxx', fonction:  "renderedDescription"},
+    {titre: 'Environnement', fonction:  "renderedEnvironnement"},
+    {titre: 'Conditions', fonction:  "renderedConditions"}
+    
+  ]
+  const text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+
 const md = new MarkdownIt({
   html: false,
   breaks: true,
   linkify: true,
 });
-const tab = ref(null)
+// const tab = ref(null)
 const annonceStore = useAnnonceStore();
 const route = useRoute();
 const loading = ref(true);
