@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <div class="container mx-auto">
-      <v-card class="mb-5">
+      <v-card elevation="6" class="mb-5">
         <v-row>
         <v-col cols="3">
           <v-img
@@ -56,25 +56,12 @@
                 </v-window-item>
               </v-window>
             </v-card>
-
-              <!-- <h3 class="ml-3 mt-3">Description</h3>
-              <v-card class="mb-5">
-                <v-card-text v-html="renderedDescription"></v-card-text>
-              </v-card>
-              <h3 class="ml-3 mt-3">Conditions juridiques et financières</h3>
-              <v-card class="mt-3">
-                <v-card-text v-html="renderedConditions"></v-card-text>
-              </v-card>
-              <h3 class="ml-3 mt-3">Environnement commercial</h3>
-              <v-card class="mt-3">
-                <v-card-text v-html="renderedEnvironnement"></v-card-text>
-              </v-card> -->
-            
           </v-col>
+          
           <v-col cols="12" md="12">
             <ClientOnly>
               
-              <v-card class="my-3">
+              <v-card elevation="6" class="my-3">
                 <h3 class="ml-3 mt-3">Medias et documents</h3>
                 <v-carousel v-if="uniqueImages.length" hide-delimiters>
                   <v-carousel-item

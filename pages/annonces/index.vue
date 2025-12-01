@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <v-row class="container justify-center mx-auto">
-      <h1 class="headline">Liste des annonces</h1>
+      <h1 class="headline mb-5">Liste des annonces</h1>
 
       <div v-if="loading">
         <v-skeleton-loader type="card" />
@@ -22,9 +22,21 @@
             class="justify-center mx-auto"
           >
             <v-card class="justify-space-around px-3">
-              <v-card-title><h3>{{ annonce.titre }}</h3></v-card-title>
-              <v-card-subtitle><h4>{{ annonce.soustitre }}</h4></v-card-subtitle>
-              <v-card-text v-html="renderMarkdown(annonce.description, 200)"></v-card-text>
+              <v-row>
+                <v-col cols="3">
+                  <v-img
+                        alt="TCSO logo"
+                        width="30%"
+                        class="mx-auto my-2 pa-5"
+                        src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
+                    ></v-img>
+                </v-col>
+                <v-col cols="8">
+                  <h1 class="headline ml-3">{{ annonce?.titre || 'Chargement...' }}</h1>
+                  <h2 class="mb-3 ml-3">{{ annonce?.soustitre }}</h2>
+                </v-col>
+                <v-card-text v-html="renderMarkdown(annonce.description, 200)"></v-card-text>
+              </v-row>
               <v-row class="mx-auto justify-center">
                 <v-col
                   class="mx-auto justify-center"
