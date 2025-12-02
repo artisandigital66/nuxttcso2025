@@ -27,8 +27,7 @@
         class="bg-grey-lighten-2"
         height="600"
         src="https://res.cloudinary.com/dkhuquewc/image/upload/v1756972964/enseigne-macon2_tp4org.jpg"
-        cover
-      >
+        cover>
         <v-col cols="8" md="6" class="justify-center center-affix transpa mt-10 pb-5 elevation-4 bg-black mx-auto">
           <h1 class="my-3 display-1">
             TRANSACTION & CONSEIL <br />
@@ -49,52 +48,86 @@
       </v-img>
     </v-row>
 
-    <v-col cols="12" class="text-center mt-0">
-      <h3 class="mx-auto title my-3">LOTS DISPONIBLES IMMEDIATEMENT</h3>
-      <ClientOnly>
-        <v-carousel
-          cycle
-          interval="3000"
-          hide-delimiters
-          height=""
-          :show-arrows="false"
-          class=""
-        >
-          <v-carousel-item
-            v-for="transaction in recentTransactions"
-            :key="transaction.id"
+    <v-row>
+      <v-col cols="12" class="text-center mt-0">
+        <h3 class="mx-auto title my-3">LOTS DISPONIBLES IMMEDIATEMENT</h3>
+        <ClientOnly>
+          <v-carousel
+            cycle
+            interval="3000"
+            hide-delimiters
+            height=""
+            :show-arrows="false"
+            class=""
           >
-            <v-card class="mx-auto bandeau" max-width="600">
-              <v-card-title class="text-h6">
-                <v-icon color="yellow" icon="mdi-star" class="mr-2"></v-icon>
-                {{ transaction.titre }}
-              </v-card-title>
-              <v-card-subtitle>{{ transaction.soustitre }}</v-card-subtitle>
-              <v-card-actions>
-                <v-btn
-                  :to="`/annonces/${transaction.id}`"
-                  color="white"
-                  variant="outlined"
-                  class="mx-auto"
-                  size="small"
-                >
-                  Voir les détails
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-carousel-item>
-          <template v-if="!recentTransactions.length">
-            <v-card class="mx-auto" max-width="300">
-              <v-card-text>
-                <v-alert type="warning">
-                  Aucune transaction récente trouvée
-                </v-alert>
-              </v-card-text>
-            </v-card>
-          </template>
-        </v-carousel>
-      </ClientOnly>
-    </v-col>
+            <v-carousel-item
+              v-for="transaction in recentTransactions"
+              :key="transaction.id"
+            >
+              <v-card class="mx-auto bandeau" max-width="600">
+                <v-card-title class="text-h6">
+                  <v-icon color="yellow" icon="mdi-star" class="mr-2"></v-icon>
+                  {{ transaction.titre }}
+                </v-card-title>
+                <v-card-subtitle>{{ transaction.soustitre }}</v-card-subtitle>
+                <v-card-actions>
+                  <v-btn
+                    :to="`/annonces/${transaction.id}`"
+                    color="white"
+                    variant="outlined"
+                    class="mx-auto"
+                    size="small"
+                  >
+                    Voir les détails
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-carousel-item>
+            <template v-if="!recentTransactions.length">
+              <v-card class="mx-auto" max-width="300">
+                <v-card-text>
+                  <v-alert type="warning">
+                    Aucune transaction récente trouvée
+                  </v-alert>
+                </v-card-text>
+              </v-card>
+            </template>
+          </v-carousel>
+        </ClientOnly>
+      </v-col>
+    </v-row>
+
+
+    <!-- video -->
+
+    <v-card elevation="4" fill-height>
+      <v-responsive fill-height>
+      <v-row justify-center class="mb-5 mx-auto" fill-height>
+        <v-col cols="10"  class="justify-center center-affix mt-10 pb-5 elevation-4 bg-black mx-auto">
+          <iframe width="100%" 
+                  class="d-md-none justify-center mx-auto"
+                  src="https://www.youtube.com/embed/bieUNSr8GsA?si=ygrqSE0LacGO_b2e" 
+                  title="Présentation TCSO video" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  referrerpolicy="strict-origin-when-cross-origin" 
+                  allowfullscreen>
+          </iframe>
+          <iframe 
+                  width="100%" 
+                  height="700"
+                  class="d-none d-md-block"
+                  src="https://www.youtube.com/embed/bieUNSr8GsA?si=ygrqSE0LacGO_b2e" 
+                  title="Présentation TCSO video" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  referrerpolicy="strict-origin-when-cross-origin" 
+                  allowfullscreen>
+          </iframe>
+        </v-col>
+      </v-row>
+      </v-responsive>
+    </v-card>
 
     <v-row>
       <v-col cols="12" md="8" class="mx-auto text-center">
@@ -123,7 +156,7 @@
             md="8"
             class="justify-center mx-auto"
           >
-            <v-card class="justify-space-around px-3">
+            <v-card class="justify-space-around px-3" elevation="4">
               <v-row>
                 <v-col cols="3">
                   <v-img
@@ -175,19 +208,19 @@
         </v-alert>
       </div>
     </v-row>
-
+<!-- 
     <v-row class="justify-center py-5">
       <v-col cols="12" sm="8">
         <v-divider></v-divider>
       </v-col>
-    </v-row>
+    </v-row> -->
 
-    <v-row>
-      <v-col cols="12" md="8" class="mx-auto mt-10 text-center">
-        <v-card class="justify-center">
+    <v-row class="container justify-center mx-auto">
+      <v-col cols="12" md="8" class="mt-5 text-center">
+        <v-card class="justify- mb-5" elevation="4">
           <v-row class="mx-auto">
             <v-col cols="12" md="8" class="mx-auto text-center">
-              <h3 class="mx-auto headline">PRESENTATION ET SERVICES</h3>
+              <h3 class="mx-auto headline mt-3">PRESENTATION ET SERVICES</h3>
               <v-img
                 alt="TCSO logo"
                 width="10%"
