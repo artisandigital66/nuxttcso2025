@@ -93,7 +93,7 @@
                   icon="mdi-linkedin"
                   target="_blank"
                   color="white"
-                  size=""
+                  size="30"
                   variant="plain"
                   href="https://www.linkedin.com/company/transaction-et-conseil-sud-ouest-tcso"
                   aria-label="Suivez nous sur LinkedIn"
@@ -102,15 +102,21 @@
                   icon="mdi-youtube"
                   target="_blank"
                   color="red"
-                  size=""
+                  size="30"
                   variant="plain"
                   href="https://www.youtube.com/@laurentferreol9478/"
                   aria-label="Suivez nous sur Youtube"
                 ></v-btn>
               </div>
             </div>
-
+            
             <div class="px-4 py-2 bg-surface-variant text-center w-100 rounded-lg transpa">
+              <div>
+              Nicolas: 06 85 03 22 66
+            </div>
+            <div>
+              nicolas@tcso.fr
+            </div>
               <div>
                 <v-btn :to="`/`" size="x-small" variant="plain" class="mx-auto mt-3">
                   Accueil

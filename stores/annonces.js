@@ -15,7 +15,7 @@ export const useAnnonceStore = defineStore('annonces', {
     favoriteAnnonces: (state) => {
       return state.annonces
         .filter(a => a.favorite === true)
-        .slice(0, 3) // ou sans limite si tu veux toutes
+        .slice(0, 10) // ou sans limite si tu veux toutes
     }
   },
 

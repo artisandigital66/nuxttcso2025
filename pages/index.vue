@@ -64,7 +64,7 @@
               v-for="transaction in recentTransactions"
               :key="transaction.id"
             >
-              <v-card class="mx-auto bandeau" max-width="600">
+              <v-card class="mx-auto bandeau mb-3" max-width="600">
                 <v-card-title class="text-h6">
                   <v-icon color="yellow" icon="mdi-star" class="mr-2"></v-icon>
                   {{ transaction.titre }}
@@ -109,9 +109,10 @@
                   src="https://www.youtube.com/embed/bieUNSr8GsA?si=ygrqSE0LacGO_b2e" 
                   title="Présentation TCSO video" 
                   frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allow="autoplay, accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                   referrerpolicy="strict-origin-when-cross-origin" 
-                  allowfullscreen>
+                  allowfullscreen
+                  autoplay>
           </iframe>
           <iframe 
                   width="100%" 
@@ -120,9 +121,10 @@
                   src="https://www.youtube.com/embed/bieUNSr8GsA?si=ygrqSE0LacGO_b2e" 
                   title="Présentation TCSO video" 
                   frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allow="autoplay, accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                   referrerpolicy="strict-origin-when-cross-origin" 
-                  allowfullscreen>
+                  allowfullscreen
+                  autoplay>
           </iframe>
         </v-col>
       </v-row>
@@ -208,12 +210,6 @@
         </v-alert>
       </div>
     </v-row>
-<!-- 
-    <v-row class="justify-center py-5">
-      <v-col cols="12" sm="8">
-        <v-divider></v-divider>
-      </v-col>
-    </v-row> -->
 
     <v-row class="container justify-center mx-auto">
       <v-col cols="12" md="8" class="mt-5 text-center">
