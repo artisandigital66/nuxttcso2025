@@ -107,6 +107,7 @@
                   href="https://www.youtube.com/@laurentferreol9478/"
                   aria-label="Suivez nous sur Youtube"
                 ></v-btn>
+                
               </div>
             </div>
             
@@ -151,14 +152,6 @@ const drawer = ref(false)
 const route = useRoute()
 const annonceStore = useAnnonceStore()
 const { selectedDepartement } = storeToRefs(annonceStore)
-
-// Mapping département → nom
-const departementNames = {
-  '09': 'Ariège', '12': 'Aveyron', '29': 'Finistère', '31': 'Haute-Garonne',
-  '34': 'Hérault', '46': 'Lot', '56': 'Morbihan', '64': 'Pyrénées-Atlantiques',
-  '65': 'Hautes-Pyrénées', '71': 'Saône-et-Loire', '79': 'Deux-Sèvres',
-  '81': 'Tarn', '82': 'Tarn-et-Garonne'
-}
 
 // ref local qui ne change de référence QUE si le contenu change vraiment
 const departements = ref([])
