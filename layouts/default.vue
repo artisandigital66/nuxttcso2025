@@ -184,7 +184,7 @@ const rebuildDepartements = () => {
     cache.get(tousKey).title = `Tous les départements (${annonceStore.annonces.length})`
   }
   newItems.push(cache.get(tousKey))
-
+  const departementNames = []
   // Départements : on réutilise les objets existants
   deps.forEach(dep => {
     const key = dep
