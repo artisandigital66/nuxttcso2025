@@ -37,20 +37,20 @@
                 </v-col>
                 <v-card-text v-html="renderMarkdown(annonce.description, 200)"></v-card-text>
               </v-row>
-              <v-row class="mx-auto justify-center">
+              <v-row class="">
                 <v-col
-                  class="mx-auto justify-center"
+                  class=""
                   cols="12"
                   md="4"
                   v-for="(media, index) in annonce.images || []"
                   :key="media.url + index"
                 >
                   <v-img
-                    v-show="media.ordre == '1'"
+                    v-if="media.ordre == '1'"
                     :src="media.url"
                     :alt="media.titre"
                     cover
-                    class="mx-auto justify-center"
+                    class=""
                     @error="handleImageError(media.url)"
                   />
                 </v-col>

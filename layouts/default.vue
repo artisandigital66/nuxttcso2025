@@ -32,14 +32,14 @@
     <v-divider class="mt-2"/>
   </template>
 
-          <template v-slot:item="{ item, props }">
-            <v-list-item v-bind="props">
-              <template v-slot:prepend>
-                <v-icon :icon="item.icon" class="mr-2" size="20"></v-icon>
-              </template>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item>
-          </template>
+  <template v-slot:item="{ item, props }">
+    <v-list-item v-bind="props">
+      <template v-slot:prepend>
+        <v-icon :icon="item.icon" class="mr-2" size="20"></v-icon>
+      </template>
+      <v-list-item-title>{{ item.text }}</v-list-item-title>
+    </v-list-item>
+  </template>
 
           <!-- Sélection affichée -->
   <template v-slot:selection="{ item }">
@@ -48,7 +48,6 @@
   </template>
         </v-select>
       </v-app-bar>
-
       <!-- MENU DÉROULANT -->
       <v-navigation-drawer
         v-model="drawer"
@@ -76,14 +75,14 @@
 
       <!-- CONTENU PRINCIPAL -->
       <v-main>
-        <v-container fluid>
+        <v-container fluid class="noel px-0 pt-0">
           <div class="py-0">
             <slot />
           </div>
-
           <!-- COOKIES -->
           <!-- <CookieControl locale="fr" /> -->
-
+        </v-container>
+      </v-main>
           <!-- FOOTER COMPLET -->
           <v-footer class="d-flex flex-column" color="#0c7ca2ff" rounded="0">
             <div class="d-flex w-100 align-center px-4 py-2">
@@ -135,9 +134,9 @@
               </div>
               {{ new Date().getFullYear() }} — <strong>© TCSO</strong>
             </div>
+
           </v-footer>
-        </v-container>
-      </v-main>
+        
     </v-app>
   </ClientOnly>
 </template>
@@ -185,6 +184,7 @@ const rebuildDepartements = () => {
   }
   newItems.push(cache.get(tousKey))
   const departementNames = []
+  
   // Départements : on réutilise les objets existants
   deps.forEach(dep => {
     const key = dep
@@ -226,4 +226,11 @@ onMounted(() => {
 .transpa { opacity: 0.7; }
 .v-select :deep(.v-field-label) { font-size: 0.875rem; }
 .v-select :deep(.v-select__selection) { font-weight: 500; }
+.noel {
+  background: url('../public/bg-noel.jpg');
+  background-size: contain;
+ 
+
+}
+  
 </style>

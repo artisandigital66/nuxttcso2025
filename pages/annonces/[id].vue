@@ -83,9 +83,22 @@
                 <v-alert v-else type="warning">
                   Aucune image disponible pour cette annonce
                 </v-alert>
+
                 <v-row class="mb-10">
-                <v-btn class="mx-auto mt-10 mb-4" color="red" :href="annonce.pdf">Téléchargez le pdf</v-btn>
-              </v-row>
+                  <v-btn class="mx-auto mt-10 mb-4" color="red" :href="annonce.pdf">Téléchargez le pdf</v-btn>
+                </v-row>
+
+                <v-row v-if="annonce.video" class="justify-center mb-3">
+                  <iframe width="315" 
+                  height="560" 
+                  :src="annonce.video" 
+                  title="YouTube video player" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                  </iframe>
+                </v-row>
+
               </v-card>
               
             </ClientOnly>

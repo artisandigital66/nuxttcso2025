@@ -102,9 +102,9 @@
 
     <v-card elevation="4" fill-height>
       <v-responsive fill-height>
-      <v-row justify-center class="mb-5 mx-auto" fill-height>
-        <v-col cols="10"  class="justify-center center-affix mt-10 pb-5 elevation-4 bg-black mx-auto">
-          <iframe width="100%" 
+      <v-row justify-center class="mb-0 mx-auto">
+        <!-- <v-col cols="8"  class="justify-center center-affix mt-10 pb-5 elevation-4 bg-black mx-auto"> -->
+          <!-- <iframe width="100%" 
                   class="d-md-none justify-center mx-auto"
                   src="https://www.youtube.com/embed/bieUNSr8GsA?si=ygrqSE0LacGO_b2e" 
                   title="Présentation TCSO video" 
@@ -113,7 +113,7 @@
                   referrerpolicy="strict-origin-when-cross-origin" 
                   allowfullscreen
                   autoplay>
-          </iframe>
+          </iframe> -->
           <iframe 
                   width="100%" 
                   height="700"
@@ -126,7 +126,7 @@
                   allowfullscreen
                   autoplay>
           </iframe>
-        </v-col>
+        <!-- </v-col> -->
       </v-row>
       </v-responsive>
     </v-card>
@@ -143,11 +143,13 @@
       <div v-if="loading">
         <v-skeleton-loader type="card" />
       </div>
+
       <div v-else-if="error">
         <v-alert type="error">
           Erreur : {{ error.message }}
         </v-alert>
       </div>
+      
       <div v-else-if="favoriteAnnonces && favoriteAnnonces.length">
         <v-row>
           <v-col
