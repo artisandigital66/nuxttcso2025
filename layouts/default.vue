@@ -118,17 +118,17 @@
               nicolas@tcso.fr
             </div>
               <div>
-                <v-btn :to="`/`" size="x-small" variant="plain" class="mx-auto mt-3">
+                <v-btn :to="`/`" size="x-small" variant="text" class="mx-auto mt-3">
                   Accueil
                 </v-btn>
               </div>
               <div>
-                <v-btn :to="`/annonces`" size="x-small" variant="plain" class="mx-auto mt-0">
+                <v-btn :to="`/annonces`" size="x-small" variant="text" class="mx-auto mt-0">
                   Annonces
                 </v-btn>
               </div>
               <div>
-                <v-btn :to="`/mentions`" size="x-small" variant="plain" class="mx-auto mb-3">
+                <v-btn :to="`/mentions`" size="x-small" variant="text" class="mx-auto mb-3">
                   Mentions légales
                 </v-btn>
               </div>
