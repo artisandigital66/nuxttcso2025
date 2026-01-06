@@ -12,13 +12,13 @@
           v-if="$route.name === 'annonces'"
           v-model="selectedDepartement"
           :items="departements"
- 
+          color="#0c7ca2ff"
           label="Filtrer par département"
           variant="outlined"
           density="compact"
           clearable
-          class="mr-3 mt-3"
-          style="max-width: 260px;"
+          class="mr-3 mt-3 select"
+          style="max-width: 200px;"
           @update:model-value="annonceStore.filterByDepartement"
         >
 
@@ -92,8 +92,8 @@
                   icon="mdi-linkedin"
                   target="_blank"
                   color="white"
-                  size="30"
-                  variant="plain"
+                  size="x-large"
+                  variant="text"
                   href="https://www.linkedin.com/company/transaction-et-conseil-sud-ouest-tcso"
                   aria-label="Suivez nous sur LinkedIn"
                 ></v-btn>
@@ -101,8 +101,8 @@
                   icon="mdi-youtube"
                   target="_blank"
                   color="red"
-                  size="30"
-                  variant="plain"
+                  size="x-large"
+                  variant="text"
                   href="https://www.youtube.com/@laurentferreol9478/"
                   aria-label="Suivez nous sur Youtube"
                 ></v-btn>
@@ -224,13 +224,12 @@ onMounted(() => {
 
 <style scoped>
 .transpa { opacity: 0.7; }
-.v-select :deep(.v-field-label) { font-size: 0.875rem; }
-.v-select :deep(.v-select__selection) { font-weight: 500; }
+.select :deep(.v-field-label) { font-size: 0.875rem !important; }
+.select :deep(.select__selection) { font-weight: 500 !important; }
+.select {border-width: 5px !important;} 
 .noel {
   background: url('../public/bg-noel.jpg');
   background-size: contain;
- 
-
 }
   
 </style>
