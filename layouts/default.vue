@@ -228,8 +228,9 @@ onMounted(() => {
 .select :deep(.select__selection) { font-weight: 500 !important; }
 .select {border-width: 5px !important;} 
 .noel {
-  background: url('../public/Cugnaux plan de masse.jpg');
+  background: url('../public/fond-transpa.jpg');
   background-size: contain;
+  
 }
   
 </style>
