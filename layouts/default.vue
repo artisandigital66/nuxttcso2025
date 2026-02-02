@@ -230,7 +230,5 @@ onMounted(() => {
 .noel {
   background: url('../public/fond-transpa.jpg');
   background-size: contain;
-  
 }
-  
 </style>
