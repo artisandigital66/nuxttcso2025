@@ -91,7 +91,6 @@
                 <v-btn
                   icon="mdi-instagram"
                   target="_blank"
-                  color="pink"
                   size="x-large"
                   variant="text"
                   href="https://www.instagram.com/transaction_et_conseil_sud.o/"
