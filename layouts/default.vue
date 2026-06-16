@@ -89,9 +89,18 @@
               <strong>Connectez-vous sur nos réseaux sociaux !</strong>
               <div class="d-flex ms-auto">
                 <v-btn
+                  icon="mdi-instagram"
+                  target="_blank"
+                  color="pink"
+                  size="x-large"
+                  variant="text"
+                  href="https://www.instagram.com/transaction_et_conseil_sud.o/"
+                  aria-label="Suivez nous sur Instagram"
+                ></v-btn>
+                <v-btn
                   icon="mdi-linkedin"
                   target="_blank"
-                  color="white"
+                  color=""
                   size="x-large"
                   variant="text"
                   href="https://www.linkedin.com/company/transaction-et-conseil-sud-ouest-tcso"

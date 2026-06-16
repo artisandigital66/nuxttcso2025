@@ -11,6 +11,7 @@
           Erreur : {{ error.message }}
         </v-alert>
       </div>
+      
       <div v-else-if="filteredAnnonces && filteredAnnonces.length">
         <v-row>
           <v-col
@@ -89,6 +90,26 @@
     </v-row>
   </ClientOnly>
 </template>
+
+
+<!-- <script setup>
+import MarkdownIt from 'markdown-it';
+
+const md = new MarkdownIt({
+  html: false,
+  breaks: true,
+  linkify: true,
+});
+const { getAnnonces } = useAnnonces()
+
+const renderMarkdown = (text, maxLength = 200) => {
+  if (!text) return '';
+  const truncated = text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+  return md.render(truncated);
+};
+
+const { data: annonces, pending, error } = getAnnonces()
+</script> -->
 
 <script setup>
 import { useAnnonceStore } from '~/stores/annonces';

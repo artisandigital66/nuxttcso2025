@@ -5,166 +5,176 @@
         Base de connaissances immobilières et conseils
       </h1>
     </v-col>
+
     <v-divider></v-divider>
 
-    <v-row class="mx-auto justify-center">
-    <h2 class="mx-auto text-center my-3">Céder son affaire</h2>
-    </v-row>
+    <v-card class="justify-space-around px-3">
+      <v-row class="mx-auto justify-center">
+        <h2 class="mx-auto text-center my-3">Céder son affaire</h2>
+      </v-row>
 
-    <v-row class="mb-5">
-      <v-col cols="12" md="8" class="mx-auto justify-center">
-        <p>
-          Combien de fois j’ai entendu des commerçants souhaitant «céder leur
-          affaire». Cette expression généraliste si elle traduit la volonté de
-          vendre n’a aucun sens juridiquement parlant.
-        </p>
-        <p>
-          En effet un commerçant c’est-à-dire un professionnel titulaire d’un bail
-          commercial dispose de multiples possibilités s’il souhaite vendre.
-        </p>
-        <p>
-          Ces différentes possibilités se traduiront par des règles financières,
-          juridiques et fiscales différentes.
-        </p>
-        <p>
-          Nous entendrons ici un commerçant établit dans le cadre d’une société
-          (SARL, SAS…) c’est-à-dire une personne morale distincte de la personne
-          physique du commerçant.
-        </p>
-        <p>
-          Le commerçant dans ce contexte qui aurait décidé de «céder son affaire»
-          peut à son gré décider de vendre son fonds de commerce, son seul droit
-          au bail ou sa société.
-        </p>
-      </v-col>
-    </v-row>
-      <v-col cols="12" md="8">
+      <v-row class="mb-5 mx-auto justify-center">
+        <v-col cols="12" md="8">
+          <p>
+            Combien de fois j’ai entendu des commerçants souhaitant «céder leur
+            affaire». Cette expression généraliste si elle traduit la volonté de
+            vendre n’a aucun sens juridiquement parlant.
+          </p>
+          <p>
+            En effet un commerçant c’est-à-dire un professionnel titulaire d’un bail
+            commercial dispose de multiples possibilités s’il souhaite vendre.
+          </p>
+          <p>
+            Ces différentes possibilités se traduiront par des règles financières,
+            juridiques et fiscales différentes.
+          </p>
+          <p>
+            Nous entendrons ici un commerçant établit dans le cadre d’une société
+            (SARL, SAS…) c’est-à-dire une personne morale distincte de la personne
+            physique du commerçant.
+          </p>
+          <p>
+            Le commerçant dans ce contexte qui aurait décidé de «céder son affaire»
+            peut à son gré décider de vendre son fonds de commerce, son seul droit
+            au bail ou sa société.
+          </p>
+        </v-col>
+      </v-row>
+    </v-card>
 
-            <h3>La vente d’un fonds de commerce:</h3>
+    <v-card class="justify-space-around px-3">
+      <v-row class="mx-auto justify-center">
+        <h2 class="mx-auto text-center my-3">La vente d’un fonds de commerce:</h2>
+      </v-row>  
+      <v-row  class="mb-5 mx-auto justify-center">
+        <v-col cols="12" md="8">    
+          <p class="mt-5">
+            Il faut savoir que le droit Français n’a pas jugé utile de définir
+            précisément le fonds de commerce, le législateur a seulement donné
+            un certain nombre de critères permettant de préciser cette notion.
+          </p>
+          <p>
+            Ainsi, le titre IV du livre 1er du code de commerce sur la vente
+            et le nantissement des fonds de commerce énumère les éléments qui
+            composent le fonds et pose certaines règles qui permettent de
+            définir des principes sur les conditions d'existence et la nature
+            du fonds de commerce.
+          </p>
+          <p>
+            Le fonds de commerce est hétérogène, il est composé d'éléments
+            disparates qui peuvent être aisément détachés du fonds et sont
+            essentiellement périssables. La loi distingue les éléments
+            incorporels des éléments corporels.
+          </p>
+        </v-col>
 
-            <p class="mt-5">
-              Il faut savoir que le droit Français n’a pas jugé utile de définir
-              précisément le fonds de commerce, le législateur a seulement donné
-              un certain nombre de critères permettant de préciser cette notion.
-            </p>
-            <p>
-              Ainsi, le titre IV du livre 1er du code de commerce sur la vente
-              et le nantissement des fonds de commerce énumère les éléments qui
-              composent le fonds et pose certaines règles qui permettent de
-              définir des principes sur les conditions d'existence et la nature
-              du fonds de commerce.
-            </p>
-            <p>
-              Le fonds de commerce est hétérogène, il est composé d'éléments
-              disparates qui peuvent être aisément détachés du fonds et sont
-              essentiellement périssables. La loi distingue les éléments
-              incorporels des éléments corporels.
-            </p>
-            <v-col cols="12" md="8" class="justify-center">
-              <v-img
-                class="mx-auto"
-                width="100%"
-                src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/informations%2Ffdc.png?alt=media&token=092e95e8-8ea9-48bd-b112-3fb73811c0eb"
-              ></v-img>
-            </v-col>
+        <v-col cols="12" md="8" class="justify-center">
+          <v-img
+            class="mx-auto"
+            width="100%"
+            src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/informations%2Ffdc.png?alt=media&token=092e95e8-8ea9-48bd-b112-3fb73811c0eb"
+          ></v-img>
+        </v-col>
+        <v-col cols="12" md="8" class="justify-center">
+          <p>
+            Pour les <span class="strong">éléments incorporels</span> la loi
+            fixe une liste non exhaustive comme :
+          </p>
+          <ul class="mb-5">
+            <li>L’enseigne et le nom commercial</li>
+            <li>La clientèle et l'achalandage</li>
+            <li>
+              Les brevets d'invention, les licences, les marques de fabrique
+              et de commerce, les dessins et modèles industriels et
+              généralement les droits de propriété industrielle, littéraire ou
+              artistique qui y sont attachés
+            </li>
+          </ul>
 
-            <p>
-              Pour les <span class="strong">éléments incorporels</span> la loi
-              fixe une liste non exhaustive comme :
-            </p>
-            <ul class="mb-5">
-              <li>L’enseigne et le nom commercial</li>
-              <li>La clientèle et l'achalandage</li>
-              <li>
-                Les brevets d'invention, les licences, les marques de fabrique
-                et de commerce, les dessins et modèles industriels et
-                généralement les droits de propriété industrielle, littéraire ou
-                artistique qui y sont attachés
-              </li>
-            </ul>
+          <p>
+            Le droit au bail est un élément essentiel du fonds de commerce,
+            nous y reviendrons un peu plus loin.
+          </p>
+          <p>
+            Par ailleurs, un certain nombre de commerces nécessitent pour leur
+            création, leur exploitation, des autorisations, des licences, des
+            agréments, des cartes professionnelles, etc...
+          </p>
+          <p>
+            Certaines de ces autorisations ont un caractère personnel, de
+            sorte qu'elles ne peuvent être un élément du fonds. Dans d'autres
+            cas, ces autorisations ont un caractère réel car, attribuées pour
+            l'exploitation d'un fonds de commerce déterminé, leur acquisition
+            est de plein droit pour l'acquéreur du fonds, devenant ainsi un
+            élément du fonds (par ex les licences de débit de boisson).
+          </p>
+          <p>
+            Enfin, lorsqu'il existe un droit de concession immobilière, qui
+            constitue un droit réel, le concessionnaire peut donner son droit
+            en location-gérance. Il doit donc être considéré comme un élément
+            du fonds de commerce au même titre que le droit au bail.
+          </p>
+          <p>
+            Concernant les éléments corporels il s’agit essentiellement du
+            matériel et des marchandises. Le matériel comprend tous les
+            meubles corporels qui permettent l'exploitation du fonds de
+            commerce : meubles meublants, outillage, machines.
+          </p>
+          <p>
+            Les marchandises (stocks) comprennent tous les meubles corporels
+            destinés à être vendus, l'achat et la revente de ces meubles étant
+            l'objet même de l'exploitation.
+          </p>
+          <p>
+            Point particulier sur les contrats de travail, en cas de cession
+            de fonds de commerce, ceux -ci sont obligatoirement repris par
+            l’acquéreur, c’est une obligation. En outre les salariés
+            bénéficient d’un droit de reprise du fonds de commerce. De ce
+            droit découle une procédure bien particulière d’information des
+            salariés à impérativement respecter.
+          </p>
+          <p>
+            Céder un fonds de commerce oblige donc de céder à la même
+            activité, un fonds de commerce de boulangerie-pâtisserie ne pourra
+            être repris que par une boulangerie-pâtisserie. Le produit de la
+            vente sera encaissé par la société propriétaire du fonds de
+            commerce avec un fiscalité applicable.
+          </p>
+          <p>
+            Le produit de la cession devra être séquestré pendant une période
+            assez longue (entre 3 et 5 mois) le temps à l’administration
+            fiscale et aux créanciers de présenter des oppositions.
+          </p>
+          <p>
+            Le vente en elle-même peut être constatée par acte authentique
+            (notaire) ou sous seing privé (avocat ou conseil) et elle doit
+            répondre à un certain nombre d’impératifs juridiques.
+          </p>
+          <p>
+            La valorisation d’un fonds de commerce répond en général à des
+            règles d’évaluation en fonction du chiffre d’affaires. Un fonds de
+            commerce dans telle ou telle activité sera évalué à x% de son
+            chiffre d’affaires annuels. On peut ainsi assez rapidement se
+            faire une idée de la justesse de la proposition.
+          </p>
+          <p>
+            Mais cette évaluation doit tenir compte d’autres éléments
+            essentiels comme par exemple le loyer. En effet si 2 fonds de
+            commerce dans la même activité et réalisant le même chiffre
+            d’affaires pourraient être évalués équitablement, si un des deux
+            est débiteur d’un loyer 2x supérieur, l’acquéreur n’aura pas du
+            tout réalisé la même affaire.
+          </p>
+          <p>
+            En synthèse même si l’évaluation d’un fonds de commerce rentre
+            dans la fourchette généralement retenue une analyse beaucoup plus
+            fine s’imposera.
+          </p>
+        </v-col>
+      </v-row>
+    </v-card>
 
-            <p>
-              Le droit au bail est un élément essentiel du fonds de commerce,
-              nous y reviendrons un peu plus loin.
-            </p>
-            <p>
-              Par ailleurs, un certain nombre de commerces nécessitent pour leur
-              création, leur exploitation, des autorisations, des licences, des
-              agréments, des cartes professionnelles, etc...
-            </p>
-            <p>
-              Certaines de ces autorisations ont un caractère personnel, de
-              sorte qu'elles ne peuvent être un élément du fonds. Dans d'autres
-              cas, ces autorisations ont un caractère réel car, attribuées pour
-              l'exploitation d'un fonds de commerce déterminé, leur acquisition
-              est de plein droit pour l'acquéreur du fonds, devenant ainsi un
-              élément du fonds (par ex les licences de débit de boisson).
-            </p>
-            <p>
-              Enfin, lorsqu'il existe un droit de concession immobilière, qui
-              constitue un droit réel, le concessionnaire peut donner son droit
-              en location-gérance. Il doit donc être considéré comme un élément
-              du fonds de commerce au même titre que le droit au bail.
-            </p>
-            <p>
-              Concernant les éléments corporels il s’agit essentiellement du
-              matériel et des marchandises. Le matériel comprend tous les
-              meubles corporels qui permettent l'exploitation du fonds de
-              commerce : meubles meublants, outillage, machines.
-            </p>
-            <p>
-              Les marchandises (stocks) comprennent tous les meubles corporels
-              destinés à être vendus, l'achat et la revente de ces meubles étant
-              l'objet même de l'exploitation.
-            </p>
-            <p>
-              Point particulier sur les contrats de travail, en cas de cession
-              de fonds de commerce, ceux -ci sont obligatoirement repris par
-              l’acquéreur, c’est une obligation. En outre les salariés
-              bénéficient d’un droit de reprise du fonds de commerce. De ce
-              droit découle une procédure bien particulière d’information des
-              salariés à impérativement respecter.
-            </p>
-            <p>
-              Céder un fonds de commerce oblige donc de céder à la même
-              activité, un fonds de commerce de boulangerie-pâtisserie ne pourra
-              être repris que par une boulangerie-pâtisserie. Le produit de la
-              vente sera encaissé par la société propriétaire du fonds de
-              commerce avec un fiscalité applicable.
-            </p>
-            <p>
-              Le produit de la cession devra être séquestré pendant une période
-              assez longue (entre 3 et 5 mois) le temps à l’administration
-              fiscale et aux créanciers de présenter des oppositions.
-            </p>
-            <p>
-              Le vente en elle-même peut être constatée par acte authentique
-              (notaire) ou sous seing privé (avocat ou conseil) et elle doit
-              répondre à un certain nombre d’impératifs juridiques.
-            </p>
-            <p>
-              La valorisation d’un fonds de commerce répond en général à des
-              règles d’évaluation en fonction du chiffre d’affaires. Un fonds de
-              commerce dans telle ou telle activité sera évalué à x% de son
-              chiffre d’affaires annuels. On peut ainsi assez rapidement se
-              faire une idée de la justesse de la proposition.
-            </p>
-            <p>
-              Mais cette évaluation doit tenir compte d’autres éléments
-              essentiels comme par exemple le loyer. En effet si 2 fonds de
-              commerce dans la même activité et réalisant le même chiffre
-              d’affaires pourraient être évalués équitablement, si un des deux
-              est débiteur d’un loyer 2x supérieur, l’acquéreur n’aura pas du
-              tout réalisé la même affaire.
-            </p>
-            <p>
-              En synthèse même si l’évaluation d’un fonds de commerce rentre
-              dans la fourchette généralement retenue une analyse beaucoup plus
-              fine s’imposera.
-            </p>
-
-
-      </v-col>
+    <v-card class="justify-space-around px-3">
       <v-col cols="12" md="8">
 
             <h3>La cession de droit au bail</h3>
@@ -274,6 +284,8 @@
             </p>
 
       </v-col>
+    </v-card>
+    <v-card class="justify-space-around px-3">
       <v-col cols="12" md="8">
 
             <h3>La cession de société</h3>
@@ -305,7 +317,7 @@
               fiscalisé à titre personnel.
             </p>
       </v-col>
-
+    </v-card>
     <v-col cols="12" md="8" class="justify-center mb-3">
       <v-img
         src="https://firebasestorage.googleapis.com/v0/b/tcso-b3ea7.appspot.com/o/informations%2Fkey-2323278_640.jpg?alt=media&token=380d8ec9-9a92-4fb7-96b8-19ba28700f9e"
@@ -313,6 +325,7 @@
     </v-col>
   </v-row>
   <v-divider></v-divider>
+  <v-card class="justify-space-around px-3">
   <v-row class="mx-auto justify-center">
     <v-col cols="12" md="8" class="mx-auto justify-center mb-3">
     <h2 class="mx-auto justify-center my-5 text-center mb-5">
@@ -363,6 +376,7 @@
       </p>
     </v-col>
   </v-row>
+</v-card>
   <v-divider></v-divider>
   <v-row>
     <v-btn variant ="outlined" class="mx-auto mt-10 mb-4" color="primary" aria-label="retour" @click="$router.back()">Retour</v-btn>

@@ -24,6 +24,13 @@ export const useAnnonceStore = defineStore('annonces', {
       const db = useFirestore()
       const ref = collection(db, 'annonces2025-tcso')
 
+      // this.annonces = (snap) => snap.docs.map(doc => ({
+      //     id: doc.id,
+      //     favorite: false,        // ← garde false par défaut
+      //     url: '',
+      //     ...doc.data()
+      //   }))
+
       const unsub = onSnapshot(ref, (snap) => {
         this.annonces = snap.docs.map(doc => ({
           id: doc.id,

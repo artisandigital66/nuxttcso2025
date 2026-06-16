@@ -21,10 +21,11 @@
         <v-skeleton-loader type="card" />
       </div>
       <div v-else-if="error">
-        <v-alert type="error">
-          Erreur : {{ error.message }}
-        </v-alert>
+        <v-alert type="error" title="Annonce introuvable" class="mb-6">
+        {{ error }}
+      </v-alert>
       </div>
+      
       <div v-else-if="annonce">
         <v-row>
           <v-col cols="12" md="12">
@@ -153,6 +154,8 @@ import { useAnnonceStore } from '~/stores/annonces';
 import { useRoute } from 'vue-router';
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import MarkdownIt from 'markdown-it';
+import { collection, onSnapshot } from 'firebase/firestore'
+import { useFirestore } from 'vuefire'
 
 const activeTab = ref('description') // ← tab actif
 
@@ -208,9 +211,14 @@ const renderedEnvironnement = computed(() => {
   return annonce.value?.environnement ? md.render(annonce.value.environnement) : '';
 });
 
+
+
 let unsubscribe = () => {};
 
+
+
 onMounted(async () => {
+  
   try {
     console.log('Chargement de l\'annonce...');
     if (!annonceStore.annonces.length) {
@@ -244,6 +252,7 @@ const handleImageError = (url) => {
 const handleImageLoad = (url) => {
   console.log('Image chargée avec succès:', url);
 };
+
 </script>
 
 <style scoped>
