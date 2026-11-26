@@ -114,7 +114,7 @@
                   allow="autoplay, accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                   referrerpolicy="strict-origin-when-cross-origin" 
                   allowfullscreen
-                  autoplay>
+                  >
           </iframe>
 
       </v-row>
@@ -314,6 +314,7 @@ let unsubscribe = () => {};
 onMounted(async () => {
   try {
     console.log('Démarrage du chargement des annonces favorites...');
+    console.log('composable');
     unsubscribe = await annonceStore.fetchAnnonces();
     console.log('favoriteAnnonces après chargement:', favoriteAnnonces.value);
   } catch (err) {

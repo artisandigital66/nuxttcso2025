@@ -22,6 +22,10 @@ export default {
   devtools: { enabled: false, timeline: { enabled: true } },
   debug: false,
 
+  css: [
+    'vuetify/styles',
+    '@mdi/font/css/materialdesignicons.css',
+  ],
   build: { transpile: ['vuetify'] },
 
   modules: [

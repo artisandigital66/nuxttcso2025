@@ -1,296 +1,247 @@
+<!-- pages/annonces/[id].vue -->
 <template>
-  <ClientOnly>
-    <div class="container mx-auto">
-      <v-card elevation="6" class="mb-5">
-        <v-row>
+  <div class="container mx-auto">
+    <!-- En-tête d'origine -->
+    <v-card elevation="6" class="mb-5">
+      <v-row>
         <v-col cols="3">
           <v-img
-                alt="TCSO logo"
-                width="30%"
-                class="mx-auto my-2 pa-5"
-                src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
-            ></v-img>
+            alt="TCSO logo"
+            width="30%"
+            class="mx-auto my-2 pa-5"
+            src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
+          />
         </v-col>
         <v-col cols="8">
           <h1 class="headline ml-3">{{ annonce?.titre || 'Chargement...' }}</h1>
           <h2 class="mb-3 ml-3">{{ annonce?.soustitre }}</h2>
         </v-col>
-        </v-row>
-      </v-card>
-      <div v-if="loading">
-        <v-skeleton-loader type="card" />
-      </div>
-      <div v-else-if="error">
-        <v-alert type="error" title="Annonce introuvable" class="mb-6">
-        {{ error }}
+      </v-row>
+    </v-card>
+
+    <!-- Chargement -->
+    <div v-if="pending">
+      <v-skeleton-loader type="card" />
+    </div>
+
+    <!-- Erreur -->
+    <div v-else-if="error">
+      <v-alert type="error" title="Annonce introuvable" class="mb-6">
+        {{ error.message || error }}
       </v-alert>
-      </div>
-      
-      <div v-else-if="annonce">
-        <v-row>
-          <v-col cols="12" md="12">
-            <!-- v-tabs -->
-            <v-card elevation="6" class="mb-6">
-              <v-tabs
-                v-model="activeTab"
-                bg-color="#3CA2A4"
-                color="white"
-                grow
-                slider-color="white"
-              >
-                <v-tab value="description">Description</v-tab>
-                <v-tab value="environnement">Environnement commercial</v-tab>
-                <v-tab value="conditions">Conditions juridiques & financières</v-tab>
-              </v-tabs>
+    </div>
 
-              <v-window v-model="activeTab" class="pa-6">
-                <v-window-item value="description">
-                  <div v-html="renderedDescription" class="prose max-w-none" />
-                </v-window-item>
+    <!-- Contenu principal (empilé comme à l'origine) -->
+    <div v-else-if="annonce">
+      <v-row>
+        <v-col cols="12" md="12">
+          <v-card elevation="6" class="mb-6">
+            <v-tabs
+              v-model="activeTab"
+              bg-color="#3CA2A4"
+              color="white"
+              grow
+              slider-color="white"
+            >
+              <v-tab value="description">Description</v-tab>
+              <v-tab value="environnement">Environnement commercial</v-tab>
+              <v-tab value="conditions">Conditions juridiques & financières</v-tab>
+            </v-tabs>
 
-                <v-window-item value="environnement">
-                  <div v-html="renderedEnvironnement" class="prose max-w-none" />
-                </v-window-item>
-
-                <v-window-item value="conditions">
-                  <div v-html="renderedConditions" class="prose max-w-none" />
-                </v-window-item>
-              </v-window>
-            </v-card>
-          </v-col>
-          
-          <v-col cols="12" md="12">
-            <ClientOnly>
-              
-              <v-card elevation="6" class="my-3">
-                <h3 class="ml-3 mt-3">Medias et documents</h3>
-                <v-carousel v-if="uniqueImages.length" hide-delimiters>
-                  <v-carousel-item
-                   class="mt-2 mb-5"
-                    v-for="(image, index) in uniqueImages"
-                    :key="image.url + index"
-                  >
-                    <v-img
-                      :src="image.url"
-                      :alt="image.titre"
-                      
-                      @click="openImageModal(image.url)"
-                      @error="handleImageError(image.url)"
-                      @load="handleImageLoad(image.url)"
-                    />
-                  </v-carousel-item>
-                </v-carousel>
-                
-                <v-alert v-else type="warning">
-                  Aucune image disponible pour cette annonce
-                </v-alert>
-
-                <v-row class="mb-10">
-                  <v-btn class="mx-auto mt-10 mb-4" color="red" :href="annonce.pdf">Téléchargez le pdf</v-btn>
-                </v-row>
-
-                <v-row v-if="annonce.video" class="justify-center mb-3">
-                  <iframe width="315" 
-                  height="560" 
-                  :src="annonce.video" 
-                  title="YouTube video player" 
-                  frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                  </iframe>
-                </v-row>
-
-              </v-card>
-              
-            </ClientOnly>
-          </v-col>
-        </v-row>
-
-        <v-dialog v-model="showModal" max-width="800">
-          <v-card>
-            <v-img
-              :src="selectedImage"
-              alt="Image agrandie"
-              max-height="100vh"
-              max-width="80vw"
-              contain
-            />
-            <v-card-actions>
-              <v-spacer />
-              <v-btn color="primary" text @click="showModal = false">
-                Fermer
-              </v-btn>
-            </v-card-actions>
+            <v-window v-model="activeTab" class="pa-6">
+              <v-window-item value="description">
+                <div v-html="renderedDescription" class="markdown-content" />
+              </v-window-item>
+              <v-window-item value="environnement">
+                <div v-html="renderedEnvironnement" class="markdown-content" />
+              </v-window-item>
+              <v-window-item value="conditions">
+                <div v-html="renderedConditions" class="markdown-content" />
+              </v-window-item>
+            </v-window>
           </v-card>
-        </v-dialog>
-      </div>
-      <div v-else>
-        <v-alert type="warning">
-          Aucune annonce trouvée pour l'ID {{ route.params.id }}
-        </v-alert>
-      </div>
-      
-      <v-row class="justify-center py-5">
-        <v-col cols="12" sm="8">
-          <v-divider></v-divider>
+        </v-col>
+
+        <v-col cols="12" md="12">
+          <v-card elevation="6" class="my-3">
+            <h3 class="ml-3 mt-3">Médias et documents</h3>
+
+            <v-carousel v-if="uniqueImages.length" hide-delimiters>
+              <v-carousel-item
+                v-for="(image, index) in uniqueImages"
+                :key="image.url + index"
+                class="mt-2 mb-5"
+              >
+                <v-img
+                  :src="image.url"
+                  :alt="image.titre || annonce.titre"
+                  class="cursor-pointer"
+                  @click="openImageModal(image.url)"
+                />
+              </v-carousel-item>
+            </v-carousel>
+
+            <v-alert v-else type="warning" class="ma-4">
+              Aucune image disponible pour cette annonce
+            </v-alert>
+
+            <v-row v-if="annonce.pdf" class="mb-10">
+              <v-btn
+                class="mx-auto mt-10 mb-4"
+                color="red"
+                :href="annonce.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Téléchargez le pdf
+              </v-btn>
+            </v-row>
+
+            <v-row v-if="annonce.video" class="justify-center mb-3">
+              <iframe
+                width="315"
+                height="560"
+                :src="annonce.video"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              />
+            </v-row>
+          </v-card>
         </v-col>
       </v-row>
-      <v-row class="justify-center">
-        <v-btn
-          variant="outlined"
-          class="mx-auto mt-10 mb-4"
-          color="primary"
-          @click="$router.back()"
-        >
-          Retour aux annonces
-        </v-btn>
-      </v-row>
+
+      <v-dialog v-model="showModal" max-width="800">
+        <v-card>
+          <v-img
+            :src="selectedImage"
+            alt="Image agrandie"
+            max-height="100vh"
+            max-width="80vw"
+            contain
+          />
+          <v-card-actions>
+            <v-spacer />
+            <v-btn color="primary" variant="text" @click="showModal = false">
+              Fermer
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
-  </ClientOnly>
+
+    <!-- Introuvable -->
+    <div v-else>
+      <v-alert type="warning">
+        Aucune annonce trouvée pour l'ID {{ annonceId }}
+      </v-alert>
+    </div>
+
+    <v-row class="justify-center py-5">
+      <v-col cols="12" sm="8">
+        <v-divider />
+      </v-col>
+    </v-row>
+
+    <v-row class="justify-center">
+      <v-btn
+        variant="outlined"
+        class="mx-auto mt-10 mb-4"
+        color="primary"
+        @click="router.back()"
+      >
+        Retour aux annonces
+      </v-btn>
+    </v-row>
+  </div>
 </template>
 
-<script setup>
-import { useAnnonceStore } from '~/stores/annonces';
-import { useRoute } from 'vue-router';
-import { computed, ref, onMounted, onUnmounted } from 'vue';
-import MarkdownIt from 'markdown-it';
-import { collection, onSnapshot } from 'firebase/firestore'
-import { useFirestore } from 'vuefire'
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { useAnnonceStore } from '~/stores/annonces'
 
-const activeTab = ref('description') // ← tab actif
+const route = useRoute()
+const router = useRouter()
+const annonceStore = useAnnonceStore()
+const { renderMarkdown } = useMarkdown()
 
-  const items = [
-    {titre: 'Descriptionxxx', fonction:  "renderedDescription"},
-    {titre: 'Environnement', fonction:  "renderedEnvironnement"},
-    {titre: 'Conditions', fonction:  "renderedConditions"}
-    
-  ]
-  const text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+const annonceId = Array.isArray(route.params.id)
+  ? route.params.id[0]
+  : String(route.params.id)
 
-const md = new MarkdownIt({
-  html: false,
-  breaks: true,
-  linkify: true,
-});
-// const tab = ref(null)
-const annonceStore = useAnnonceStore();
-const route = useRoute();
-const loading = ref(true);
-const error = ref(null);
-const showModal = ref(false);
-const selectedImage = ref('');
+const { data: annonce, pending, error } = await useAsyncData(
+  `annonce-${annonceId}`,
+  () => annonceStore.fetchAnnonceById(annonceId)
+)
 
-const annonce = computed(() => {
-  const found = annonceStore.annonces.find((a) => a.id === route.params.id);
-  console.log('ID demandé:', route.params.id);
-  console.log('Annonces disponibles:', annonceStore.annonces);
-  console.log('Annonce trouvée:', found);
-  console.log('Images de l\'annonce:', found?.images);
-  return found;
-});
+const activeTab = ref('description')
+const showModal = ref(false)
+const selectedImage = ref('')
 
 const uniqueImages = computed(() => {
-  if (!annonce.value?.images) return [];
-  const seen = new Set();
+  if (!annonce.value?.images) return []
+  const seen = new Set<string>()
   return annonce.value.images.filter((image) => {
-    if (seen.has(image.url)) return false;
-    seen.add(image.url);
-    return true;
-  });
-});
+    if (!image?.url || seen.has(image.url)) return false
+    seen.add(image.url)
+    return true
+  })
+})
 
-const renderedDescription = computed(() => {
-  return annonce.value?.description ? md.render(annonce.value.description) : '';
-});
+const renderedDescription = computed(() => renderMarkdown(annonce.value?.description))
+const renderedEnvironnement = computed(() => renderMarkdown(annonce.value?.environnement))
+const renderedConditions = computed(() => renderMarkdown(annonce.value?.conditions))
 
-const renderedConditions = computed(() => {
-  return annonce.value?.conditions ? md.render(annonce.value.conditions) : '';
-});
+const openImageModal = (url: string) => {
+  selectedImage.value = url
+  showModal.value = true
+}
 
-const renderedEnvironnement = computed(() => {
-  return annonce.value?.environnement ? md.render(annonce.value.environnement) : '';
-});
-
-
-
-let unsubscribe = () => {};
-
-
-
-onMounted(async () => {
-  
-  try {
-    console.log('Chargement de l\'annonce...');
-    if (!annonceStore.annonces.length) {
-      unsubscribe = await annonceStore.fetchAnnonces();
-    }
-    if (!annonce.value) {
-      error.value = new Error(`Aucune annonce trouvée pour l'ID ${route.params.id}`);
-    }
-  } catch (err) {
-    error.value = err;
-    console.error('Erreur lors du chargement de l\'annonce:', err);
-  } finally {
-    loading.value = false;
-  }
-});
-
-onUnmounted(() => {
-  unsubscribe();
-});
-
-const openImageModal = (url) => {
-  console.log('Ouverture de la modale avec l\'image:', url);
-  selectedImage.value = url;
-  showModal.value = true;
-};
-
-const handleImageError = (url) => {
-  console.error('Erreur de chargement de l\'image:', url);
-};
-
-const handleImageLoad = (url) => {
-  console.log('Image chargée avec succès:', url);
-};
-
+useSeoMeta({
+  title: () => annonce.value?.titre || 'Détail de l’annonce',
+  ogTitle: () => (annonce.value?.titre ? `${annonce.value.titre} — TCSO` : 'TCSO'),
+  description: () => annonce.value?.soustitre || 'Local commercial proposé par TCSO',
+  ogDescription: () => annonce.value?.soustitre || 'Local commercial proposé par TCSO',
+  ogImage: () =>
+    uniqueImages.value[0]?.url ||
+    'https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png',
+})
 </script>
 
 <style scoped>
 .container {
   padding: 20px;
 }
-
-:deep(h1) {
+.cursor-pointer {
+  cursor: pointer;
+}
+.markdown-content :deep(h1) {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
-
-:deep(h2) {
+.markdown-content :deep(h2) {
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
-
-:deep(p) {
+.markdown-content :deep(p) {
   margin-bottom: 1rem;
 }
-
-:deep(ul) {
+.markdown-content :deep(ul) {
   list-style-type: disc;
   margin-left: 1.5rem;
   margin-bottom: 1rem;
 }
-
-:deep(li) {
+.markdown-content :deep(li) {
   margin-bottom: 0.5rem;
 }
-
-:deep(strong) {
+.markdown-content :deep(strong) {
   font-weight: bold;
 }
-
-:deep(em) {
+.markdown-content :deep(em) {
   font-style: italic;
 }
 </style>
