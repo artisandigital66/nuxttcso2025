@@ -12,9 +12,9 @@
           width="50%"
           class="mx-auto mb-5"
           src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
-        ></v-img>
+        />
         <h2 class="my-3 subtitle-2">Immobilier Commercial</h2>
-        <v-btn variant="outlined" to="/annonces" small aria-label="Nos annonces" color="primary">
+        <v-btn variant="outlined" to="/annonces" size="small" aria-label="Nos annonces" color="primary">
           Toutes nos annonces
           <v-icon class="ml-2">mdi-arrow-right</v-icon>
         </v-btn>
@@ -27,7 +27,8 @@
         class="bg-grey-lighten-2"
         height="600"
         src="https://res.cloudinary.com/dkhuquewc/image/upload/v1756972964/enseigne-macon2_tp4org.jpg"
-        cover>
+        cover
+      >
         <v-col cols="8" md="6" class="justify-center center-affix transpa mt-10 pb-5 elevation-4 bg-black mx-auto">
           <h1 class="my-3 display-1">
             TRANSACTION & CONSEIL <br />
@@ -38,9 +39,9 @@
             width="30%"
             class="mx-auto"
             src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
-          ></v-img>
+          />
           <h2 class="my-3 headline">Immobilier Commercial</h2>
-          <v-btn variant="outlined" to="/annonces" small aria-label="Nos annonces" color="primary">
+          <v-btn variant="outlined" to="/annonces" size="small" aria-label="Nos annonces" color="primary">
             Toutes nos annonces
             <v-icon class="ml-2">mdi-arrow-right</v-icon>
           </v-btn>
@@ -51,73 +52,56 @@
     <v-row>
       <v-col cols="12" class="text-center mt-0">
         <h3 class="mx-auto title my-3">LOTS DISPONIBLES IMMEDIATEMENT</h3>
-        <ClientOnly>
-          <v-carousel
-            cycle
-            interval="3000"
-            hide-delimiters
-            height=""
-            :show-arrows="false"
-            class=""
+        <v-carousel
+          cycle
+          interval="3000"
+          hide-delimiters
+          height="auto"
+          :show-arrows="false"
+        >
+          <v-carousel-item
+            v-for="transaction in recentTransactions"
+            :key="transaction.id"
           >
-            <v-carousel-item
-              v-for="transaction in recentTransactions"
-              :key="transaction.id"
-            >
-              <v-card class="mx-auto bandeau mb-3" max-width="600">
-                <v-card-title class="text-h6">
-                  <v-icon color="yellow" icon="mdi-star" class="mr-2"></v-icon>
-                  {{ transaction.titre }}
-                </v-card-title>
-                <v-card-subtitle>{{ transaction.soustitre }}</v-card-subtitle>
-                <v-card-actions>
-                  <v-btn
-                    :to="`/annonces/${transaction.id}`"
-                    color="white"
-                    variant="outlined"
-                    class="mx-auto"
-                    size="small"
-                  >
-                    Voir les détails
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-carousel-item>
-            <template v-if="!recentTransactions.length">
-              <v-card class="mx-auto" max-width="300">
-                <v-card-text>
-                  <v-alert type="warning">
-                    Aucune transaction récente trouvée
-                  </v-alert>
-                </v-card-text>
-              </v-card>
-            </template>
-          </v-carousel>
-        </ClientOnly>
+            <v-card class="mx-auto bandeau mb-3" max-width="600">
+              <v-card-title class="text-h6">
+                <v-icon color="yellow" icon="mdi-star" class="mr-2" />
+                {{ transaction.titre }}
+              </v-card-title>
+              <v-card-subtitle>{{ transaction.soustitre }}</v-card-subtitle>
+              <v-card-actions>
+                <v-btn
+                  :to="`/annonces/${transaction.id}`"
+                  color="white"
+                  variant="outlined"
+                  class="mx-auto"
+                  size="small"
+                >
+                  Voir les détails
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-carousel-item>
+        </v-carousel>
       </v-col>
     </v-row>
 
-
-    <!-- video -->
-
-    <v-card elevation="4" fill-height>
-      <v-responsive fill-height>
-      <v-row justify-center class="mb-0 mx-auto">
-        
-          <iframe 
-                  width="100%" 
-                  height="700"
-                  class="d-none d-md-block"
-                  src="https://www.youtube.com/embed/bieUNSr8GsA?si=ygrqSE0LacGO_b2e" 
-                  title="Présentation TCSO video" 
-                  frameborder="0" 
-                  allow="autoplay, accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                  referrerpolicy="strict-origin-when-cross-origin" 
-                  allowfullscreen
-                  >
-          </iframe>
-
-      </v-row>
+    <!-- Vidéo -->
+    <v-card elevation="4">
+      <v-responsive>
+        <v-row justify="center" class="mb-0 mx-auto">
+          <iframe
+            width="100%"
+            height="700"
+            class="d-none d-md-block"
+            src="https://www.youtube.com/embed/bieUNSr8GsA?si=ygrqSE0LacGO_b2e"
+            title="Présentation TCSO video"
+            frameborder="0"
+            allow="autoplay, accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          />
+        </v-row>
       </v-responsive>
     </v-card>
 
@@ -130,17 +114,17 @@
     </v-row>
 
     <v-row class="container justify-center mx-auto">
-      <div v-if="loading">
+      <div v-if="isLoading" class="w-100">
         <v-skeleton-loader type="card" />
       </div>
 
       <div v-else-if="error">
         <v-alert type="error">
-          Erreur : {{ error.message }}
+          Erreur : {{ error }}
         </v-alert>
       </div>
-      
-      <div v-else-if="favoriteAnnonces && favoriteAnnonces.length">
+
+      <div v-else-if="favoriteAnnonces.length">
         <v-row>
           <v-col
             v-for="annonce in favoriteAnnonces"
@@ -154,34 +138,37 @@
               <v-row>
                 <v-col cols="3">
                   <v-img
-                        alt="TCSO logo"
-                        width="30%"
-                        class="mx-auto my-2 pa-5"
-                        src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
-                    ></v-img>
+                    alt="TCSO logo"
+                    width="30%"
+                    class="mx-auto my-2 pa-5"
+                    src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
+                  />
                 </v-col>
                 <v-col cols="8">
-                  <h1 class="headline ml-3">{{ annonce?.titre || 'Chargement...' }}</h1>
-                  <h2 class="mb-3 ml-3">{{ annonce?.soustitre }}</h2>
+                  <h2 class="headline ml-3">{{ annonce.titre || 'Annonce' }}</h2>
+                  <h3 class="mb-3 ml-3">{{ annonce.soustitre }}</h3>
                 </v-col>
-                <v-card-text v-html="renderMarkdown(annonce.description, 200)"></v-card-text>
+                <v-card-text
+                  class="markdown-content"
+                  v-html="renderMarkdown(annonce.description, 200)"
+                />
               </v-row>
-              <v-row class="mx-auto justify-center">
+
+              <v-row v-if="getPrimaryImages(annonce).length" class="mx-auto justify-center">
                 <v-col
+                  v-for="(media, index) in getPrimaryImages(annonce)"
+                  :key="media.url + index"
                   cols="12"
                   md="4"
-                  v-for="(media, index) in annonce.images"
-                  :key="media.url + index"
                 >
                   <v-img
-                    v-show="media.ordre == '1'"
                     :src="media.url"
-                    :alt="media.titre"
+                    :alt="media.titre || annonce.titre"
                     cover
-                    @error="handleImageError(media.url)"
                   />
                 </v-col>
               </v-row>
+
               <v-row>
                 <v-btn
                   :to="`/annonces/${annonce.id}`"
@@ -196,6 +183,7 @@
           </v-col>
         </v-row>
       </div>
+
       <div v-else>
         <v-alert type="warning">
           Aucune annonce favorite trouvée
@@ -205,7 +193,7 @@
 
     <v-row class="container justify-center mx-auto">
       <v-col cols="12" md="8" class="mt-5 text-center">
-        <v-card class="justify- mb-5" elevation="4">
+        <v-card class="mb-5" elevation="4">
           <v-row class="mx-auto">
             <v-col cols="12" md="8" class="mx-auto text-center">
               <h3 class="mx-auto headline mt-3">PRESENTATION ET SERVICES</h3>
@@ -214,12 +202,12 @@
                 width="10%"
                 class="mx-auto mt-5 pa-5"
                 src="https://res.cloudinary.com/dkhuquewc/image/upload/v1755157410/tcso-600_cmuznd.png"
-              ></v-img>
+              />
               <h5 class="mx-auto title mt-10">
                 Vendez votre affaire, 1 objectif plusieurs possibilités
               </h5>
               <p class="mx-auto mt-10 text-left">
-                <span class="strong">"Céder son affaire"</span>
+                <span class="font-weight-bold">"Céder son affaire"</span>
                 revêt différentes réalités juridiques. Ainsi acheteur et
                 vendeur, selon leur situation, pourront céder ou acquérir à leur
                 choix leur fonds de commerce, leur droit au bail ou leur
@@ -231,7 +219,7 @@
             </v-col>
           </v-row>
           <v-card-actions class="mx-auto justify-end">
-            <v-btn to="/informations" class="" color="primary">En savoir plus</v-btn>
+            <v-btn to="/informations" color="primary">En savoir plus</v-btn>
           </v-card-actions>
 
           <v-row class="mx-auto">
@@ -254,7 +242,7 @@
             </v-col>
           </v-row>
           <v-card-actions class="mx-auto justify-end">
-            <v-btn to="/qui" class="" color="primary">En savoir plus</v-btn>
+            <v-btn to="/qui" color="primary">En savoir plus</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -262,20 +250,21 @@
   </div>
 </template>
 
-<script setup>
-import { useAnnonceStore } from '~/stores/annonces';
-import { ref, onMounted, onUnmounted, computed } from 'vue';
-import MarkdownIt from 'markdown-it';
+<script setup lang="ts">
+import { computed, ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useAnnonceStore } from '~/stores/annonces'
+import type { Annonce } from '../types/annonce'
 
-const md = new MarkdownIt({
-  html: false,
-  breaks: true,
-  linkify: true,
-});
+useSeoMeta({
+  title: 'TCSO, Immobilier Commercial',
+  description:
+    'Agence immobilière spécialisée dans la transaction de locaux commerciaux, fonds de commerce et droits au bail dans le Sud-Ouest.',
+})
 
-const annonceStore = useAnnonceStore();
-const loading = ref(true);
-const error = ref(null);
+const annonceStore = useAnnonceStore()
+const { favoriteAnnonces, loading, error } = storeToRefs(annonceStore)
+const { renderMarkdown } = useMarkdown()
 
 const recentTransactions = ref([
   {
@@ -293,48 +282,27 @@ const recentTransactions = ref([
     titre: 'Nissan-les-Enserunes (34)',
     soustitre: 'Local commercial 120m²',
   },
-]);
+])
 
-const favoriteAnnonces = computed(() => annonceStore.favoriteAnnonces)
+const { pending } = await useAsyncData('home-annonces', async () => {
+  await annonceStore.fetchAnnonces()
+  return true
+})
 
-const renderMarkdown = (text, maxLength) => {
-  if (!text) return '';
-  const truncated = text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-  return md.render(truncated);
-};
+const isLoading = computed(() => pending.value || loading.value)
 
-const handleImageError = (url) => {
-  console.error('Erreur de chargement de l\'image:', url);
-};
-
-let unsubscribe = () => {};
-
-
-
-onMounted(async () => {
-  try {
-    console.log('Démarrage du chargement des annonces favorites...');
-    console.log('composable');
-    unsubscribe = await annonceStore.fetchAnnonces();
-    console.log('favoriteAnnonces après chargement:', favoriteAnnonces.value);
-  } catch (err) {
-    error.value = err;
-    console.error('Erreur lors du chargement des annonces:', err);
-  } finally {
-    loading.value = false;
-  }
-});
-
-onUnmounted(() => {
-  unsubscribe();
-});
+const getPrimaryImages = (annonce: Annonce) => {
+  return (annonce.images || []).filter(
+    (media) => String(media.ordre) === '1' && Boolean(media.url)
+  )
+}
 </script>
 
 <style scoped>
 .container {
   padding: 20px;
 }
-.transpa{
+.transpa {
   opacity: 0.7;
 }
 .bandeau {
@@ -344,69 +312,55 @@ onUnmounted(() => {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
-
 .bandeau:hover {
   transform: scale(1.02);
 }
-
 .v-carousel {
   max-width: 800px;
   margin: 0 auto;
 }
-
 .v-card-title {
   font-size: 1.2rem;
   font-weight: 600;
 }
-
 .v-card-subtitle {
   font-size: 1rem;
   opacity: 0.8;
 }
-
 .v-btn {
   text-transform: none;
   font-weight: 500;
 }
-
-:deep(h1) {
+.markdown-content :deep(h1) {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
-
-:deep(h2) {
+.markdown-content :deep(h2) {
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
-
-:deep(h3) {
+.markdown-content :deep(h3) {
   font-size: 1.1rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
-
-:deep(p) {
+.markdown-content :deep(p) {
   margin-bottom: 1rem;
 }
-
-:deep(ul) {
+.markdown-content :deep(ul) {
   list-style-type: disc;
   margin-left: 1.5rem;
   margin-bottom: 1rem;
 }
-
-:deep(li) {
+.markdown-content :deep(li) {
   margin-bottom: 0.5rem;
 }
-
-:deep(strong) {
+.markdown-content :deep(strong) {
   font-weight: bold;
 }
-
-:deep(em) {
+.markdown-content :deep(em) {
   font-style: italic;
 }
 </style>
-

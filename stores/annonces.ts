@@ -14,7 +14,7 @@ export const useAnnonceStore = defineStore('annonces', {
   getters: {
     favoriteAnnonces: (state): Annonce[] => {
       return state.annonces
-        .filter((a) => a.favorite === true)
+        .filter((a: { favorite: boolean }): boolean => a.favorite === true)
         .slice(0, 10)
     },
 
@@ -23,7 +23,7 @@ export const useAnnonceStore = defineStore('annonces', {
         return state.annonces
       }
       return state.annonces.filter(
-        (a) => a.departement === state.selectedDepartement
+        (a: { departement: string }) => a.departement === state.selectedDepartement
       )
     },
   },
@@ -64,7 +64,7 @@ export const useAnnonceStore = defineStore('annonces', {
     },
 
     async fetchAnnonceById(id: string): Promise<Annonce | null> {
-      const existing = this.annonces.find((a) => a.id === id)
+      const existing = this.annonces.find((a: { id: string }) => a.id === id)
       if (existing) return existing
 
       const db = useFirestore()
