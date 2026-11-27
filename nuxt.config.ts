@@ -1,136 +1,63 @@
-// nuxt.config.ts
-import type { Plugin } from 'vite'
-import vuetify from 'vite-plugin-vuetify'
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
-export default {
+export default defineNuxtConfig({
+  compatibilityDate: '2024-11-01',
+
+  devtools: {
+    enabled: true,
+  },
+
   app: {
     head: {
       title: 'TCSO, Immobilier Commercial',
+      titleTemplate: '%s — %siteName',
+      templateParams: { siteName: 'TCSO' },
       htmlAttrs: { lang: 'fr' },
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Agence Immobilière spécialisée dans la transaction de locaux commerciaux' },
+        {
+          name: 'description',
+          content: 'Agence Immobilière spécialisée dans la transaction de locaux commerciaux',
+        },
       ],
-      noscript: [{ children: 'JavaScript is required' }],
-      titleTemplate: '%s — %siteName',
-      templateParams: { siteName: 'TCSO' }
-    }
+      noscript: [{ textContent: 'JavaScript est requis pour afficher ce site.' }],
+    },
   },
-
-  compatibilityDate: '2024-11-01',
-  devtools: { enabled: false, timeline: { enabled: true } },
-  debug: false,
 
   css: [
     'vuetify/styles',
     '@mdi/font/css/materialdesignicons.css',
   ],
-  build: { transpile: ['vuetify'] },
+
+  build: {
+    transpile: ['vuetify'],
+  },
 
   modules: [
-    (_options: any, nuxt: { hooks: { hook: (arg0: string, arg1: (config: { plugins: Plugin<any>[][] }) => void) => void } }) => {
-      nuxt.hooks.hook('vite:extendConfig', (config: { plugins: Plugin<any>[][] }) => {
-        config.plugins = config.plugins || []
-        config.plugins.push(vuetify({ autoImport: true }))
+    (_options, nuxt) => {
+      nuxt.hooks.hook('vite:extendConfig', (config) => {
+        ;(config.plugins ??= []).push(vuetify({ autoImport: true }) as any)
       })
     },
     '@dargmuesli/nuxt-cookie-control',
     'nuxt-vuefire',
     '@pinia/nuxt',
-    'nuxt-gtag'
+    'nuxt-gtag',
   ],
 
-  cookieControl: {
-    barPosition: 'bottom-full',
-  // Switch to toggle if clicking the overlay outside the configuration modal closes the modal.
-    closeModalOnClickOutside: true,
-    colors: {
-      barBackground: '#3CA2A4',
-      barButtonBackground: '#3CA2A4',
-      barButtonColor: '#000',
-      barButtonHoverBackground: '#333',
-      barButtonHoverColor: '#3CA2A4',
-      barTextColor: '#fff',
-      checkboxActiveBackground: '#000',
-      checkboxActiveCircleBackground: '#fff',
-      checkboxDisabledBackground: '#ddd',
-      checkboxDisabledCircleBackground: '#fff',
-      checkboxInactiveBackground: '#000',
-      checkboxInactiveCircleBackground: '#fff',
-      controlButtonBackground: '#3CA2A4',
-      controlButtonHoverBackground: '#2B7691',
-      controlButtonIconColor: '#fff',
-      controlButtonIconHoverColor: '#fff',
-      focusRingColor: '#808080',
-      modalBackground: '#fff',
-      modalButtonBackground: '#000',
-      modalButtonColor: '#fff',
-      modalButtonHoverBackground: '#333',
-      modalButtonHoverColor: '#fff',
-      modalOverlay: '#000',
-      modalOverlayOpacity: 0.8,
-      modalTextColor: '#22b85bff',
-      modalUnsavedColor: '#fff',
-    },
-    text: {
-      barTitle: 'Cookies',
-      barDescription: 'We use our own cookies and third-party cookies so that we can show you this website and better understand how you use it, with a view to improving the services we offer. If you continue browsing, we consider that you have accepted the cookies.',
-      acceptAll: 'Accept all',
-      declineAll: 'Delete all',
-      manageCookies: 'Manage cookies',
-      unsaved: 'You have unsaved settings',
-      close: 'Close',
-      save: 'Save',
-      necessary: 'Necessary cookies',
-      optional: 'Optional cookies',
-      functional: 'Functional cookies',
-      blockedIframe: 'To see this, please enable functional cookies',
-      here: 'here'
-    },
-
-
-// The cookies that are to be controlled.
-// See detailed explanation further down below!
-cookies: {
-  // necessary: [],
-  optional: [],
-}
-  },
-
-gtag: {
-  id: 'G-MYM02XCJFT', // TON ID GA4
-
-  config: {
-    debug_mode: false,
-    send_page_view: true,
-    anonymize_ip: true,
-  },
-
-  pageView: {
-    enabled: true,
-  },
-
-  tags: [
-    {
-      id: 'G-MYM02XCJFT',
-      config: {
-        send_page_view: true,
-      }
-    }
-  ]
-},
-
   vite: {
+    vue: {
+      template: {
+        transformAssetUrls,
+      },
+    },
     optimizeDeps: {
       include: [
         'firebase/app',
         'firebase/firestore',
         'vuefire',
         'pinia',
-        'vuetify',
-        'vuetify/components',
-        'vuetify/directives',
       ],
     },
     server: {
@@ -141,18 +68,66 @@ gtag: {
   },
 
   vuefire: {
-    config: {
-      apiKey: process.env.FIREBASE_API_KEY,
-      authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-      databaseURL: process.env.DATABASEURL,
-      projectId: process.env.PROJECTID,
-      storageBucket: process.env.STORAGEBUCKET,
-      messagingSenderId: process.env.MESSAGINGSENDERID,
-      appId: process.env.APPID,
-    },
     firestore: true,
     auth: false,
+    config: {
+      apiKey: process.env.NUXT_PUBLIC_FIREBASE_API_KEY || process.env.FIREBASE_API_KEY,
+      authDomain: process.env.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN || process.env.FIREBASE_AUTH_DOMAIN,
+      databaseURL: process.env.NUXT_PUBLIC_FIREBASE_DATABASE_URL || process.env.DATABASEURL,
+      projectId: process.env.NUXT_PUBLIC_FIREBASE_PROJECT_ID || process.env.PROJECTID,
+      storageBucket: process.env.NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET || process.env.STORAGEBUCKET,
+      messagingSenderId: process.env.NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || process.env.MESSAGINGSENDERID,
+      appId: process.env.NUXT_PUBLIC_FIREBASE_APP_ID || process.env.APPID,
+    },
   },
 
-  plugins: []
-}
+  gtag: {
+    initMode: 'manual', // Déclenché uniquement après consentement cookie
+    id: process.env.NUXT_PUBLIC_GTAG_ID || 'G-MYM02XCJFT',
+    config: {
+      anonymize_ip: true,
+    },
+  },
+
+  cookieControl: {
+    locales: ['fr'],
+    barPosition: 'bottom-full',
+    closeModalOnClickOutside: true,
+    colors: {
+      barBackground: '#3CA2A4',
+      barButtonBackground: '#ffffff',
+      barButtonColor: '#000000',
+      barButtonHoverBackground: '#333333',
+      barButtonHoverColor: '#ffffff',
+      barTextColor: '#ffffff',
+      controlButtonBackground: '#3CA2A4',
+      controlButtonHoverBackground: '#2B7691',
+      controlButtonIconColor: '#ffffff',
+      controlButtonIconHoverColor: '#ffffff',
+    },
+    localeTexts: {
+      fr: {
+        bannerDescription:
+          'Nous utilisons des cookies nécessaires au bon fonctionnement du site et des cookies de mesure d’audience anonymes.',
+      },
+    },
+    cookies: {
+      necessary: [
+        {
+          id: 'ncc',
+          name: { fr: 'Préférences de cookies' },
+          description: { fr: 'Enregistre votre choix concernant le consentement aux cookies.' },
+          targetCookieIds: ['ncc_c', 'ncc_e'],
+        },
+      ],
+      optional: [
+        {
+          id: 'ga',
+          name: { fr: 'Google Analytics' },
+          description: { fr: 'Mesure anonyme de la fréquentation du site TCSO.' },
+          targetCookieIds: ['_ga', '_gid', '_gat'],
+        },
+      ],
+    },
+  },
+})
