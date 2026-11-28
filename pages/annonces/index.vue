@@ -113,7 +113,7 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useAnnonceStore } from '~/stores/annonces'
-import type { Annonce } from '../types/annonce'
+import type { Annonce } from '../../types/annonce'
 
 useSeoMeta({
   title: 'Nos annonces',
@@ -134,7 +134,7 @@ const isLoading = computed(() => pending.value || loading.value)
 
 const getPrimaryImages = (annonce: Annonce) => {
   return (annonce.images || []).filter(
-    (media: { ordre: any; url: any }) => String(media.ordre) === '1' && Boolean(media.url)
+    (media) => String(media.ordre) === '1' && Boolean(media.url)
   )
 }
 </script>

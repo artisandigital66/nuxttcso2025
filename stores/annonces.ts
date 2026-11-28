@@ -6,6 +6,7 @@ import type { Annonce } from '../types/annonce'
 export const useAnnonceStore = defineStore('annonces', {
   state: () => ({
     annonces: [] as Annonce[],
+    allLoaded: false as boolean,
     selectedDepartement: 'Tous' as string,
     loading: false as boolean,
     error: null as string | null,
@@ -14,7 +15,7 @@ export const useAnnonceStore = defineStore('annonces', {
   getters: {
     favoriteAnnonces: (state): Annonce[] => {
       return state.annonces
-        .filter((a: { favorite: boolean }): boolean => a.favorite === true)
+        .filter((a) => a.favorite === true)
         .slice(0, 10)
     },
 
@@ -23,19 +24,14 @@ export const useAnnonceStore = defineStore('annonces', {
         return state.annonces
       }
       return state.annonces.filter(
-        (a: { departement: string }) => a.departement === state.selectedDepartement
+        (a) => a.departement === state.selectedDepartement
       )
     },
   },
 
   actions: {
-    /**
-     * Charge les annonces en lecture ponctuelle (getDocs) avec cache en mémoire.
-     * Retourne une fonction no-op pour rester compatible avec les pages
-     * qui appellent encore `unsubscribe()` dans `onUnmounted`.
-     */
     async fetchAnnonces(forceRefresh = false): Promise<() => void> {
-      if (this.annonces.length > 0 && !forceRefresh) {
+      if (this.allLoaded && !forceRefresh) {
         return () => {}
       }
 
@@ -48,11 +44,12 @@ export const useAnnonceStore = defineStore('annonces', {
         const snap = await getDocs(colRef)
 
         this.annonces = snap.docs.map((d) => ({
-          id: d.id,
           favorite: false,
           url: '',
           ...(d.data() as Omit<Annonce, 'id'>),
+          id: d.id,
         }))
+        this.allLoaded = true
       } catch (err: any) {
         this.error = err?.message || 'Erreur lors du chargement des annonces'
         console.error('Erreur fetchAnnonces:', err)
@@ -64,7 +61,7 @@ export const useAnnonceStore = defineStore('annonces', {
     },
 
     async fetchAnnonceById(id: string): Promise<Annonce | null> {
-      const existing = this.annonces.find((a: { id: string }) => a.id === id)
+      const existing = this.annonces.find((a) => a.id === id)
       if (existing) return existing
 
       const db = useFirestore()
@@ -74,10 +71,10 @@ export const useAnnonceStore = defineStore('annonces', {
       if (!snap.exists()) return null
 
       const annonce: Annonce = {
-        id: snap.id,
         favorite: false,
         url: '',
         ...(snap.data() as Omit<Annonce, 'id'>),
+        id: snap.id,
       }
       this.annonces.push(annonce)
       return annonce

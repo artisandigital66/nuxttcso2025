@@ -177,50 +177,51 @@
     <v-card class="justify-space-around px-3">
       <v-col cols="12" md="8">
 
-            <h3>La cession de droit au bail</h3>
-
-            <p class="mt-5">
-              Comme nous l’avons vu plus haut le droit au bail est un des
-              éléments constitutifs du fonds de commerce. Un élément essentiel
-              au même titre que la clientèle. Ceci nous impose de traiter un peu
-              plus largement du bail commercial. Ce dernier contrat essentiel en
-              matière commerciale est le contrat par lequel un bailleur
-              (propriétaire) met à disposition un local commercial à un preneur
-              (locataire commerçant). Ce contrat est régi par des dispositions
-              d’ordre public (c’est-à-dire des notions desquelles on ne peut
-              déroger) et des dispositions conventionnelles.
-            </p>
-            <p>
-              C’est un acte essentiel et déterminant dans la vie d’un commerçant
-              et doit faire l’objet de toutes les attentions car mal rédigé ou
-              déséquilibré il peut avoir des conséquences extrêmement lourdes.
-            </p>
-            <p>
-              Ce bail une fois signé entre les parties fait naître à l’égard du
-              preneur un droit au bail c’est-à-dire le droit pour le preneur de
-              jouir des locaux pour son activité. Ce droit est cessible mais sa
-              cession est la plupart du temps encadrée par le bail commercial.
-            </p>
-            <p>
-              En premier lieu un bail va définir la destination des locaux loués
-              c’est-à-dire les activités possiblement exploitables dans le local
-              considéré. On parlera ainsi de :
-            </p>
-            <ul class="mb-5">
-              <li>
-                Bail tous commerces pour lequel toutes les activités seront
-                possibles
-              </li>
-              <li>
-                Bail tous commerces avec exclusion, par exemple restauration ou
-                commerces malodorants ou créant des nuisances olfactives
-              </li>
-              <li>
-                Bail spécialisé, c’est-à-dire un bail ne permettant que
-                l’activité exercée (bail pour un magasin d’optique, pour une
-                alimentation générale) à l’exclusion de tout autres
-              </li>
-            </ul>
+            <h2 class="mx-auto text-center my-3">La cession de droit au bail</h2>
+            <v-col cols="12" md="8" class="justify-center">
+              <p class="mt-5">
+                Comme nous l’avons vu plus haut le droit au bail est un des
+                éléments constitutifs du fonds de commerce. Un élément essentiel
+                au même titre que la clientèle. Ceci nous impose de traiter un peu
+                plus largement du bail commercial. Ce dernier contrat essentiel en
+                matière commerciale est le contrat par lequel un bailleur
+                (propriétaire) met à disposition un local commercial à un preneur
+                (locataire commerçant). Ce contrat est régi par des dispositions
+                d’ordre public (c’est-à-dire des notions desquelles on ne peut
+                déroger) et des dispositions conventionnelles.
+              </p>
+              <p>
+                C’est un acte essentiel et déterminant dans la vie d’un commerçant
+                et doit faire l’objet de toutes les attentions car mal rédigé ou
+                déséquilibré il peut avoir des conséquences extrêmement lourdes.
+              </p>
+              <p>
+                Ce bail une fois signé entre les parties fait naître à l’égard du
+                preneur un droit au bail c’est-à-dire le droit pour le preneur de
+                jouir des locaux pour son activité. Ce droit est cessible mais sa
+                cession est la plupart du temps encadrée par le bail commercial.
+              </p>
+              <p>
+                En premier lieu un bail va définir la destination des locaux loués
+                c’est-à-dire les activités possiblement exploitables dans le local
+                considéré. On parlera ainsi de :
+              </p>
+                <ul class="mb-5">
+                <li>
+                  Bail tous commerces pour lequel toutes les activités seront
+                  possibles
+                </li>
+                <li>
+                  Bail tous commerces avec exclusion, par exemple restauration ou
+                  commerces malodorants ou créant des nuisances olfactives
+                </li>
+                <li>
+                  Bail spécialisé, c’est-à-dire un bail ne permettant que
+                  l’activité exercée (bail pour un magasin d’optique, pour une
+                  alimentation générale) à l’exclusion de tout autres
+                </li>
+              </ul>
+              </v-col>
             <v-col cols="12" md="8" class="justify-center">
               <v-img
                 class="mx-auto"
